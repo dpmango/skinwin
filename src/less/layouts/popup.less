@@ -1,0 +1,27 @@
+.l-popup {
+  position: relative;
+  width: 182px;
+  margin: 12px -11px 0 0;
+  background: #11bfae;
+
+  &-wrap {
+    position: relative;
+    .outer-shadow(@size: 4px, @color: #2c2c2c);
+    z-index: 10;
+  }
+
+  &-block {
+    padding: 12px 15px;
+  }
+
+  &:after {
+    position: absolute;
+    top: -7px;
+    right: 18px;
+    width: 14px;
+    height: 14px;
+    background: #11bfae;
+    transform: rotateZ(45deg);
+    content: '';
+  }
+}

@@ -1,0 +1,50 @@
+.h-scroll-box {
+  position: relative;
+  overflow: visible;
+
+  &-inner {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &-wrap {
+    display: flex;
+    background: #061a2c;
+    transition: transform 0.3s linear;
+  }
+
+  &-item {
+    flex-shrink: 0;
+    margin: 5px;
+  }
+
+  &-bar {
+    height: 6px;
+    margin-top: 6px;
+    border-radius: 3px;
+    overflow: visible;
+    background: #061a2c;
+
+    & > div {
+      width: 100px;
+      height: 100%;
+      background: #092741;
+      border-radius: 3px;
+      transition: transform 0.3s linear;
+      .outer-shadow(5px, #092741);
+    }
+  }
+}
+
+.h-scroll-box-st2 {
+  .h-scroll-box-wrap {
+    background: none;
+  }
+
+  .h-scroll-box-bar {
+    & > div {
+      background: #11bfae;
+      .outer-shadow(5px, #11bfae);
+    }
+  }
+}

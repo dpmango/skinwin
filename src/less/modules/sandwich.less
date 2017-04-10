@@ -1,0 +1,25 @@
+.sandwich {
+  position: relative;
+  display: inline-block;
+  overflow: visible;
+  cursor: pointer;
+
+  &-solid {
+
+  }
+
+  &-popup {
+    position: absolute;
+    overflow: visible;
+    right: 0;
+    top: 100%;
+    display: none;
+  }
+}
+
+.is-sandwich-open {
+  z-index: 1000;
+  .sandwich-popup {
+    display: block;
+  }
+}

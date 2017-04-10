@@ -1,0 +1,83 @@
+.c_absolute_lt (@top: 0px, @left: 0px, @width: auto, @height: auto)
+{
+  position: absolute;
+  top: @top;
+  left: @left;
+  width: @width;
+  height: @height;
+}
+
+.c_absolute_rt (@top: 0px, @right: 0px, @width: auto, @height: auto)
+{
+  position: absolute;
+  top: @top;
+  right: @right;
+  width: @width;
+  height: @height;
+}
+
+.c_absolute_lb (@bottom: 0px, @left: 0px, @width: auto, @height: auto)
+{
+  position: absolute;
+  bottom: @bottom;
+  left: @left;
+  width: @width;
+  height: @height;
+}
+
+.c_absolute_rb (@bottom: 0px, @right: 0px, @width: auto, @height: auto)
+{
+  position: absolute;
+  bottom: @bottom;
+  right: @right;
+  width: @width;
+  height: @height;
+}
+
+.outer-shadow(@size: 7px, @color: #c2c2c2)
+{
+  -webkit-box-shadow: 0px 0px @size @color;
+  -moz-box-shadow: 0px 0px @size @color;
+  box-shadow: 0px 0px @size @color;
+}
+
+.inner-shadow(@size: 7px, @color: #c2c2c2)
+{
+  -webkit-box-shadow: inset 0px 0px @size @color;
+  -moz-box-shadow: inset 0px 0px @size @color;
+  box-shadow: inset 0px 0px @size @color;
+}
+
+.bg-v-gradient(@color-top, @color-bottom) {
+  background: mix(@color-top, @color-bottom, 50%);
+  background: linear-gradient(to bottom, @color-top, @color-bottom);
+}
+
+.transition(@property: all, @duration: 0s, @timing-func: linear, @delay: 0s)
+{
+  /*transition: none;*/
+  -webkit-transition: @property @duration @timing-func @delay;
+  -moz-transition: @property @duration @timing-func @delay;
+  -o-transition: @property @duration @timing-func @delay;
+  transition: @property @duration @timing-func @delay;
+}
+
+.bg-transparent-gradient-to-right(@color-left, @color-right, @o) {
+  @colorR: rgba(red(@color-right), green(@color-right), blue(@color-right), 1);
+  @colorL: rgba(red(@color-left), green(@color-left), blue(@color-left), @o);
+
+  background: -webkit-linear-gradient(left, @colorL, @colorR); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, @colorL, @colorR); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, @colorL, @colorR); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, @colorL, @colorR); /* Standard syntax (must be last) */
+}
+
+.bg-transparent-gradient-to-left(@color-left, @color-right, @o) {
+  @colorR: rgba(red(@color-right), green(@color-right), blue(@color-right), 1);
+  @colorL: rgba(red(@color-left), green(@color-left), blue(@color-left), @o);
+
+  background: -webkit-linear-gradient(right, @colorL, @colorR); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(left, @colorL, @colorR); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(left, @colorL, @colorR); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to left, @colorL, @colorR); /* Standard syntax (must be last) */
+}

@@ -1,0 +1,31 @@
+.rscroll-box {
+  position: relative;
+  height: 310px;
+  padding: 10px 0 10px;
+  overflow: hidden;
+
+  .rscroll-box-wrap {
+    box-sizing: content-box;
+    text-align: right;
+    position: relative;
+    width: 100%;
+    padding-right: 50px;
+    max-height: 100%;
+    overflow: auto;
+  }
+
+  .rscroll-box-item {
+    overflow: hidden;
+    padding-right: 110px;
+  }
+
+  .rscroll-box-item-wrap {
+    transition: 0.2s linear;
+  }
+
+  & > canvas {
+    position: absolute;
+    top: 15px;
+    right: 0;
+  }
+}

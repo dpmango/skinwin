@@ -1,0 +1,40 @@
+.bet {
+
+  &-user {
+    padding-right: 50px;
+    padding-top: 30px;
+    text-align: center;
+    float: left;
+
+    & > .portrait {
+      margin-bottom: 5px;
+    }
+  }
+
+  &-items {
+    overflow: auto;
+    //flex-grow: 1;
+
+    & > .h-scroll-box {
+      //width: 100%;
+    }
+  }
+
+  &-info {
+    padding: 15px 25px 0 10px;
+    margin-left: 20px;
+    border-left: 5px solid #11bfae;
+    background: #061a2c;
+    float: right;
+
+    & > p {
+      margin-bottom: 15px;
+      font: bold 12px/17px @font-family-base;
+
+      & > .icon {
+        width: 20px;
+        margin-right: 2px;
+      }
+    }
+  }
+}

@@ -1,0 +1,121 @@
+.l-luck-of-day {
+  height: 160px;
+  margin-top: -5px;
+  padding: 45px 50px 0 0;
+  text-align: right;
+  background: url(../images/curved-bg/top-left-yellow.png) top right no-repeat;
+}
+
+.l-previous-winner {
+  height: 160px;
+  margin: 12px 72px 0 0;
+  padding: 45px 5px 0 0;
+  text-align: right;
+  background: url(../images/curved-bg/center-left-green.png) top right no-repeat;
+}
+
+.l-team {
+  height: 121px;
+  margin-top: 12px;
+  padding: 18px 40px 0 0;
+  text-align: right;
+  background: url(../images/curved-bg/bottom-left-blue3.png) top right no-repeat;
+
+  & > div {
+    margin-right: 50px;
+  }
+}
+
+.l-items {
+  position: relative;
+  height: 370px;
+  background: url(../images/curved-bg/top-right-blue.png) top left 2px no-repeat;
+  padding: 20px 50px 0 130px;
+
+  &-fbtn {
+    position: absolute;
+    cursor: pointer;
+    top: 37px;
+    left: 70px;
+    width: 63px;
+    height: 63px;
+    background: url(../images/btns/add.png);
+  }
+
+  & > .h-scroll-box {
+    width: auto;
+    max-width: 440px;
+    position: relative;
+
+    .h-scroll-box-inner {
+      margin-left: 20px;
+      width: auto;
+      &:after {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 100px;
+        .bg-transparent-gradient-to-right(#fff, @body-color, 0);
+        content: '';
+      }
+    }
+
+    .cs-item {
+      margin: 0 -7px;
+    }
+  }
+}
+
+.l-chance {
+  height: 92px;
+  margin-top: -5px;
+  padding: 24px 0 0 55px;
+  background: url(../images/curved-bg/bottom-right-red.png) top left no-repeat;
+}
+
+.l-history {
+  height: 319px;
+  margin-bottom: 20px;
+  padding: 5px 35px 0 0;
+  text-align: right;
+  background: url(../images/curved-bg/top-left-dark-yellow.png) top right 4px no-repeat;
+
+  & > .rscroll-box {
+    @media (max-width: 1500px) {
+      .scrl-item-info {
+        display: none;
+      }
+      .scrl-item {
+        width: 260px;
+      }
+      .rscroll-box-item {
+        padding-right: 70px;
+      }
+    }
+  }
+}
+
+.l-top-list {
+  height: 319px;
+  margin-bottom: 20px;
+  padding: 5px 35px 0 0;
+  text-align: right;
+  background: url(../images/curved-bg/top-left-purple.png) top right 4px no-repeat;
+
+  & > .rscroll-box {
+    .rscroll-box-item {
+      padding-right: 40px;
+    }
+    @media (max-width: 1500px) {
+      .scrl-item {
+        width: 260px;
+      }
+      .rscroll-box-item {
+        padding-right: 70px;
+      }
+    }
+  }
+  & > .rscroll-box {
+  }
+}

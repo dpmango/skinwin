@@ -1,0 +1,46 @@
+.roulette {
+  display: block;
+  height: 165px;
+  position: relative;
+  overflow: visible;
+  margin-bottom: 20px;
+
+  &-winner {
+    text-align: center;
+    line-height: 20px;
+    &-name {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    &-info {
+      font-size: 11px;
+    }
+  }
+
+  .roulette-wrap {
+    position: relative;
+    width: 1068px;
+    overflow: visible;
+    height: 120px;
+    margin: 0 auto;
+
+    &:after {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 500px;
+      .bg-transparent-gradient-to-right(#fff, @body-color, 0.001);
+      content: '';
+    }
+    &:before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 500px;
+      .bg-transparent-gradient-to-left(#fff, @body-color, 0.001);
+      content: '';
+    }
+  }
+}

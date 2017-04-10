@@ -1,0 +1,36 @@
+.bookmark {
+  display: block;
+  position: relative;
+  height: 175px;
+  width: 89px;
+  background-image: url(../images/geme-menu-arr.png);
+  background-position: -89px bottom;
+  transition: height 0.1s linear;
+
+  &:hover {
+    height: 195px;
+  }
+
+  &-wrap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 43px;
+    text-align: center;
+  }
+
+  &-label {
+    font: bold 10px/17px @font-family-base;
+    margin-top: 7px;
+  }
+
+  &-amount {
+    margin-top: 2px;
+    font: 300 12px/17px @font-family-base;
+  }
+}
+
+.is-bookmark-active {
+  height: 206px !important;
+  background-position: 0 bottom;
+}

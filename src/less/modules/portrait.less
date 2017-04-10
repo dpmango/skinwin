@@ -1,0 +1,47 @@
+.portrait {
+  position: relative;
+  display: inline-block;
+  border: 2px solid #11bfae;
+  border-radius: 50%;
+  vertical-align: middle;
+  .outer-shadow(3px, #11bfae);
+
+  &-wrap {
+    border-radius: 50%;
+    padding: 3px;
+    .inner-shadow(3px, #11bfae);
+    & > img {
+      vertical-align: top;
+    }
+  }
+
+  &-label {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 13px;
+    height: 13px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    background: #11bfae;
+    font-size: 6px;
+    line-height: 11px;
+    text-align: center;
+  }
+}
+
+.portrait-bgy {
+  border-color: #d9b711;
+  .outer-shadow(5px, #d9b711);
+  &-wrap {
+    .inner-shadow(3px, #d9b711);
+  }
+}
+
+.portrait-bgag {
+  border-color: #00fe2a;
+  .outer-shadow(5px, #00fe2a);
+  &-wrap {
+    .inner-shadow(3px, #00fe2a);
+  }
+}

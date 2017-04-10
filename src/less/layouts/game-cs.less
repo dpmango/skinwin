@@ -1,0 +1,61 @@
+.l-game-cs {
+  display: flex;
+  position: relative;
+  overflow: visible;
+  height: 600px;
+  justify-content: center;
+
+  @media (max-height: @v2_height) {
+    height: 500px;
+  }
+  @media (max-height: @v1_height) {
+    height: 540px;
+  }
+
+  &-bg {
+    position: absolute;
+    width: 377px;
+    height: 377px;
+    top: 68px;
+    left: 50%;
+    margin-left: -188px;
+    border-radius: 50%;
+    background: url("../images/center.png") center center no-repeat;
+  }
+
+  &-stat {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    margin-left: -300px;
+
+    & > .game-timer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+
+  &-left {
+    position: relative;
+    overflow: auto;
+    margin-right: 255px;
+    flex-grow: 1;
+    flex-basis: 0;
+    z-index: 10;
+
+    & > div {
+    }
+  }
+
+  &-right {
+    position: relative;
+    overflow: auto;
+    margin-left: 255px;
+    flex-grow: 1;
+    flex-basis: 0;
+    z-index: 10;
+  }
+}
