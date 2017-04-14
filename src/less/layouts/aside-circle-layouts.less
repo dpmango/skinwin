@@ -3,7 +3,7 @@
   margin-top: -5px;
   padding: 45px 50px 0 0;
   text-align: right;
-  background: url(../images/curved-bg/top-left-yellow.png) top right no-repeat;
+  background: url(../images/curved-bg/cs-go/top-left-yellow.png) top right no-repeat;
 }
 
 .l-previous-winner {
@@ -11,7 +11,7 @@
   margin: 12px 72px 0 0;
   padding: 45px 5px 0 0;
   text-align: right;
-  background: url(../images/curved-bg/center-left-green.png) top right no-repeat;
+  background: url(../images/curved-bg/cs-go/center-left-green.png) top right no-repeat;
 }
 
 .l-team {
@@ -19,7 +19,7 @@
   margin-top: 12px;
   padding: 18px 40px 0 0;
   text-align: right;
-  background: url(../images/curved-bg/bottom-left-blue3.png) top right no-repeat;
+  background: url(../images/curved-bg/cs-go/bottom-left-blue3.png) top right no-repeat;
 
   & > div {
     margin-right: 50px;
@@ -29,7 +29,7 @@
 .l-items {
   position: relative;
   height: 370px;
-  background: url(../images/curved-bg/top-right-blue.png) top left 2px no-repeat;
+  background: url(../images/curved-bg/cs-go/top-right-blue.png) top left 2px no-repeat;
   padding: 20px 50px 0 130px;
 
   &-fbtn {
@@ -71,7 +71,7 @@
   height: 92px;
   margin-top: -5px;
   padding: 24px 0 0 55px;
-  background: url(../images/curved-bg/bottom-right-red.png) top left no-repeat;
+  background: url(../images/curved-bg/cs-go/bottom-right-red.png) top left no-repeat;
 }
 
 .l-history {
@@ -79,7 +79,7 @@
   margin-bottom: 20px;
   padding: 5px 35px 0 0;
   text-align: right;
-  background: url(../images/curved-bg/top-left-dark-yellow.png) top right 4px no-repeat;
+  background: url(../images/curved-bg/cs-go/top-left-dark-yellow.png) top right 4px no-repeat;
 
   & > .rscroll-box {
     @media (max-width: 1500px) {
@@ -101,7 +101,7 @@
   margin-bottom: 20px;
   padding: 5px 35px 0 0;
   text-align: right;
-  background: url(../images/curved-bg/top-left-purple.png) top right 4px no-repeat;
+  background: url(../images/curved-bg/cs-go/top-left-purple.png) top right 4px no-repeat;
 
   & > .rscroll-box {
     .rscroll-box-item {
@@ -117,5 +117,105 @@
     }
   }
   & > .rscroll-box {
+  }
+}
+
+.l-current-bets {
+  height: 470px;
+  margin: 12px 0 0 0;
+  padding: 5px 15px 0 0;
+  text-align: right;
+  background: url(../images/curved-bg/crash/top-left-green.png) top right no-repeat;
+
+  & > .rscroll-box {
+    height: 420px;
+    padding: 10px 10px 0 0;
+    .rscroll-box-item {
+      padding-right: 100px;
+    }
+    canvas {
+      right: 10px;
+    }
+  }
+}
+
+.l-place-bet {
+  max-width: 450px;
+  height: 370px;
+  margin: 12px 72px 0 0;
+  padding: 25px 5px 0 50px;
+  background: url(../images/curved-bg/crash/top-right-red.png) top left no-repeat;
+
+  & > .radio-btn {
+    margin-right: 35px;
+  }
+
+  &-form {
+    margin: 70px 0 0 60px;
+
+    & > .input-text {
+      margin-bottom: 40px;
+      .input-text-btn {
+        width: 100px;
+        padding-left: 0;
+        padding-right: 0;
+        text-align: center;
+        background: #d61651;
+      }
+    }
+  }
+}
+
+.l-place-bet2 {
+  height: 310px;
+  margin: 7px 72px 0 0;
+  padding: 20px 5px 0 60px;
+  background: url(../images/curved-bg/double/top-right-blue.png) top left no-repeat;
+
+  &-koef {
+    & > span {
+      margin-right: 20px;
+    }
+  }
+
+  &-enter {
+    padding: 38px 0 0 30px;
+    vertical-align: middle;
+
+    span {
+      display: inline-block;
+      margin-right: 10px;
+      font-size: 18px;
+      line-height: 28px;
+    }
+
+    input {
+      display: inline-block;
+      width: 100px;
+      border: 1px solid #bda70a;
+      font: bold 24px/28px @font-family-base;
+      text-align: center;
+      background: none;
+      color: #fff;
+    }
+  }
+
+  &-range {
+    padding: 38px 0 0 47px;
+  }
+
+  &-bets {
+    padding: 38px 0 0 47px;
+    vertical-align: middle;
+
+    div {
+      font-size: 18px;
+      line-height: 28px;
+      margin-bottom: 5px;
+    }
+
+    & > .card {
+      margin-right: 7px;
+    }
   }
 }

@@ -7,8 +7,8 @@
 
   D = document;
 
-  W.cnvRoulette = (function() {
-    function cnvRoulette(canvas) {
+  W.CnvRoulette = (function() {
+    function CnvRoulette(canvas) {
       this.canvas = canvas;
       this.ctx = this.canvas.getContext('2d');
       this.objects = [];
@@ -33,7 +33,7 @@
       };
     }
 
-    cnvRoulette.prototype.init = function(arrRawObject) {
+    CnvRoulette.prototype.init = function(arrRawObject) {
       var j, k, l, m, n, rObj, ref, ref1;
       l = arrRawObject.length;
       if (this.P.chip.amount > l) {
@@ -55,7 +55,7 @@
       this.status = 'init';
     };
 
-    cnvRoulette.prototype.start = function() {
+    CnvRoulette.prototype.start = function() {
       if (this.status === 'init' || this.status === 'stop') {
         this.winner_id = null;
         this._a = 0;
@@ -65,7 +65,7 @@
       }
     };
 
-    cnvRoulette.prototype.stop = function(id, afterStop) {
+    CnvRoulette.prototype.stop = function(id, afterStop) {
       var i, j, m, ref;
       this.afterStop = afterStop;
       this.status = 'slowdown';
@@ -89,7 +89,7 @@
       })(this), 1000);
     };
 
-    cnvRoulette.prototype.addPattern = function(url) {
+    CnvRoulette.prototype.addPattern = function(url) {
       var img;
       if (this.patterns[url] !== void 0) {
         return;
@@ -105,21 +105,23 @@
       return img.src = url;
     };
 
-    cnvRoulette.prototype.createPlayerObj = function(rawObj, i) {
+    CnvRoulette.prototype.createPlayerObj = function(rawObj, i) {
       var sObj;
       this.addPattern(rawObj.picture);
       this.addPattern(rawObj.big_picture);
+      this.addPattern(rawObj.gray_picture);
       return sObj = {
         id: rawObj.id,
         num: i,
         color: rawObj.color,
         picture: rawObj.picture,
         big_picture: rawObj.big_picture,
+        gray_picture: rawObj.gray_picture,
         x: (i - 1) * this.P.chip.width
       };
     };
 
-    cnvRoulette.prototype.toGray = function() {
+    CnvRoulette.prototype.toGray = function() {
       var brightness, data, i, imageData;
       imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
       data = imageData.data;
@@ -134,21 +136,32 @@
       this.ctx.putImageData(imageData, 0, 0);
     };
 
-    cnvRoulette.prototype.drawPlayer = function(l, cObj) {
+    CnvRoulette.prototype.drawPlayer = function(l, cObj, gray) {
+      var color;
+      if (gray == null) {
+        gray = 0;
+      }
+      color = gray ? "#cccccc" : cObj.color;
       this.ctx.beginPath();
       this.ctx.arc(l + this.P.chip.width / 2, this.P.centerY, this.P.outlineRadius, 0, 2 * Math.PI);
-      this.ctx.strokeStyle = cObj.color;
+      this.ctx.strokeStyle = color;
       this.ctx.lineWidth = 2;
-      this.ctx.shadowBlur = 6;
-      this.ctx.shadowColor = cObj.color;
+      this.ctx.shadowBlur = gray ? 8 : 0;
+      this.ctx.shadowColor = color;
       this.ctx.stroke();
       this.ctx.shadowBlur = 0;
-      if (this.patterns[cObj.picture]) {
-        return this.ctx.drawImage(this.patterns[cObj.picture], l + (this.P.chip.width - this.P.picture.width) / 2, (this.canvas.height - this.P.picture.height) / 2, 54, 54);
+      if (gray) {
+        if (this.patterns[cObj.gray_picture]) {
+          return this.ctx.drawImage(this.patterns[cObj.gray_picture], l + (this.P.chip.width - this.P.picture.width) / 2, (this.canvas.height - this.P.picture.height) / 2, 54, 54);
+        }
+      } else {
+        if (this.patterns[cObj.picture]) {
+          return this.ctx.drawImage(this.patterns[cObj.picture], l + (this.P.chip.width - this.P.picture.width) / 2, (this.canvas.height - this.P.picture.height) / 2, 54, 54);
+        }
       }
     };
 
-    cnvRoulette.prototype.drawWinner = function() {
+    CnvRoulette.prototype.drawWinner = function() {
       this.ctx.beginPath();
       this.ctx.arc(this.P.centerX, this.P.centerY, 56, 0, 2 * Math.PI);
       this.ctx.strokeStyle = this.objects[this.winner_id].color;
@@ -162,7 +175,7 @@
       }
     };
 
-    cnvRoulette.prototype.drawPointer = function(alpha) {
+    CnvRoulette.prototype.drawPointer = function(alpha) {
       var mt;
       if (alpha == null) {
         alpha = 0.1;
@@ -186,20 +199,23 @@
       return this.ctx.fill();
     };
 
-    cnvRoulette.prototype.drawBg = function() {
+    CnvRoulette.prototype.drawBg = function() {
       if (this.patterns[this.P.background]) {
         this.ctx.shadowBlur = 0;
         return this.ctx.drawImage(this.patterns[this.P.background], -170, 14, 1425, 93);
       }
     };
 
-    cnvRoulette.prototype.draw = function(animate) {
-      var callback, i, m, o, ref, ref1;
+    CnvRoulette.prototype.draw = function(animate) {
+      var callback, i, m, o, p, ref, ref1, ref2;
       if (animate == null) {
         animate = true;
       }
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.drawBg();
+      if (this.status === 'init' || this.status === 'stop') {
+        this.toGray();
+      }
       if (this.status === 'spin' || this.status === 'slowdown') {
         this._d += this.P.speed;
         if (this._d >= this.P.chip.width) {
@@ -223,15 +239,23 @@
         }
       }
       for (i = o = 0, ref1 = this.objects.length; 0 <= ref1 ? o < ref1 : o > ref1; i = 0 <= ref1 ? ++o : --o) {
-        this.drawPlayer(this.objects[i].x + this._d, this.objects[i]);
+        this.drawPlayer(this.objects[i].x + this._d, this.objects[i], 1);
       }
-      if (this.status === 'init' || this.status === 'stop') {
-        this.toGray();
+      if (this.status === 'spin' || this.status === 'slowdown') {
+        this.ctx.clearRect(this.P.centerX - this.P.chip.width / 2, 0, this.P.chip.width, this.canvas.height);
+        this.ctx.globalCompositeOperation = 'destination-over';
+        this.drawBg();
+        for (i = p = 0, ref2 = this.objects.length; 0 <= ref2 ? p < ref2 : p > ref2; i = 0 <= ref2 ? ++p : --p) {
+          this.drawPlayer(this.objects[i].x + this._d, this.objects[i], 0);
+        }
+        this.ctx.globalCompositeOperation = 'source-over';
       }
       if (this.status === 'slowdown' || this.status === 'stop') {
         this.drawPointer(this._a += 0.05);
       }
       if (this.status === 'stop') {
+        this.toGray();
+        this.drawPointer(this._a += 0.05);
         this.drawWinner();
       }
       if ((this.status === 'slowdown' || this.status === 'spin' || this.status === 'winner_showing') && animate) {
@@ -244,7 +268,7 @@
       }
     };
 
-    return cnvRoulette;
+    return CnvRoulette;
 
   })();
 

@@ -8,8 +8,8 @@
 
   D = document;
 
-  W.hScrollBox = (function() {
-    function hScrollBox(scrollBoxSelector, step1, shrinkLastItems1) {
+  W.HScrollBox = (function() {
+    function HScrollBox(scrollBoxSelector, step1, shrinkLastItems1) {
       this.step = step1 != null ? step1 : 0.5;
       this.shrinkLastItems = shrinkLastItems1 != null ? shrinkLastItems1 : false;
       this.jHSBs = $("" + scrollBoxSelector);
@@ -21,7 +21,7 @@
       this.jtemParams = [];
     }
 
-    hScrollBox.instance = function(scrollBoxSelector, step, shrinkLastItems) {
+    HScrollBox.instance = function(scrollBoxSelector, step, shrinkLastItems) {
       var inst;
       if (step == null) {
         step = 0.5;
@@ -34,7 +34,7 @@
       return inst;
     };
 
-    hScrollBox.prototype.init = function() {
+    HScrollBox.prototype.init = function() {
       this.jItems.each((function(_this) {
         return function(i) {
           _this.wrapWidth += _this.jItems.eq(i).outerWidth(true);
@@ -72,14 +72,14 @@
       })(this));
     };
 
-    hScrollBox.prototype.initItemParams = function(jItem, i) {
+    HScrollBox.prototype.initItemParams = function(jItem, i) {
       return this.jtemParams[i] = {
         left: jItem.position().left,
         width: jItem.outerWidth(true)
       };
     };
 
-    hScrollBox.prototype.updateItems = function(wx) {
+    HScrollBox.prototype.updateItems = function(wx) {
       var i, item, j, last_id, len, ref, results;
       last_id = 10000;
       ref = this.jtemParams;
@@ -98,7 +98,7 @@
       return results;
     };
 
-    hScrollBox.prototype.update = function(wx, sx) {
+    HScrollBox.prototype.update = function(wx, sx) {
       if (wx == null) {
         wx = 0;
       }
@@ -144,7 +144,7 @@
       }
     };
 
-    return hScrollBox;
+    return HScrollBox;
 
   })();
 

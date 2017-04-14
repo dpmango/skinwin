@@ -2,25 +2,30 @@ $ = jQuery
 W = window
 D = document
 
-class W.cvScrollBox
-  constructor: (scrollBoxSelector, @color = "#ffffff") ->
+class W.CvScrollBox
+  constructor: (scrollBoxSelector, @coords, @width, @barColor = "#000000", @dragColor = "#ffffff") ->
+
+    if !scrollBoxSelector or !@coords or !@width
+      console.log 'Missed params in constructor'
+      return
+
     @jScrBox = $ scrollBoxSelector
     @jScrBoxWrap = $ ".rscroll-box-wrap", @jScrBox
     @jItems = $ ".rscroll-box-item", @jScrBox
     @jItemsWraps = $ ".rscroll-box-item-wrap", @jScrBox
 
-    $(".scrl-canvas", @jScrBox).attr('id', "#{scrollBoxSelector}_canvas")
-    @canvas = D.getElementById("#{scrollBoxSelector}_canvas")
+    $(".scrl-canvas", @jScrBox).attr('id', "#{scrollBoxSelector.substr(1)}_canvas")
+    @canvas = D.getElementById("#{scrollBoxSelector.substr(1)}_canvas")
 
     @ctx = @canvas.getContext('2d')
-    @o1 = {x: 380.1021, y: 205.6397, r: 367.1046, sa: -0.1956, ea: 0.5945}
+
     @scrollerHeight = 0
     @step = 25
     @max_xt = 70
     @jtemParams = []
 
-  @instance: (scrollBoxSelector, color = "#ffffff") ->
-    inst = new @ scrollBoxSelector, color
+  @instance: (scrollBoxSelector, coords, width, barColor = "#000000", dragColor = "#ffffff") ->
+    inst = new @ scrollBoxSelector, coords, width, barColor, dragColor
     inst.init()
     inst
 
@@ -30,8 +35,15 @@ class W.cvScrollBox
     @jItems.each (i) =>
       @initItemParams(@jItems.eq(i), i)
 
+    @o1 = @sectorBy3Dots(@coords[0], @coords[1], @coords[2], @coords[3], @coords[4], @coords[5]);
+    @C = {x1: @coords[0], y1: @coords[1], x2: @coords[2], y2: @coords[3], x3: @coords[4], y3: @coords[5]}
+    @m = {x: 10, y: 10}
+    @dx = -@width
+
+    @o1.x += @m.x
+    @o1.y += @m.y
+
     @update()
-#    @draw(@scrollerHeight, 0)
 
     @scrollerHeight = @jScrBox.height() / ( (@jScrBoxWrap.height() + @jScrBoxWrap.get(0).scrollHeight) / 100 )
 
@@ -60,25 +72,52 @@ class W.cvScrollBox
         when y < @jScrBoxWrap.scrollTop() + @step * 7 then @max_xt - 15 * 4
         when y < @jScrBoxWrap.scrollTop() + @step * 8 then @max_xt - 15 * 4.5
         when y < @jScrBoxWrap.scrollTop() + @step * 9 then @max_xt - 15 * 4.8
-        when y < @jScrBoxWrap.scrollTop() + @step * 10 then @max_xt - 15 * 4.3
-        when y < @jScrBoxWrap.scrollTop() + @step * 11 then @max_xt - 15 * 3.9
-        when y < @jScrBoxWrap.scrollTop() + @step * 12 then @max_xt - 15 * 3.2
-        when y < @jScrBoxWrap.scrollTop() + @step * 13 then @max_xt - 15 * 2.8
+        when y < @jScrBoxWrap.scrollTop() + @step * 10 then @max_xt - 15 * 4.5
+        when y < @jScrBoxWrap.scrollTop() + @step * 11 then @max_xt - 15 * 4
+        when y < @jScrBoxWrap.scrollTop() + @step * 12 then @max_xt - 15 * 3.6
+        when y < @jScrBoxWrap.scrollTop() + @step * 13 then @max_xt - 15 * 3.4
+        when y < @jScrBoxWrap.scrollTop() + @step * 14 then @max_xt - 15 * 2.7
+        when y < @jScrBoxWrap.scrollTop() + @step * 15 then @max_xt - 15 * 2
+        when y < @jScrBoxWrap.scrollTop() + @step * 16 then @max_xt - 15 * 1.2
         when y < @jScrBox.height() then @max_xt
         else @max_xt
 
       @jItemsWraps.eq(i).css('transform', "translateX(#{_t}px)")
 
+  update2: () ->
+    for y, i in @jtemParams
+      _y = @jtemParams[i] - @jScrBoxWrap.scrollTop()
+      _x = Math.cos(_y - @C.y1 - @o1.y) * (@o1.r - @C.x3)
+      _t = 0
+
+      @jItemsWraps.eq(i).find('div').html(Math.acos(_y))
+
+  sectorBy3Dots: (x1, y1, x2, y2, x3, y3) ->
+    ma = (y2 - y1) / (x2 - x1)
+    mb = (y3 - y2) / (x3 - x2)
+
+    x = ( ma*mb*(y1 - y3) + mb*(x1 + x2) - ma*(x2 + x3) ) / ( 2*(mb - ma) )
+    y = -1/ma * (x - (x1 + x2) / 2) + (y1 + y2) / 2
+
+    r = Math.pow((Math.pow(x - x1, 2) + Math.pow(y - y1, 2)), 0.5)
+
+    sa = Math.atan((y - y1) / (x - x1))
+    ea = Math.atan((y - y3) / (x - x3))
+
+    #    console.log "x: #{x}, y: #{y}, r: #{r}, sa: #{sa}, ea: #{ea}"
+    {x: x, y: y, r: r, sa: sa, ea: ea}
 
   drawSectorBar: () ->
     @ctx.beginPath()
     @ctx.arc(@o1.x, @o1.y, @o1.r, Math.PI + @o1.sa, Math.PI + @o1.ea)
-    @ctx.arc(@o1.x + 7, @o1.y, @o1.r, Math.PI + @o1.ea, Math.PI + @o1.sa, 1)
-    @ctx.strokeStyle = "#18140a"
-    @ctx.fillStyle = "#18140a"
-    @ctx.lineWidth = 1
-    @ctx.shadowColor = "#18140a"
-    @ctx.shadowBlur = 1
+
+    sa2 = Math.asin( Math.sin(@o1.sa) * @o1.r / (@o1.r + @dx) )
+    ea2 = Math.asin( Math.sin(@o1.ea) * @o1.r / (@o1.r + @dx) )
+
+    @ctx.arc(@o1.x, @o1.y, @o1.r + @dx, Math.PI + ea2, Math.PI + sa2, 1)
+    @ctx.fillStyle = @barColor
+    @ctx.strokeStyle =  @barColor
+    @ctx.shadowBlur = 0
     @ctx.closePath()
     @ctx.fill()
 
@@ -92,15 +131,17 @@ class W.cvScrollBox
     sa1 = @o1.sa + k1 * pT
     ea1 = sa1 + w1
 
+    sa2 = Math.asin( Math.sin(sa1) * @o1.r / (@o1.r + @dx) )
+    ea2 = Math.asin( Math.sin(ea1) * @o1.r / (@o1.r + @dx) )
+
     @ctx.beginPath()
     @ctx.arc(@o1.x, @o1.y, @o1.r, Math.PI + sa1, Math.PI + ea1)
-    @ctx.arc(@o1.x + 7, @o1.y, @o1.r, Math.PI + ea1, Math.PI + sa1, 1)
-    @ctx.fillStyle = @color
-    @ctx.shadowColor = @color
+    @ctx.arc(@o1.x, @o1.y, @o1.r + @dx, Math.PI + ea2, Math.PI + sa2, 1)
+    @ctx.fillStyle = @dragColor
+    @ctx.shadowColor = @dragColor
     @ctx.shadowBlur = 10
     @ctx.closePath()
     @ctx.fill()
-    @ctx.stroke()
 
   draw: (pW = 10, pT = 0) ->
     @ctx.clearRect(0,0, @canvas.width, @canvas.height)

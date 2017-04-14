@@ -1,0 +1,34 @@
+.l-game-crash {
+  display: flex;
+  position: relative;
+  overflow: visible;
+  height: 500px;
+  margin-top: 20px;
+  justify-content: center;
+
+
+  &-center {
+    position: absolute;
+    left: 50%;
+    top: 5px;
+    margin-left: -214px;
+  }
+
+  &-left {
+    position: relative;
+    overflow: auto;
+    margin-right: 255px;
+    flex-grow: 1;
+    flex-basis: 0;
+    z-index: 10;
+  }
+
+  &-right {
+    position: relative;
+    overflow: auto;
+    margin-left: 255px;
+    flex-grow: 1;
+    flex-basis: 0;
+    z-index: 10;
+  }
+}

@@ -9,8 +9,11 @@
   border-bottom: 1px solid #195d71;
   z-index: 1000;
 
-  @media (max-height: @v2_height) {
+  @media (min-height: @v2_height) {
     height: 90px;
+  }
+  @media (min-height: @v1_height) {
+    height: 100px;
   }
 
   &-left {

@@ -2,7 +2,7 @@ $ = jQuery
 W = window
 D = document
 
-class W.hScrollBox
+class W.HScrollBox
   constructor: (scrollBoxSelector, @step = 0.5, @shrinkLastItems = false) ->
     @jHSBs = $ "#{scrollBoxSelector}"
     @jWrap = $ '.h-scroll-box-wrap', @jHSBs

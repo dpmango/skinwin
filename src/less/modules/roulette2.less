@@ -1,0 +1,48 @@
+.roulette2 {
+  position: relative;
+  overflow: visible;
+  display: block;
+  height: 410px;
+  width: 410px;
+
+  .roulette2-pick {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    margin-left: -28px;
+    width: 70px;
+    height: 69px;
+    background: url(../images/pick2.png) center center no-repeat;
+  }
+
+  .roulette2-number {
+    position: absolute;
+    top: 145px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 80px;
+    line-height: 110px;
+    font-weight: 300;
+    color: #1b3c59;
+    z-index: 20;
+
+    span {
+      text-decoration: underline;
+    }
+  }
+
+  .roulette2-wrap {
+    overflow: hidden;
+    height: 410px;
+    width: 410px;
+    border-radius: 50%;
+    background: #081622 url(../images/center2.png) center center no-repeat;
+    .outer-shadow(100px, rgba(255, 216, 0, 0.2));
+
+    canvas {
+      border-radius: 50%;
+      vertical-align: top;
+    }
+  }
+}

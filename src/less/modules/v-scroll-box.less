@@ -1,0 +1,28 @@
+.v-scroll-box {
+  position: relative;
+  overflow: hidden;
+
+  &-wrap {
+    box-sizing: content-box;
+    overflow: auto;
+    width: 100%;
+    padding-right: 50px;
+  }
+
+  &-bar {
+    position: absolute;
+    right: 2px;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    overflow: visible;
+    background: #061a2c;
+
+    & > div {
+      width: 4px;
+      height: 0px;
+      background: #0c7973;
+      .outer-shadow(2px, #0c7973);
+    }
+  }
+}

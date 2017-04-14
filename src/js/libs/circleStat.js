@@ -7,8 +7,8 @@
 
   W = window;
 
-  W.cnvCircleStat = (function() {
-    function cnvCircleStat(canvas) {
+  W.CnvCircleStat = (function() {
+    function CnvCircleStat(canvas) {
       this.canvas = canvas;
       this.ctx = this.canvas.getContext('2d');
       this.objects = {};
@@ -24,7 +24,7 @@
       };
     }
 
-    cnvCircleStat.prototype.init = function(rawSectorObjects) {
+    CnvCircleStat.prototype.init = function(rawSectorObjects) {
       var k, last_angle, rObj;
       last_angle = -0.5 * Math.PI;
       for (k in rawSectorObjects) {
@@ -44,7 +44,7 @@
       this.draw();
     };
 
-    cnvCircleStat.prototype.update = function(rawSectorObjects) {
+    CnvCircleStat.prototype.update = function(rawSectorObjects) {
       var k, last_angle, rObj;
       last_angle = -0.5 * Math.PI;
       for (k in rawSectorObjects) {
@@ -67,7 +67,7 @@
       })(this), 150);
     };
 
-    cnvCircleStat.prototype.addToPatterns = function(url) {
+    CnvCircleStat.prototype.addToPatterns = function(url) {
       var img;
       if (this.patterns[url] !== void 0) {
         return;
@@ -83,7 +83,7 @@
       return img.src = url;
     };
 
-    cnvCircleStat.prototype.createSectorObj = function(rawObj, startAngle) {
+    CnvCircleStat.prototype.createSectorObj = function(rawObj, startAngle) {
       var sObj;
       this.addToPatterns(rawObj.picture);
       return sObj = {
@@ -97,7 +97,7 @@
       };
     };
 
-    cnvCircleStat.prototype.drawMainCircle = function() {
+    CnvCircleStat.prototype.drawMainCircle = function() {
       this.ctx.beginPath();
       this.ctx.arc(this.P.centerX, this.P.centerY, this.P.radius, 0, 2 * Math.PI);
       this.ctx.strokeStyle = "#4f7273";
@@ -106,7 +106,7 @@
       return this.ctx.stroke();
     };
 
-    cnvCircleStat.prototype.drawMainSector = function(startAngle, endAngle, color) {
+    CnvCircleStat.prototype.drawMainSector = function(startAngle, endAngle, color) {
       if (startAngle >= endAngle) {
         return;
       }
@@ -119,7 +119,7 @@
       return this.ctx.stroke();
     };
 
-    cnvCircleStat.prototype.drawLegend = function(cObj) {
+    CnvCircleStat.prototype.drawLegend = function(cObj) {
       var _r, angle, kx, ky;
       if (cObj.percent <= 0) {
         return;
@@ -151,7 +151,7 @@
       return this.ctx.fill();
     };
 
-    cnvCircleStat.prototype.updMainSector = function(cObj) {
+    CnvCircleStat.prototype.updMainSector = function(cObj) {
       var _cObj, needRedraw;
       needRedraw = 0;
       if (_cObj = this._objects[cObj.id]) {
@@ -186,7 +186,7 @@
       return needRedraw;
     };
 
-    cnvCircleStat.prototype.draw = function(recursive) {
+    CnvCircleStat.prototype.draw = function(recursive) {
       var cObj, callback, k, needRedraw, ref;
       if (recursive == null) {
         recursive = true;
@@ -219,7 +219,7 @@
       }
     };
 
-    return cnvCircleStat;
+    return CnvCircleStat;
 
   })();
 

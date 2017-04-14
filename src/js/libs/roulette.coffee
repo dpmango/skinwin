@@ -1,13 +1,13 @@
 W = window
 D = document
 
-class W.cnvRoulette
+class W.CnvRoulette
   constructor: (@canvas) ->
     @ctx = @canvas.getContext('2d')
     @objects = []
     @patterns = {}
     @P =
-      background: 'i/roulette-bg.png'
+      background: 'images/roulette-bg.png'
       centerX: @canvas.width / 2
       centerY: @canvas.height / 2
       picture: {width: 54, height: 54}
@@ -74,12 +74,14 @@ class W.cnvRoulette
   createPlayerObj: (rawObj, i) ->
     @addPattern(rawObj.picture)
     @addPattern(rawObj.big_picture)
+    @addPattern(rawObj.gray_picture)
     sObj =
       id: rawObj.id
       num: i
       color: rawObj.color
       picture: rawObj.picture
       big_picture: rawObj.big_picture
+      gray_picture: rawObj.gray_picture
       x: (i - 1) * @P.chip.width
 
   toGray: ->
@@ -97,18 +99,24 @@ class W.cnvRoulette
     @ctx.putImageData(imageData, 0, 0);
     return
 
-  drawPlayer: (l, cObj) ->
+  drawPlayer: (l, cObj, gray = 0) ->
+    color = if gray then "#cccccc" else cObj.color
+
     @ctx.beginPath()
     @ctx.arc(l + @P.chip.width / 2, @P.centerY, @P.outlineRadius, 0, 2*Math.PI)
-    @ctx.strokeStyle = cObj.color
+    @ctx.strokeStyle = color
     @ctx.lineWidth = 2
-    @ctx.shadowBlur = 6
-    @ctx.shadowColor = cObj.color
+    @ctx.shadowBlur = if gray then 8 else 0
+    @ctx.shadowColor = color
     @ctx.stroke()
 
     @ctx.shadowBlur = 0
-    if @patterns[cObj.picture]
-      @ctx.drawImage(@patterns[cObj.picture], l + (@P.chip.width - @P.picture.width) / 2, (@canvas.height - @P.picture.height) / 2, 54, 54)
+    if gray
+      if @patterns[cObj.gray_picture]
+        @ctx.drawImage(@patterns[cObj.gray_picture], l + (@P.chip.width - @P.picture.width) / 2, (@canvas.height - @P.picture.height) / 2, 54, 54)
+    else
+      if @patterns[cObj.picture]
+        @ctx.drawImage(@patterns[cObj.picture], l + (@P.chip.width - @P.picture.width) / 2, (@canvas.height - @P.picture.height) / 2, 54, 54)
 
   drawWinner: ->
     @ctx.beginPath()
@@ -150,6 +158,8 @@ class W.cnvRoulette
     @ctx.clearRect(0,0, @canvas.width, @canvas.height)
 
     @drawBg()
+    if @status == 'init' or @status == 'stop'
+      @toGray()
 
     if @status == 'spin' or @status == 'slowdown'
       @_d += @P.speed
@@ -170,15 +180,25 @@ class W.cnvRoulette
         @afterStop?()
 
     for i in [0...@objects.length]
-      @drawPlayer(@objects[i].x + @_d, @objects[i])
+      @drawPlayer(@objects[i].x + @_d, @objects[i], 1)
 
-    if @status == 'init' or @status == 'stop'
-      @toGray()
+    if  @status == 'spin' or @status == 'slowdown'
+      @ctx.clearRect(@P.centerX - @P.chip.width / 2, 0, @P.chip.width, @canvas.height)
+      @ctx.globalCompositeOperation = 'destination-over';
+
+      @drawBg()
+
+      for i in [0...@objects.length]
+        @drawPlayer(@objects[i].x + @_d, @objects[i], 0)
+
+      @ctx.globalCompositeOperation = 'source-over';
 
     if @status == 'slowdown' or @status == 'stop'
       @drawPointer(@_a += 0.05)
 
     if @status == 'stop'
+      @toGray()
+      @drawPointer(@_a += 0.05)
       @drawWinner()
 
     if (@status == 'slowdown' or @status == 'spin' or @status == 'winner_showing') and animate

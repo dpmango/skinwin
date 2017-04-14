@@ -1,7 +1,7 @@
 D = document
 W = window
 
-class W.cnvCircleStat
+class W.CnvCircleStat
   constructor: (@canvas) ->
     @ctx = @canvas.getContext('2d')
     @objects = {}
