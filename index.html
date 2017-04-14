@@ -1,680 +1,198 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8">
-    <meta http-equiv="expires" content="Sun, 01 Jan 2017 00:00:00 GMT">
-    <title>SkinWin - CSGo Jackpot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SkinWin</title>
+    <style>
+    *{padding: 0;  margin: 0; -webkit-box-sizing: border-box; box-sizing: border-box;}
+    body{
+      font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+      font-size: 16px;
+      color: white;
+      min-height: 100vh;
+      height: auto;
+      background-color: #181B1E;
+      overflow-x: hidden;
+    }
+    .container{
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-align: stretch;
+      -webkit-align-items: stretch;
+          -ms-flex-align: stretch;
+              align-items: stretch;
+      min-height: 400px;
+      height: 100vh;
+    }
+    a{color: inherit; text-decoration: none;}
+    h1{
+      margin: 5vh 3vw 0 3vw;
+      padding-bottom: 1vh;
+      color: white;
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .ico{
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      content: ' ';
+      font-style: normal;
+    }
+    .logo{
+      padding: 15px 30px 15px 50px;
+      border-bottom-left-radius: 100px;
+    }
+    .ico-logo{
+      background-image: url(images/logo.png);
+      width: 215px;
+      height: 50px;
+    }
+    .links{
+       background-color: white;
+       border-radius: 10px;
+       margin: 5vh 2.5vw;
+       padding: 5vh 3vw;
+       width: 45vw;
+       flex: 1 1 40%
+       float: left;
+       color: rgba(0,0,0,.7);
+      }
+    .flex{
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .flexCenter{
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+    }
+    .content{
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+          -ms-flex: 1;
+              flex: 1;
+    }
+    .flexEnd{
+      -webkit-box-pack: end;
+      -webkit-justify-content: flex-end;
+          -ms-flex-pack: end;
+              justify-content: flex-end;;
+    }
+    ul{list-style: decimal-leading-zero;;}
+    ul li{
+      margin-left: 3vw;
+      color: #838B90;
+    }
+    ul li a{
+      display: block;
+      padding: 1.3vh 0vw 1.3vh 1vw;
+      width: 100%;
+      color: #181B1E;
+      border-left: 4px solid transparent;
+      border-bottom: 1px solid rgba(0,0,0,.2);
+      -webkit-transition: all .2s ease-in-out;
+      transition: all .2s ease-in-out;
+    }
+    ul li a span{
+      opacity: .5;
+      margin-left: .5em;
+      float: right;
+    }
+    ul li a:hover{
+      border-left: 4px solid #FDA202;
+      /*background: rgba(0,0,0,.1);*/
+      color: #FDA202;
+      border-bottom: 1px solid rgba(0,0,0,.4);
+    }
+    h2{
+      margin-bottom: 3vh;
+    }
+    .footer{
+      margin: 5vh 3vw 3vh 3vw;
+      border-top: 1px dotted rgba(255,255,255,.25);
+      padding-top: 2vh;
+      font-size: 0.825em;
+      color: #838B90;
+    }
+    .footer a{
+      color: white;
+    }
+    .flexWrap{
+      -webkit-flex-wrap: wrap;
+          -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
+    }
+    @media(max-width: 700px){
+      h1{
+        font-size: 1.75em;
+      }
+      .container{
+        display: block;
+      }
+      .links{
+        width: 94vw;
+      }
+      ul li {
+        margin-left: 10vw;
+      }
+    }
+    </style>
   </head>
-  <body>
-    <div class="l-header">
-      <div class="l-header-left"><a class="logo" href="/"><img src="images/logo.png" alt="logo"></a></div>
-      <div class="l-header-center">
-        <div class="btn"><span class="icon question-icon"></span><span class="btn-text">Faq</span></div>
-        <div class="btn"><span class="icon referrals-icon"></span><span class="btn-text">Referrals</span></div>
-        <div class="rbtn">Free POINTS</div>
-        <div class="btn"><span class="icon support-icon"></span><span class="btn-text">Support</span></div>
-        <div class="btn"><span class="icon team-icon"></span><span class="btn-text">Teamplay mode</span></div>
-        <div class="btn"><span class="icon cart-icon"></span><span class="btn-text">Market</span></div>
-      </div>
-      <div class="l-header-right">
-        <div class="btn"><span class="icon coins-icon"></span><span class="btn-text btn-big-text">154556</span></div>
-        <div class="user-short-info">
-          <div class="portrait">
-            <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="55" height="55" alt="userpic"></div>
-          </div><span>Hello,<br>                    Mr. <a href="#">Igor</a></span>
-        </div>
-        <div class="btn"><span class="icon sector-icon"></span><span class="btn-text">Inventory</span></div>
-        <div class="btn"><span class="icon bell-icon"></span></div>
-        <div class="btn"><span class="icon gear-icon"></span></div>
-        <div class="btn"><span class="icon close-icon"></span></div>
-      </div>
-    </div>
-    <div class="l-content">
-      <div class="chat-btn"><span class="icon message-icon"></span></div>
-      <div class="chat is-chat-hidden">
-        <div class="chat-header">Chat</div>
-        <div class="chat-list">
-          <div class="scrl-item is-scrl-item-message">
-            <div class="scrl-item-pict">
-              <div class="portrait">
-                <div class="portrait-wrap"><img src="images/assets/Desert5.png" alt="userpic" height="35" width="35"></div>
-              </div>
-            </div>
-            <div class="scrl-item-info">6min</div>
-            <div class="scrl-item-desc"><strong>Matt Thompson</strong><br>                        Thanks again you have been...</div>
-          </div>
-          <div class="scrl-item">
-            <div class="scrl-item-pict">
-              <div class="portrait">
-                <div class="portrait-wrap"><img src="images/assets/Desert5.png" alt="userpic" height="35" width="35"></div>
-              </div>
-            </div>
-            <div class="scrl-item-info">6min</div>
-            <div class="scrl-item-desc"><strong>Kayne West</strong><br>                        Where is the nearest place to take some  notes or something like that. I would like to hear that by you! Thank You in</div>
-          </div>
-          <div class="scrl-item">
-            <div class="scrl-item-pict">
-              <div class="portrait">
-                <div class="portrait-wrap"><img src="images/assets/Desert5.png" alt="userpic" height="35" width="35"></div>
-              </div>
-            </div>
-            <div class="scrl-item-info">6min</div>
-            <div class="scrl-item-desc"><strong>Mace Windu</strong><br>                        Protect the senator at all costs.</div>
-          </div>
-          <div class="scrl-item">
-            <div class="scrl-item-pict">
-              <div class="portrait">
-                <div class="portrait-wrap"><img src="images/assets/Desert5.png" alt="userpic" height="35" width="35"></div>
-              </div>
-            </div>
-            <div class="scrl-item-info">6min</div>
-            <div class="scrl-item-desc"><strong>Matt Thompson</strong><br>                        Thanks again you have been...</div>
-          </div>
-        </div>
-        <div class="chat-answer">
-          <div class="chat-send"><span class="icon send2-icon"></span></div>
-          <textarea>@Kristen Mckellar What do you think if we replace  it more to the left?</textarea>
-        </div>
-      </div>
-      <div class="l-game-menu">
-        <div class="bookmark is-bookmark-active">
-          <div class="bookmark-wrap">
-            <div class="bookmark-img"><span class="icon csgo-icon"></span></div>
-            <div class="bookmark-label">Jackpot</div>
-            <div class="bookmark-amount"><span class="icon coins2-icon"></span> 5484</div>
-          </div>
-        </div>
-        <div class="bookmark">
-          <div class="bookmark-wrap">
-            <div class="bookmark-img"><span class="icon roulette-icon"></span></div>
-            <div class="bookmark-label">Double</div>
-            <div class="bookmark-amount"><span class="icon coins2-icon"></span> 5484</div>
-          </div>
-        </div>
-        <div class="bookmark">
-          <div class="bookmark-wrap">
-            <div class="bookmark-img"><span class="icon dota-icon"></span></div>
-            <div class="bookmark-label">Dota</div>
-            <div class="bookmark-amount"><span class="icon coins2-icon"></span> 5484</div>
-          </div>
-        </div>
-        <div class="bookmark">
-          <div class="bookmark-wrap">
-            <div class="bookmark-img"><span class="icon coinflip-icon"></span></div>
-            <div class="bookmark-label">Coinflip</div>
-            <div class="bookmark-amount"><span class="icon coins2-icon"></span> 45684</div>
-          </div>
-        </div>
-        <div class="bookmark">
-          <div class="bookmark-wrap">
-            <div class="bookmark-img"><span class="icon halfmoon-icon"></span></div>
-            <div class="bookmark-label">Crash</div>
-            <div class="bookmark-amount"><span class="icon coins2-icon"></span> 45684</div>
-          </div>
-        </div>
-        <div class="join-now">
-          <div class="icon gift-icon"></div>
-          <div class="join-now-text"><a href="#">GIVEAWAY</a><br>AK-47 | Dragon</div>
-          <div class="rbtn rbtn-h30">Join now!</div>
-        </div>
-      </div>
-      <div class="l-game-cs">
-        <div class="l-game-cs-bg"></div>
-        <div class="l-game-cs-stat">
-          <canvas id="canvas1" width="600" height="600"></canvas>
-          <div class="game-timer">
-            <div class="game-timer-points"><span class="icon ak47-icon"></span><br>18.83</div>
-            <div class="game-timer-counter c-dark-blue"><span class="td-underline">01</span>:<span class="td-underline">41</span></div>
-            <div class="game-timer-info">4 <span class="c-aqua"> </span><span class="c-dark-blue">16</span></div>
-          </div>
-        </div>
-        <div class="l-game-cs-left">
-          <div class="text-right l-btn-list l-btn-list-pt10 l-btn-list-pr20">
-            <div class="btn btn-h30 tab-link is-btn-active" data-key="top-list"><span class="btn-text">Daily STATISTICS</span></div>
-            <div class="btn btn-h30 tab-link" data-key="history"><span class="btn-text">GAME HISTORY</span></div>
-            <div class="btn btn-h30 tab-link" data-key="luck_prev"><span class="btn-text">TOP</span></div>
-          </div>
-          <div class="l-top-list tab tab-top-list is-hidden">
-            <div class="rscroll-box" id="rbox2">
-              <div class="rscroll-box-wrap">
-                <div class="rscroll-box-item">
-                  <div class="rscroll-box-item-wrap">
-                    <div class="scrl-item">
-                      <div class="scrl-item-pict">
-                        <div class="portrait">
-                          <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="35" height="35" alt="userpic"></div>
-                          <div class="portrait-label">20</div>
-                        </div>                                            HUlky
-                      </div>
-                      <div class="scrl-item-desc text-right">
-                        <div class="text-center"><span class="c-aqua">The Winning amount</span><br><span class="c-aqua">$</span> 113758.38</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="rscroll-box-item">
-                  <div class="rscroll-box-item-wrap">
-                    <div class="scrl-item">
-                      <div class="scrl-item-pict">
-                        <div class="portrait">
-                          <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="35" height="35" alt="userpic"></div>
-                          <div class="portrait-label">20</div>
-                        </div>                                            HUlky
-                      </div>
-                      <div class="scrl-item-desc text-right">
-                        <div class="text-center"><span class="c-aqua">The Winning amount</span><br><span class="c-aqua">$</span> 113758.38</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="rscroll-box-item">
-                  <div class="rscroll-box-item-wrap">
-                    <div class="scrl-item">
-                      <div class="scrl-item-pict">
-                        <div class="portrait">
-                          <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="35" height="35" alt="userpic"></div>
-                          <div class="portrait-label">20</div>
-                        </div>                                            HUlky
-                      </div>
-                      <div class="scrl-item-desc text-right">
-                        <div class="text-center"><span class="c-aqua">The Winning amount</span><br><span class="c-aqua">$</span> 113758.38</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="rscroll-box-item">
-                  <div class="rscroll-box-item-wrap">
-                    <div class="scrl-item">
-                      <div class="scrl-item-pict">
-                        <div class="portrait">
-                          <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="35" height="35" alt="userpic"></div>
-                          <div class="portrait-label">20</div>
-                        </div>                                            HUlky
-                      </div>
-                      <div class="scrl-item-desc text-right">
-                        <div class="text-center"><span class="c-aqua">The Winning amount</span><br><span class="c-aqua">$</span> 113758.38</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="rscroll-box-item">
-                  <div class="rscroll-box-item-wrap">
-                    <div class="scrl-item">
-                      <div class="scrl-item-pict">
-                        <div class="portrait">
-                          <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="35" height="35" alt="userpic"></div>
-                          <div class="portrait-label">20</div>
-                        </div>                                            HUlky
-                      </div>
-                      <div class="scrl-item-desc text-right">
-                        <div class="text-center"><span class="c-aqua">The Winning amount</span><br><span class="c-aqua">$</span> 113758.38</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="rscroll-box-item">
-                  <div class="rscroll-box-item-wrap">
-                    <div class="scrl-item">
-                      <div class="scrl-item-pict">
-                        <div class="portrait">
-                          <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="35" height="35" alt="userpic"></div>
-                          <div class="portrait-label">20</div>
-                        </div>                                            HUlky
-                      </div>
-                      <div class="scrl-item-desc text-right">
-                        <div class="text-center"><span class="c-aqua">The Winning amount</span><br><span class="c-aqua">$</span> 113758.38</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="rscroll-box-item">
-                  <div class="rscroll-box-item-wrap">
-                    <div class="scrl-item">
-                      <div class="scrl-item-pict">
-                        <div class="portrait">
-                          <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="35" height="35" alt="userpic"></div>
-                          <div class="portrait-label">20</div>
-                        </div>                                            HUlky
-                      </div>
-                      <div class="scrl-item-desc text-right">
-                        <div class="text-center"><span class="c-aqua">The Winning amount</span><br><span class="c-aqua">$</span> 113758.38</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <canvas class="scrl-canvas" id="canvas4" width="90" height="285"></canvas>
-            </div>
-          </div>
-          <div class="l-history tab tab-history is-hidden">
-            <div class="rscroll-box" id="rbox1">
-              <div class="rscroll-box-wrap">
-                <div class="rscroll-box-item">
-                  <div class="rscroll-box-item-wrap">
-                    <div class="scrl-item">
-                      <div class="scrl-item-pict"><span class="icon timer-icon"></span></div>
-                      <div class="scrl-item-info">
-                        <div class="rbtn rbtn-h30 bg-orange">Details</div>
-                      </div>
-                      <div class="scrl-item-desc">Game <span class="c-aqua">#4121</span><br>                                            Won with chance 72<span class="c-red">%</span><br><span class="c-orange">$kin God</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="rscroll-box-item">
-                  <div class="rscroll-box-item-wrap">
-                    <div class="scrl-item">
-                      <div class="scrl-item-pict"><span class="icon timer-icon"></span></div>
-                      <div class="scrl-item-info">
-                        <div class="rbtn rbtn-h30 bg-orange">Details</div>
-                      </div>
-                      <div class="scrl-item-desc">Game <span class="c-aqua">#4121</span><br>                                            Won with chance 72<span class="c-red">%</span><br><span class="c-orange">$kin God</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="rscroll-box-item">
-                  <div class="rscroll-box-item-wrap">
-                    <div class="scrl-item">
-                      <div class="scrl-item-pict"><span class="icon timer-icon"></span></div>
-                      <div class="scrl-item-info">
-                        <div class="rbtn rbtn-h30 bg-orange">Details</div>
-                      </div>
-                      <div class="scrl-item-desc">Game <span class="c-aqua">#4121</span><br>                                            Won with chance 72<span class="c-red">%</span><br><span class="c-orange">$kin God</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="rscroll-box-item">
-                  <div class="rscroll-box-item-wrap">
-                    <div class="scrl-item">
-                      <div class="scrl-item-pict"><span class="icon timer-icon"></span></div>
-                      <div class="scrl-item-info">
-                        <div class="rbtn rbtn-h30 bg-orange">Details</div>
-                      </div>
-                      <div class="scrl-item-desc">Game <span class="c-aqua">#4121</span><br>                                            Won with chance 72<span class="c-red">%</span><br><span class="c-orange">$kin God</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="rscroll-box-item">
-                  <div class="rscroll-box-item-wrap">
-                    <div class="scrl-item">
-                      <div class="scrl-item-pict"><span class="icon timer-icon"></span></div>
-                      <div class="scrl-item-info">
-                        <div class="rbtn rbtn-h30 bg-orange">Details</div>
-                      </div>
-                      <div class="scrl-item-desc">Game <span class="c-aqua">#4121</span><br>                                            Won with chance 72<span class="c-red">%</span><br><span class="c-orange">$kin God</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="rscroll-box-item">
-                  <div class="rscroll-box-item-wrap">
-                    <div class="scrl-item">
-                      <div class="scrl-item-pict"><span class="icon timer-icon"></span></div>
-                      <div class="scrl-item-info">
-                        <div class="rbtn rbtn-h30 bg-orange">Details</div>
-                      </div>
-                      <div class="scrl-item-desc">Game <span class="c-aqua">#4121</span><br>                                            Won with chance 72<span class="c-red">%</span><br><span class="c-orange">$kin God</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="rscroll-box-item">
-                  <div class="rscroll-box-item-wrap">
-                    <div class="scrl-item">
-                      <div class="scrl-item-pict"><span class="icon timer-icon"></span></div>
-                      <div class="scrl-item-info">
-                        <div class="rbtn rbtn-h30 bg-orange">Details</div>
-                      </div>
-                      <div class="scrl-item-desc">Game <span class="c-aqua">#4121</span><br>                                            Won with chance 72<span class="c-red">%</span><br><span class="c-orange">$kin God</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="rscroll-box-item">
-                  <div class="rscroll-box-item-wrap">
-                    <div class="scrl-item">
-                      <div class="scrl-item-pict"><span class="icon timer-icon"></span></div>
-                      <div class="scrl-item-info">
-                        <div class="rbtn rbtn-h30 bg-orange">Details</div>
-                      </div>
-                      <div class="scrl-item-desc">Game <span class="c-aqua">#4121</span><br>                                            Won with chance 72<span class="c-red">%</span><br><span class="c-orange">$kin God</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <canvas class="scrl-canvas" id="canvas3" width="90" height="285"></canvas>
-            </div>
-          </div>
-          <div class="l-luck-of-day tab tab-luck_prev">
-            <div class="user-stat">
-              <div class="user-stat-picture">
-                <div class="portrait portrait-bgy">
-                  <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="55" height="55" alt="userpic"></div>
-                </div>
-              </div>
-              <div class="user-stat-desc">
-                <div class="user-stat-label c-dark-yellow">Luck of the day</div>
-                <div class="user-stat-name">Gloria,</div>
-                <div class="user-stat-amount">Amount won: <span class="c-dark-yellow">39.26</span> (1.27%)</div>
-                <div class="user-stat-ticket">Winning ticket: <span class="c-dark-yellow">1-100</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="l-previous-winner tab tab-luck_prev">
-            <div class="user-stat">
-              <div class="user-stat-picture">
-                <div class="portrait portrait-bgag">
-                  <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="55" height="55" alt="userpic"></div>
-                </div>
-              </div>
-              <div class="user-stat-desc">
-                <div class="user-stat-label c-acid-green">Luck of the day</div>
-                <div class="user-stat-name">Gloria,</div>
-                <div class="user-stat-amount">Amount won: <span class="c-acid-green">39.26</span> (1.27%)</div>
-                <div class="user-stat-ticket">Winning ticket: <span class="c-acid-green">1-100</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="l-team">
-            <div class="user-member">
-              <div class="user-member-picture">
-                <div class="portrait">
-                  <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="45" height="45" alt="userpic"></div>
-                </div>
-              </div>
-              <div class="user-member-stat">Igor<br><span class="c-aqua">$</span>52   <span class="c-red">8.7</span>%</div>
-            </div>
-            <div class="user-member">
-              <div class="user-member-picture">
-                <div class="portrait">
-                  <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="45" height="45" alt="userpic"></div>
-                </div>
-              </div>
-              <div class="user-member-stat">Igor<br><span class="c-aqua">$</span>52   <span class="c-red">8.7</span>%</div>
-            </div>
-          </div>
-        </div>
-        <div class="l-game-cs-right">
-          <div class="l-btn-list l-btn-list-pl20">
-            <div class="rbtn rbtn-h30 rbtn-acty">Send to steam</div>
-            <div class="rbtn rbtn-h30 rbtn-acty">Place a bet</div>
-            <div class="sandwich">
-              <div class="sandwich-solid"><span class="icon sandwich-icon"></span></div>
-              <div class="sandwich-popup">
-                <div class="l-popup">
-                  <div class="l-popup-wrap">
-                    <div class="l-popup-block">
-                      <div class="btn"><span class="icon send-icon"></span><span class="btn-text">Send to Friend</span></div>
-                    </div>
-                    <div class="l-popup-block bg-dark-green">
-                      <div class="btn"><span class="icon gift2-icon"></span><span class="btn-text">Make GIVEAWAY</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="btn m-hide-on-1650"><span class="btn-text">Selected items: <span class="c-aqua">4</span></span></div>
-            <div class="btn m-hide-on-1750"><span class="btn-text">Total value: <span class="c-aqua">379</span></span></div>
-          </div>
-          <div class="l-items">
-            <div class="l-items-fbtn"></div>
-            <div class="h-scroll-box h-scroll-box-st2" id="sbx3">
-              <div class="h-scroll-box-inner">
-                <div class="h-scroll-box-wrap">
-                  <div class="h-scroll-box-item">
-                    <div class="cs-item cs-item-db cs-item-bg cs-item-bg1">
-                      <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item2.png"></div>
-                      <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                    </div>
-                    <div class="cs-item cs-item-db cs-item-bg cs-item-bg3">
-                      <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item1.png"></div>
-                      <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                    </div>
-                    <div class="cs-item cs-item-db cs-item-bg cs-item-bg1">
-                      <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item3.png"></div>
-                      <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                    </div>
-                  </div>
-                  <div class="h-scroll-box-item">
-                    <div class="cs-item cs-item-db cs-item-bg cs-item-bg1">
-                      <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item1.png"></div>
-                      <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                    </div>
-                    <div class="cs-item cs-item-db cs-item-bg cs-item-bg1">
-                      <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item2.png"></div>
-                      <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                    </div>
-                    <div class="cs-item cs-item-db cs-item-bg cs-item-bg2">
-                      <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item3.png"></div>
-                      <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                    </div>
-                  </div>
-                  <div class="h-scroll-box-item">
-                    <div class="cs-item cs-item-db cs-item-bg cs-item-bg1">
-                      <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item2.png"></div>
-                      <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                    </div>
-                    <div class="cs-item cs-item-db cs-item-bg cs-item-bg1">
-                      <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item1.png"></div>
-                      <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                    </div>
-                    <div class="cs-item cs-item-db cs-item-bg cs-item-bg1">
-                      <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item3.png"></div>
-                      <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                    </div>
-                  </div>
-                  <div class="h-scroll-box-item">
-                    <div class="cs-item cs-item-db cs-item-bg cs-item-bg2">
-                      <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item3.png"></div>
-                      <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                    </div>
-                    <div class="cs-item cs-item-db cs-item-bg cs-item-bg3">
-                      <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item2.png"></div>
-                      <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                    </div>
-                    <div class="cs-item cs-item-db cs-item-bg cs-item-bg1">
-                      <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item1.png"></div>
-                      <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                    </div>
-                  </div>
-                  <div class="h-scroll-box-item">
-                    <div class="cs-item cs-item-db cs-item-bg cs-item-bg1">
-                      <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item2.png"></div>
-                      <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                    </div>
-                    <div class="cs-item cs-item-db cs-item-bg cs-item-bg1">
-                      <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item3.png"></div>
-                      <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                    </div>
-                    <div class="cs-item cs-item-db cs-item-bg cs-item-bg1">
-                      <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item1.png"></div>
-                      <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="h-scroll-box-bar">
-                <div></div>
-              </div>
-            </div>
-          </div>
-          <div class="l-chance">
-            <div class="game-chances">
-              <div class="game-chances-picture"><span class="icon percent-icon"></span></div>
-              <div class="game-chances-desc">Your CHANCE to WIN: <span class="c-white">79</span><span class="c-red">%</span><br>                            Team CHANCE to WIN: <span class="c-white">99</span><span class="c-red">%</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="l-container">
-        <div class="roulette">
-          <div class="roulette-wrap">
-            <canvas id="canvas2" width="1068" height="120"></canvas>
-          </div>
-          <div class="roulette-winner is-hidden">
-            <div class="roulette-winner-name">Congratulations <span class="c-aqua">Igor</span></div>
-            <div class="roulette-winner-info">The winner ticket is #49 (22.8%)</div>
-          </div>
-        </div>
-      </div>
-      <div class="l-container">
-        <hr>
-        <div class="l-container-header">
-          <div class="large-font text-center">Bets</div>
-        </div>
-        <div class="l-container-row l-constraint-p70">
-          <div class="bet">
-            <div class="bet-user">
-              <div class="portrait">
-                <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="50" height="50" alt="userpic"></div>
-              </div>
-              <div>Igor</div>
-            </div>
-            <div class="bet-info">
-              <p><span class="icon small-shield-icon"></span> Number of items <span class="c-dark-yellow">23</span></p>
-              <p><span class="icon small-ak47-icon"></span> Number of items <span class="c-aqua">42</span></p>
-              <p><span class="icon small-percent-icon"></span> Number of items 23<span class="c-red">%</span></p>
-              <p><span class="icon small-ticket-icon"></span> Number of items <span class="c-acid-green">#23-200</span></p>
-            </div>
-            <div class="bet-items">
-              <div class="h-scroll-box" id="sbx1">
-                <div class="h-scroll-box-inner">
-                  <div class="h-scroll-box-wrap">
-                    <div class="h-scroll-box-item">
-                      <div class="cs-item">
-                        <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item3.png"></div>
-                        <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                      </div>
-                    </div>
-                    <div class="h-scroll-box-item">
-                      <div class="cs-item">
-                        <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item2.png"></div>
-                        <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                      </div>
-                    </div>
-                    <div class="h-scroll-box-item">
-                      <div class="cs-item">
-                        <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item3.png"></div>
-                        <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="h-scroll-box-bar">
-                  <div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="l-container-row l-constraint-p70">
-          <div class="bet">
-            <div class="bet-user">
-              <div class="portrait">
-                <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="50" height="50" alt="userpic"></div>
-              </div>
-              <div>Igor</div>
-            </div>
-            <div class="bet-info">
-              <p><span class="icon small-shield-icon"></span> Number of items <span class="c-dark-yellow">23</span></p>
-              <p><span class="icon small-ak47-icon"></span> Number of items <span class="c-aqua">42</span></p>
-              <p><span class="icon small-percent-icon"></span> Number of items 23<span class="c-red">%</span></p>
-              <p><span class="icon small-ticket-icon"></span> Number of items <span class="c-acid-green">#23-200</span></p>
-            </div>
-            <div class="bet-items">
-              <div class="h-scroll-box" id="sbx2">
-                <div class="h-scroll-box-inner">
-                  <div class="h-scroll-box-wrap">
-                    <div class="h-scroll-box-item">
-                      <div class="cs-item">
-                        <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item3.png"></div>
-                        <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                      </div>
-                    </div>
-                    <div class="h-scroll-box-item">
-                      <div class="cs-item">
-                        <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item2.png"></div>
-                        <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                      </div>
-                    </div>
-                    <div class="h-scroll-box-item">
-                      <div class="cs-item">
-                        <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item3.png"></div>
-                        <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                      </div>
-                    </div>
-                    <div class="h-scroll-box-item">
-                      <div class="cs-item">
-                        <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item3.png"></div>
-                        <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                      </div>
-                    </div>
-                    <div class="h-scroll-box-item">
-                      <div class="cs-item">
-                        <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item2.png"></div>
-                        <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                      </div>
-                    </div>
-                    <div class="h-scroll-box-item">
-                      <div class="cs-item">
-                        <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item3.png"></div>
-                        <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                      </div>
-                    </div>
-                    <div class="h-scroll-box-item">
-                      <div class="cs-item">
-                        <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item3.png"></div>
-                        <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                      </div>
-                    </div>
-                    <div class="h-scroll-box-item">
-                      <div class="cs-item">
-                        <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item2.png"></div>
-                        <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                      </div>
-                    </div>
-                    <div class="h-scroll-box-item">
-                      <div class="cs-item">
-                        <div class="cs-item-picture"><img alt="item" src="images/assets/cs-item3.png"></div>
-                        <div class="cs-item-desc"><span class="c-aqua">$</span> 1253</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="h-scroll-box-bar">
-                  <div></div>
-                </div>
-              </div>
-            </div>
-          </div>
+<body>
+  <div class="container">
+    <div class="fix">
+      <div class="flex flexCenter">
+        <h1>SkinWin - html/css Layout</h1>
+        <div class="logo">
+          <i class="ico ico-logo"></i>
         </div>
       </div>
     </div>
-    <!-- FOOTER::START-->
-    <div class="l-footer">
-      <div class="l-footer-wrap">
-        <div class="l-footer-main">
-          <div class="left">skinwin.com is the honest jackpot for CS:GO and Dota 2.<br>                    The winner is chosen by independent random number generator Random.org</div>
-          <div class="right"><a href="#"><span class="icon mail-icon"></span></a><a href="#"><span class="icon facebook-icon"></span></a><a href="#"><span class="icon twitter-icon"></span></a></div>
+    <div class="content">
+      <div class="flex flexWrap">
+        <div class="links">
+          <h2>Pages</h2>
+          <ul class="">
+            <li><a href="csgo_jackpot.html" target="_blank">CSGo Jackpot</a></li>
+            <li><a href="affiliate.html" target="_blank">Affiliate</a></li>
+            <li><a href="crash.html" target="_blank">Crash</a></li>
+            <li><a href="double.html" target="_blank">Double</a></li>
+          </ul>
         </div>
-        <div class="l-footer-links"><a href="#">Privacy Policy</a> <a href="#">Terms and Conditions</a> | © skinwin.com 2017</div>
+      </div>
+
+
+    </div>
+    <div class="fix">
+      <div class="flex flexEnd">
+      <div class="footer">
+        Brought to you by <a href="http://f-end.ru/">@Sergey Khmelevskoy</a>
       </div>
     </div>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-    <link rel="stylesheet" href="css/styles.css">
-    <script>
-      //        var css_resource = document.createElement('link'), font_resource = document.createElement('link');
-      //
-      //        css_resource.setAttribute("rel", "stylesheet");
-      //        css_resource.setAttribute("href", "css/style.css");
-      //        css_resource.setAttribute("type", "text/css");
-      //
-      //        font_resource.setAttribute("rel", "stylesheet");
-      //        font_resource.setAttribute("href", "https://fonts.googleapis.com/css?family=Montserrat");
-      //
-      //        var head = document.getElementsByTagName('head')[0];
-      //        head.appendChild(css_resource);
-      //        head.appendChild(font_resource);
-      
-    </script>
-    <!-- SCRIPTS-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script src="js/scripts.min.js"></script>
-  </body>
+    </div>
+
+  </div>
+</body>
 </html>
