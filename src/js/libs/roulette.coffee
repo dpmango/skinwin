@@ -7,10 +7,9 @@ class W.CnvRoulette
     @objects = []
     @patterns = {}
     @P =
-      background: 'images/roulette-bg.png'
+      background: 'images/roulette-bg1.png'
       centerX: @canvas.width / 2
       centerY: @canvas.height / 2
-      picture: {width: 54, height: 54}
       chip: {width: 90, height: 82, amount: 15}
       outlineRadius: 32
       speed: 20
@@ -113,10 +112,20 @@ class W.CnvRoulette
     @ctx.shadowBlur = 0
     if gray
       if @patterns[cObj.gray_picture]
-        @ctx.drawImage(@patterns[cObj.gray_picture], l + (@P.chip.width - @P.picture.width) / 2, (@canvas.height - @P.picture.height) / 2, 54, 54)
+        @ctx.drawImage(
+          @patterns[cObj.gray_picture],
+          l + (@P.chip.width - @patterns[cObj.gray_picture].naturalWidth) / 2,
+          (@canvas.height - @patterns[cObj.gray_picture].naturalHeight) / 2,
+          @patterns[cObj.gray_picture].naturalWidth,
+          @patterns[cObj.gray_picture].naturalHeight)
     else
       if @patterns[cObj.picture]
-        @ctx.drawImage(@patterns[cObj.picture], l + (@P.chip.width - @P.picture.width) / 2, (@canvas.height - @P.picture.height) / 2, 54, 54)
+        @ctx.drawImage(
+          @patterns[cObj.picture],
+          l + (@P.chip.width - @patterns[cObj.picture].naturalWidth) / 2,
+          (@canvas.height - @patterns[cObj.picture].naturalHeight) / 2,
+          @patterns[cObj.picture].naturalWidth,
+          @patterns[cObj.picture].naturalHeight)
 
   drawWinner: ->
     @ctx.beginPath()
@@ -152,7 +161,7 @@ class W.CnvRoulette
   drawBg: () ->
     if @patterns[@P.background]
       @ctx.shadowBlur = 0
-      @ctx.drawImage(@patterns[@P.background], -170, 14, 1425, 93)
+      @ctx.drawImage(@patterns[@P.background], (@canvas.width - @patterns[@P.background].naturalWidth) / 2, 14, @patterns[@P.background].naturalWidth, 93)
 
   draw: (animate = true) ->
     @ctx.clearRect(0,0, @canvas.width, @canvas.height)
@@ -166,9 +175,11 @@ class W.CnvRoulette
 
       if @_d >= @P.chip.width
         @_d = 0
+        last_x = @objects[@objects.length - 1].x
         @objects[@objects.length - 1].x = @objects[0].x
-        for i in [0...@objects.length - 1]
+        for i in [0...@objects.length - 2]
           @objects[i].x = @objects[i+1].x
+        @objects[@objects.length - 2].x = last_x
 
     if @status == 'slowdown'
       if @P.speed <= @P.minSpeed and @objects[@winner_id].x  + 1.5 * @P.chip.width + @_d >= @P.centerX and @objects[@winner_id].x + @P.chip.width / 2 + @_d <= @P.centerX

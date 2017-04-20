@@ -13,8 +13,34 @@
     flex-grow: 1;
     flex-basis: 100%;
   }
-}
 
+  &-col-w50p {
+    width: 50%;
+    flex-basis: 100%;
+  }
+
+  &-col-hc {
+    & > div {
+      margin: 0 auto;
+    }
+  }
+
+  &-fsh0 {
+    flex-shrink: 0;
+  }
+
+  &-fb100 {
+    flex-basis: 100%;
+  }
+
+  &-divider {
+    width: 2px;
+    margin: 10px 0;
+    background: #11bfae;
+    align-self: stretch;
+    flex-shrink: 0;
+  }
+}
 
 .l-flex-row-m10 {
   & > div {
@@ -23,8 +49,18 @@
   }
 }
 
+.l-flex-row-m0 {
+  & > div {
+    margin-right: 0;
+  }
+}
+
 .l-flex-row-ac {
   justify-content: space-between;
   align-content: center;
   flex-wrap: wrap;
+}
+
+.l-flex-row-as {
+  align-items: stretch;
 }

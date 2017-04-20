@@ -20,7 +20,7 @@
         centerX: this.canvas.width / 2,
         centerY: this.canvas.height / 2,
         R: this.canvas.width / 2 - 2,
-        speed: 5,
+        speed: 6,
         slowdown_step: 0.5,
         minSpeed: 1
       };
@@ -66,6 +66,7 @@
         };
       }
       this._d = Math.ceil(360 / (2 * gameVals.length));
+      this.vl = gameVals.length;
       this.status = 'init';
       this.draw(false);
     };
@@ -74,7 +75,7 @@
       if (this.status === 'init' || this.status === 'stop') {
         this._s = 0;
         this.winner_angle = null;
-        this.P.speed = 4;
+        this.P.speed = 6;
         this.status = 'spin';
         return this.draw();
       }
@@ -94,7 +95,6 @@
           }
         }
       }
-      console.log(this.winner_angle);
       return this.slowDownTimer = setInterval((function(_this) {
         return function() {
           if (j-- > 0) {
@@ -121,8 +121,8 @@
       ref = this.objects;
       for (i = k = 0, len = ref.length; k < len; i = ++k) {
         obj = ref[i];
-        x = (this.P.R - 36) * Math.cos((-90 + i * (360 / 16)).degree()) + this.canvas.width / 2 - 30;
-        y = (this.P.R - 36) * Math.sin((-90 + i * (360 / 16)).degree()) + this.canvas.height / 2 - 30;
+        x = (this.P.R - 36) * Math.cos((-90 + i * (360 / this.vl)).degree()) + this.canvas.width / 2 - 30;
+        y = (this.P.R - 36) * Math.sin((-90 + i * (360 / this.vl)).degree()) + this.canvas.height / 2 - 30;
         this.ctx.drawImage(obj.cache.canvas, x, y);
       }
     };
@@ -135,8 +135,11 @@
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.drawBg();
       this.drawVals();
-      if (this.status === 'slowdown' && this.P.speed === this.P.minSpeed && this.winner_angle === Math.floor(360 - this._s - 2)) {
+      if (this.status === 'slowdown' && this.P.speed === this.P.minSpeed && this.winner_angle >= (360 - this._s) - 40 && this.winner_angle <= (360 - this._s)) {
         clearInterval(this.slowDownTimer);
+        this.P.speed = 0.5;
+      }
+      if (this.status === 'slowdown' && this.P.speed === 0.5 && this.winner_angle >= (360 - this._s) - this.P.slowdown_step && this.winner_angle <= (360 - this._s) + this.P.slowdown_step) {
         this.status = 'stop';
         if (typeof this.afterStop === "function") {
           this.afterStop();
@@ -149,6 +152,7 @@
         this._s += this.P.speed;
         if (this._s >= 360) {
           this._s = 0;
+          this.ctx.setTransform(1, 0, 0, 1, 0, 0);
         }
       }
       if ((this.status === 'slowdown' || this.status === 'spin') && animate) {

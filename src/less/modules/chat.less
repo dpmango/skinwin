@@ -1,9 +1,10 @@
 .chat {
-  position: absolute;
-  top: 5px;
+  position: fixed;
+  top: 125px;
+  bottom: 20px;
   left: 10px;
   width: 260px;
-  padding-bottom: 10px;
+  padding-bottom: 100px;
   background: #092d38;
   font: 12px/14px @font-family-base;
   z-index: 1000;
@@ -21,17 +22,38 @@
   }
 
   &-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 32px;
-    padding-top: 10px;
     border-top: 1px solid #10ada0;
     border-bottom: 1px solid #10ada0;
-    text-align: center;
     background: #11bfae;
     cursor: pointer;
   }
 
-  &-answer {
+  &-type {
     position: relative;
+    width: 65px;
+    height: 16px;
+    background: #173b46;
+    font: 10px/14px @font-family-base;
+    text-align: center;
+    color: #11bfae;
+    .outer-shadow(7px, #000);
+    z-index: 10;
+  }
+
+  &-is-type-active {
+    color: #fff;
+    box-shadow: none;
+    z-index: 0;
+  }
+
+  &-answer {
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
     padding: 0 10px;
     margin-top: 50px;
 
@@ -114,6 +136,18 @@
         float: right;
         font: 8px/12px @font-family-base;
       }
+    }
+  }
+
+  & > .v-scroll-box {
+    position: absolute;
+    width: 100%;
+    top: 40px;
+    bottom: 90px;
+    left: 0;
+
+    .v-scroll-box-wrap {
+      height: 100%;
     }
   }
 }

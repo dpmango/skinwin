@@ -1,0 +1,88 @@
+.l-game-coinflip {
+  display: flex;
+  position: relative;
+  overflow: visible;
+  height: 550px;
+  margin-top: 20px;
+  justify-content: center;
+
+
+  &-center {
+    position: absolute;
+    width: 432px;
+    height: 432px;
+    border: 5px solid #00fa47;
+    left: 50%;
+    top: 50px;
+    margin-left: -216px;
+    border-radius: 50%;
+
+    &:after {
+      position: absolute;
+      top: 20px;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      border-radius: 50%;
+      background: #091827;
+      .outer-shadow(300px, rgba(7, 22, 34, 1));
+      z-index: -1;
+      content: '';
+    }
+
+    &-bg1 {
+      position: absolute;
+      top: 100px;
+      left: 100px;
+      width: 217px;
+      height: 222px;
+      background: url(../images/cf-center.png) 0 0 no-repeat;
+      z-index: 1;
+    }
+
+    &-bg2 {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 9px solid #f6d000;
+      z-index: 1;
+
+      &:after {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        width: 217px;
+        height: 222px;
+        background: url(../images/cf-center.png) -217px 0 no-repeat;
+        z-index: 1;
+        content: '';
+      }
+    }
+  }
+
+  &-left {
+    position: relative;
+    overflow: auto;
+    margin-right: 195px;
+    padding-top: 13px;
+    flex-grow: 1;
+    flex-basis: 0;
+    z-index: 10;
+  }
+
+  &-right {
+    position: relative;
+    overflow: auto;
+    margin-left: 195px;
+    flex-grow: 1;
+    flex-basis: 0;
+    z-index: 10;
+
+    & > div {
+      margin-left: 60px;
+    }
+  }
+}

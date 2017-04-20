@@ -9,11 +9,11 @@
 
         if(key == 'history' && !scrollHistory) {
             setTimeout(function () {
-                scrollHistory = CvScrollBox.instance( '#rbox1', [8, 277, 0, 207, 67, 0], 7,  '#18140a', '#ff9600');
+                scrollHistory = CvScrollBox.instance( '#rbox1', [8, 277, 0, 207, 67, 0], 7, 55,  '#18140a', '#ff9600');
             }, 100);
         }else if(key == 'top-list' && !scrollTopList) {
             setTimeout(function () {
-                scrollTopList = CvScrollBox.instance( '#rbox2', [8, 277, 0, 207, 67, 0], 7, '#18140a', '#de00ff' );
+                scrollTopList = CvScrollBox.instance( '#rbox2', [8, 277, 0, 207, 67, 0], 7, 55, '#18140a', '#de00ff' );
             }, 100);
         }
     });
@@ -22,14 +22,37 @@
         $(this).toggleClass('is-sandwich-open');
     });
 
-    $('.chat-btn').click(function () {
+    /* ЧАТ */
+    var $chat = $('.chat'), $chatTypeBtn = $('.chat-type'), $chatBtn = $('.chat-btn'), $chatList = $('.v-scroll-box'),
+        chanelScroll, teamScroll;
+
+    $chatBtn.click(function () {
         $(this).addClass('is-chat-btn-hidden');
-        $('.chat').removeClass('is-chat-hidden');
+        $chat.removeClass('is-chat-hidden');
+
+        if(!chanelScroll)
+            chanelScroll = VScrollBox.instance('.chat-list-channel');
+
+        $(document).on("mousedown.chat", function(e) {
+            if (!$chat.is(e.target) && $chat.has(e.target).length === 0) {
+                $chat.addClass('is-chat-hidden');
+                $chatBtn.removeClass('is-chat-btn-hidden');
+                $(document).off("mousedown.chat");
+            }
+        });
     });
 
-    $('.chat-header').click(function () {
-        $(this).parent().addClass('is-chat-hidden');
-        $('.chat-btn').removeClass('is-chat-btn-hidden');
+    $chatTypeBtn.click(function () {
+        var key = $(this).attr('data-key');
+
+        $chatTypeBtn.removeClass('chat-is-type-active');
+        $(this).addClass('chat-is-type-active');
+
+        $chatList.addClass('is-hidden')
+            .filter('.chat-list-'+key).removeClass('is-hidden');
+
+        if(key == 'team' && !teamScroll)
+            teamScroll = VScrollBox.instance('.chat-list-team');
     });
 
     /* СТАТИСТИКА */
@@ -68,9 +91,7 @@
             upd = 1;
         }
     });
-//setTimeout(function () {
-//    cnvCircleStat.update( updObjs );
-//}, 2000);
+
 
 
     /* кастомные горизонтальные скроллы для блоков */

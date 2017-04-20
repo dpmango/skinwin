@@ -1,0 +1,49 @@
+.l-market {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+
+  &-right {
+    position: relative;
+    width: 320px;
+    padding-bottom: 70px;
+    margin-left: 20px;
+    background: #092f3a;
+
+    &-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 70px;
+      width: 100%;
+      padding-top: 20px;
+      text-align: center;
+    }
+  }
+
+  &-left {
+    background: #092f3a;
+    flex-grow: 1;
+
+    &-top {
+      //overflow: visible;
+      padding: 15px;
+    }
+
+    & > .v-scroll-box {
+      margin: 5px;
+      .v-scroll-box-wrap {
+        font-size: 0;
+
+        & > div {
+          margin: 10px;
+        }
+      }
+      .v-scroll-box-bar {
+        height: auto;
+        top: 10px;
+        bottom: 10px;
+      }
+    }
+  }
+}

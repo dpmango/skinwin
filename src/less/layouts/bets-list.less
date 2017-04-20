@@ -2,6 +2,10 @@
   width: 330px;
   height: 370px;
 
+  @media (max-width: 1500px) {
+    width: 300px;
+  }
+
   &-header {
     margin-bottom: 1px;
     padding: 14px 11px 3px 8px;
@@ -19,6 +23,8 @@
     & > .v-scroll-box {
       .v-scroll-box-bar {
         top: 5px;
+        bottom: 0px;
+        height: auto;
       }
 
       .v-scroll-box-wrap {
@@ -26,6 +32,9 @@
 
         .l-flex-row {
           width: 311px;
+          @media (max-width: 1500px) {
+            width: 281px;
+          }
           margin-top: 5px;
           padding: 5px 20px 5px 5px;
           background: #131a1f;

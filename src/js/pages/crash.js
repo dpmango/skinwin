@@ -1,6 +1,6 @@
 (function () {
     setTimeout(function () {
-        CvScrollBox.instance( '#rbox3', [62, 400, 0, 200, 62, 0], 7,  '#18140a', '#11bf6f');
+        CvScrollBox.instance( '#rbox3', [62, 400, 0, 200, 62, 0], 7, 40, '#18140a', '#11bf6f');
     }, 200);
 
     var canv = document.getElementById('canvas5');

@@ -3,7 +3,7 @@ W = window
 D = document
 
 class W.HScrollBox
-  constructor: (scrollBoxSelector, @step = 0.5, @shrinkLastItems = false) ->
+  constructor: (scrollBoxSelector, @step = 0.5, @shrinkLastItems = false, @scrollToEnd = false) ->
     @jHSBs = $ "#{scrollBoxSelector}"
     @jWrap = $ '.h-scroll-box-wrap', @jHSBs
     @jItems = $ '.h-scroll-box-item', @jWrap
@@ -12,12 +12,14 @@ class W.HScrollBox
     @wrapWidth = @scrollerWidth = 0
     @jtemParams = []
 
-  @instance: (scrollBoxSelector, step = 0.5, shrinkLastItems = false) ->
-    inst = new @ scrollBoxSelector, step, shrinkLastItems
+  @instance: (scrollBoxSelector, step = 0.5, shrinkLastItems = false, scrollToEnd) ->
+    inst = new @ scrollBoxSelector, step, shrinkLastItems, scrollToEnd
     inst.init()
     inst
 
   init: ->
+    @wrapWidth = parseInt(@jWrap.css "paddingLeft") + parseInt(@jWrap.css "paddingRight")
+    console.log @wrapWidth
     @jItems.each (i) =>
       @wrapWidth += @jItems.eq(i).outerWidth(true)
       @initItemParams(@jItems.eq(i), i) if @shrinkLastItems
@@ -38,9 +40,16 @@ class W.HScrollBox
         wx = @jWrap.position().left - @jHSBs.width() * @step
         sx = @jScroller.position().left + @scrollerWidth * @step
         e.preventDefault() if !@endScrollRight and @scrollerWidth > 0
-      console.log 'scroll' + @endScrollLeft
+
       @update(wx, sx)
       return
+
+    if @scrollToEnd
+      @update(-100000, 100000)
+
+    setTimeout =>
+      @jHSBs.addClass 'h-scroll-box-animated'
+    , 500
 
     return
 
@@ -48,6 +57,10 @@ class W.HScrollBox
     @jtemParams[i] =
       left: jItem.position().left
       width: jItem.outerWidth(true)
+
+#  scrollToEnd: ->
+#    wx = @jWrap.position().left - @jHSBs.width() * @step
+#    sx = @jScroller.position().left + @scrollerWidth * @step
 
   updateItems: (wx) ->
     last_id = 10000
@@ -81,10 +94,9 @@ class W.HScrollBox
         when sx < 0 then 0
         when sx > @jBar.width() - @scrollerWidth then @jBar.width() - @scrollerWidth
         else sx
+
     @endScrollLeft = if sx is 0 then 1 else 0
     @endScrollRight = if sx is @jBar.width() - @scrollerWidth then 1 else 0
-
-    console.log 'update' + @endScrollLeft
 
     @jWrap.css 'transform', "translateX(#{wx}px)"
     @jScroller.css 'transform', "translateX(#{sx}px)"

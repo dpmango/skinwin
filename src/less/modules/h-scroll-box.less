@@ -8,9 +8,10 @@
   }
 
   &-wrap {
+    box-sizing: content-box;
     display: flex;
     background: #061a2c;
-    transition: transform 0.3s linear;
+    //transition: transform 0.3s linear;
   }
 
   &-item {
@@ -30,8 +31,20 @@
       height: 100%;
       background: #092741;
       border-radius: 3px;
-      transition: transform 0.3s linear;
+      //transition: transform 0.3s linear;
       .outer-shadow(5px, #092741);
+    }
+  }
+}
+
+.h-scroll-box-animated {
+  .h-scroll-box-wrap {
+    transition: transform 0.3s linear;
+  }
+
+  .h-scroll-box-bar {
+    & > div {
+      transition: transform 0.3s linear;
     }
   }
 }
@@ -45,6 +58,18 @@
     & > div {
       background: #11bfae;
       .outer-shadow(5px, #11bfae);
+    }
+  }
+}
+
+.h-scroll-box-st3 {
+  .h-scroll-box-wrap {
+    box-sizing: content-box;
+    padding: 23px 40px 5px 40px;
+    font-size: 0;
+
+    .h-scroll-box-item {
+      margin: 10px;
     }
   }
 }

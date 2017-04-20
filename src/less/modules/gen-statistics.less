@@ -1,0 +1,88 @@
+.gen-statistics {
+  padding-top: 10px;
+  .outer-shadow(20px, #000);
+
+  &-header {
+    padding-left: 30px;
+    margin-bottom: 13px;
+    font-size: 38px;
+    line-height: 42px;
+  }
+
+  &-list {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-data {
+    padding-bottom: 40px;
+    margin-right: 10px;
+    flex-basis: 100%;
+    text-align: center;
+    font-size: 16px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    & > span {
+      box-sizing: border-box;
+      display: inline-block;
+      position: relative;
+      width: 112px;
+      height: 112px;
+      padding-top: 28px;
+      margin-bottom: 10px;
+      border: 5px solid #e1bd11;
+      border-radius: 50%;
+      font-size: 30px;
+      line-height: 42px;
+      .outer-shadow(5px, #e1bd11);
+
+      &:after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: 50%;
+        .inner-shadow(5px, #e1bd11);
+        content: '';
+      }
+    }
+
+    &-bb-y {border-bottom: 4px solid #e1bd11}
+    &-bb-r {border-bottom: 4px solid #f20c0c}
+    &-bb-b {border-bottom: 4px solid #0ebdf7}
+    &-bb-g {border-bottom: 4px solid #00ff48}
+
+    &-bg-auqa {.set-gen-statistics(#0bf2a9, #0bf2a9)}
+    &-bg-orange {.set-gen-statistics(#f2470b, #f2470b)}
+    &-bg-red {.set-gen-statistics(#f20c0c)}
+    &-bg-blue {.set-gen-statistics(#0ebdf7)}
+    &-bg-green {.set-gen-statistics(#00ff48)}
+
+    &-bg-none {
+      & > span {
+        border: 0;
+        padding-top: 33px;
+        box-shadow: none;
+        color: #d460ff;
+        &:after {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.set-gen-statistics(@border-color, @color: #fff) {
+  & > span {
+    border-color: @border-color;
+    color: @color;
+    .outer-shadow(5px, @border-color);
+    &:after {
+      .inner-shadow(5px, @border-color);
+    }
+  }
+}

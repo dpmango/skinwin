@@ -3,9 +3,9 @@ W = window
 D = document
 
 class W.CvScrollBox
-  constructor: (scrollBoxSelector, @coords, @width, @barColor = "#000000", @dragColor = "#ffffff") ->
+  constructor: (scrollBoxSelector, @coords, @width, @k, @barColor = "#000000", @dragColor = "#ffffff") ->
 
-    if !scrollBoxSelector or !@coords or !@width
+    if !scrollBoxSelector or !@coords or !@width or !@k
       console.log 'Missed params in constructor'
       return
 
@@ -24,8 +24,8 @@ class W.CvScrollBox
     @max_xt = 70
     @jtemParams = []
 
-  @instance: (scrollBoxSelector, coords, width, barColor = "#000000", dragColor = "#ffffff") ->
-    inst = new @ scrollBoxSelector, coords, width, barColor, dragColor
+  @instance: (scrollBoxSelector, coords, width, k,  barColor = "#000000", dragColor = "#ffffff") ->
+    inst = new @ scrollBoxSelector, coords, width, k, barColor, dragColor
     inst.init()
     inst
 
@@ -43,7 +43,7 @@ class W.CvScrollBox
     @o1.x += @m.x
     @o1.y += @m.y
 
-    @update()
+    @update2()
 
     @scrollerHeight = @jScrBox.height() / ( (@jScrBoxWrap.height() + @jScrBoxWrap.get(0).scrollHeight) / 100 )
 
@@ -51,7 +51,7 @@ class W.CvScrollBox
       sT = @jScrBoxWrap.scrollTop()
       pK = 100 - sT / ((@jScrBoxWrap.get(0).scrollHeight - @jScrBoxWrap.height()) / 100)
       @draw(@scrollerHeight, pK)
-      @update()
+      @update2()
       return
 
     @jScrBoxWrap.trigger('scroll')
@@ -85,12 +85,15 @@ class W.CvScrollBox
       @jItemsWraps.eq(i).css('transform', "translateX(#{_t}px)")
 
   update2: () ->
-    for y, i in @jtemParams
-      _y = @jtemParams[i] - @jScrBoxWrap.scrollTop()
-      _x = Math.cos(_y - @C.y1 - @o1.y) * (@o1.r - @C.x3)
-      _t = 0
+    for p, i in @jtemParams
+      y = @jItems.eq(i).position().top
+      _y = @o1.r - @o1.y - y + @k
+      _x = Math.pow( Math.pow(@o1.r, 2) - Math.pow(_y, 2), 0.5 )
+      x = (@o1.r - _x) - (@o1.r - @o1.x)
 
-      @jItemsWraps.eq(i).find('div').html(Math.acos(_y))
+      @jItemsWraps.eq(i).css('transform', "translateX(#{x}px)")
+#      @jItemsWraps.eq(i).find('div').html(_y)
+    return
 
   sectorBy3Dots: (x1, y1, x2, y2, x3, y3) ->
     ma = (y2 - y1) / (x2 - x1)
@@ -104,7 +107,6 @@ class W.CvScrollBox
     sa = Math.atan((y - y1) / (x - x1))
     ea = Math.atan((y - y3) / (x - x3))
 
-    #    console.log "x: #{x}, y: #{y}, r: #{r}, sa: #{sa}, ea: #{ea}"
     {x: x, y: y, r: r, sa: sa, ea: ea}
 
   drawSectorBar: () ->

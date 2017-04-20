@@ -14,13 +14,9 @@
       this.objects = [];
       this.patterns = {};
       this.P = {
-        background: 'images/roulette-bg.png',
+        background: 'images/roulette-bg1.png',
         centerX: this.canvas.width / 2,
         centerY: this.canvas.height / 2,
-        picture: {
-          width: 54,
-          height: 54
-        },
         chip: {
           width: 90,
           height: 82,
@@ -152,11 +148,11 @@
       this.ctx.shadowBlur = 0;
       if (gray) {
         if (this.patterns[cObj.gray_picture]) {
-          return this.ctx.drawImage(this.patterns[cObj.gray_picture], l + (this.P.chip.width - this.P.picture.width) / 2, (this.canvas.height - this.P.picture.height) / 2, 54, 54);
+          return this.ctx.drawImage(this.patterns[cObj.gray_picture], l + (this.P.chip.width - this.patterns[cObj.gray_picture].naturalWidth) / 2, (this.canvas.height - this.patterns[cObj.gray_picture].naturalHeight) / 2, this.patterns[cObj.gray_picture].naturalWidth, this.patterns[cObj.gray_picture].naturalHeight);
         }
       } else {
         if (this.patterns[cObj.picture]) {
-          return this.ctx.drawImage(this.patterns[cObj.picture], l + (this.P.chip.width - this.P.picture.width) / 2, (this.canvas.height - this.P.picture.height) / 2, 54, 54);
+          return this.ctx.drawImage(this.patterns[cObj.picture], l + (this.P.chip.width - this.patterns[cObj.picture].naturalWidth) / 2, (this.canvas.height - this.patterns[cObj.picture].naturalHeight) / 2, this.patterns[cObj.picture].naturalWidth, this.patterns[cObj.picture].naturalHeight);
         }
       }
     };
@@ -202,12 +198,12 @@
     CnvRoulette.prototype.drawBg = function() {
       if (this.patterns[this.P.background]) {
         this.ctx.shadowBlur = 0;
-        return this.ctx.drawImage(this.patterns[this.P.background], -170, 14, 1425, 93);
+        return this.ctx.drawImage(this.patterns[this.P.background], (this.canvas.width - this.patterns[this.P.background].naturalWidth) / 2, 14, this.patterns[this.P.background].naturalWidth, 93);
       }
     };
 
     CnvRoulette.prototype.draw = function(animate) {
-      var callback, i, m, o, p, ref, ref1, ref2;
+      var callback, i, last_x, m, o, p, ref, ref1, ref2;
       if (animate == null) {
         animate = true;
       }
@@ -220,10 +216,12 @@
         this._d += this.P.speed;
         if (this._d >= this.P.chip.width) {
           this._d = 0;
+          last_x = this.objects[this.objects.length - 1].x;
           this.objects[this.objects.length - 1].x = this.objects[0].x;
-          for (i = m = 0, ref = this.objects.length - 1; 0 <= ref ? m < ref : m > ref; i = 0 <= ref ? ++m : --m) {
+          for (i = m = 0, ref = this.objects.length - 2; 0 <= ref ? m < ref : m > ref; i = 0 <= ref ? ++m : --m) {
             this.objects[i].x = this.objects[i + 1].x;
           }
+          this.objects[this.objects.length - 2].x = last_x;
         }
       }
       if (this.status === 'slowdown') {

@@ -9,9 +9,10 @@
   D = document;
 
   W.HScrollBox = (function() {
-    function HScrollBox(scrollBoxSelector, step1, shrinkLastItems1) {
+    function HScrollBox(scrollBoxSelector, step1, shrinkLastItems1, scrollToEnd1) {
       this.step = step1 != null ? step1 : 0.5;
       this.shrinkLastItems = shrinkLastItems1 != null ? shrinkLastItems1 : false;
+      this.scrollToEnd = scrollToEnd1 != null ? scrollToEnd1 : false;
       this.jHSBs = $("" + scrollBoxSelector);
       this.jWrap = $('.h-scroll-box-wrap', this.jHSBs);
       this.jItems = $('.h-scroll-box-item', this.jWrap);
@@ -21,7 +22,7 @@
       this.jtemParams = [];
     }
 
-    HScrollBox.instance = function(scrollBoxSelector, step, shrinkLastItems) {
+    HScrollBox.instance = function(scrollBoxSelector, step, shrinkLastItems, scrollToEnd) {
       var inst;
       if (step == null) {
         step = 0.5;
@@ -29,12 +30,14 @@
       if (shrinkLastItems == null) {
         shrinkLastItems = false;
       }
-      inst = new this(scrollBoxSelector, step, shrinkLastItems);
+      inst = new this(scrollBoxSelector, step, shrinkLastItems, scrollToEnd);
       inst.init();
       return inst;
     };
 
     HScrollBox.prototype.init = function() {
+      this.wrapWidth = parseInt(this.jWrap.css("paddingLeft")) + parseInt(this.jWrap.css("paddingRight"));
+      console.log(this.wrapWidth);
       this.jItems.each((function(_this) {
         return function(i) {
           _this.wrapWidth += _this.jItems.eq(i).outerWidth(true);
@@ -66,10 +69,17 @@
               e.preventDefault();
             }
           }
-          console.log('scroll' + _this.endScrollLeft);
           _this.update(wx, sx);
         };
       })(this));
+      if (this.scrollToEnd) {
+        this.update(-100000, 100000);
+      }
+      setTimeout((function(_this) {
+        return function() {
+          return _this.jHSBs.addClass('h-scroll-box-animated');
+        };
+      })(this), 500);
     };
 
     HScrollBox.prototype.initItemParams = function(jItem, i) {
@@ -136,7 +146,6 @@
       }
       this.endScrollLeft = sx === 0 ? 1 : 0;
       this.endScrollRight = sx === this.jBar.width() - this.scrollerWidth ? 1 : 0;
-      console.log('update' + this.endScrollLeft);
       this.jWrap.css('transform', "translateX(" + wx + "px)");
       this.jScroller.css('transform', "translateX(" + sx + "px)");
       if (this.shrinkLastItems) {

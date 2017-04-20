@@ -13,7 +13,7 @@ class W.CnvRoulette2
       centerX: @canvas.width / 2
       centerY: @canvas.height / 2
       R: @canvas.width/2 - 2
-      speed: 5
+      speed: 6
       slowdown_step: 0.5
       minSpeed: 1
 
@@ -55,8 +55,8 @@ class W.CnvRoulette2
       @objects[i] = {cache: cacheCtx, val: v, angle: i * 360 / gameVals.length }
 
     @_d = Math.ceil(360 / (2 * gameVals.length))
+    @vl = gameVals.length
     @status = 'init'
-#    console.log(@objects)
     @draw(false)
     return
 
@@ -64,7 +64,7 @@ class W.CnvRoulette2
     if @status == 'init' or @status == 'stop'
       @_s = 0
       @winner_angle = null
-      @P.speed = 4
+      @P.speed = 6
       @status = 'spin'
       @draw()
 
@@ -75,7 +75,7 @@ class W.CnvRoulette2
     for obj, i in @objects
       if obj.val == id
         @winner_angle = obj.angle if @winner_angle == null
-    console.log(@winner_angle)
+
     @slowDownTimer = setInterval =>
       if j-- > 0
         @P.speed -= @P.slowdown_step
@@ -93,8 +93,8 @@ class W.CnvRoulette2
   drawVals: ->
     @ctx.shadowBlur = 0
     for obj, i in @objects
-      x = (@P.R - 36) * Math.cos( (-90 + i * (360 / 16)).degree() ) + @canvas.width/2 - 30
-      y = (@P.R - 36) * Math.sin( (-90 + i * (360 / 16)).degree() ) + @canvas.height/2 - 30
+      x = (@P.R - 36) * Math.cos( (-90 + i * (360 / @vl)).degree() ) + @canvas.width/2 - 30
+      y = (@P.R - 36) * Math.sin( (-90 + i * (360 / @vl)).degree() ) + @canvas.height/2 - 30
       @ctx.drawImage(obj.cache.canvas, x, y)
     return
 
@@ -110,8 +110,11 @@ class W.CnvRoulette2
 #    @ctx.textBaseline = "middle"
 #    @ctx.fillText(@_s, @canvas.width/2, @canvas.height/2);
 
-    if @status == 'slowdown' and @P.speed == @P.minSpeed and @winner_angle == Math.floor(360 - @_s - 2)
+    if @status == 'slowdown' and @P.speed == @P.minSpeed and @winner_angle >= (360 - @_s) - 40 and @winner_angle <= (360 - @_s)
       clearInterval @slowDownTimer
+      @P.speed = 0.5
+
+    if @status == 'slowdown' and @P.speed == 0.5 and @winner_angle >= (360 - @_s) - @P.slowdown_step and @winner_angle <= (360 - @_s) + @P.slowdown_step
       @status = 'stop'
       @afterStop?()
 
@@ -121,7 +124,9 @@ class W.CnvRoulette2
       @ctx.translate(-@canvas.width/2, -@canvas.height/2)
 
       @_s += @P.speed
-      @_s = 0 if @_s >= 360
+      if @_s >= 360
+        @_s = 0
+        @ctx.setTransform(1, 0, 0, 1, 0, 0)
 
     if (@status == 'slowdown' or @status == 'spin') and animate
       callback = (=> @draw())

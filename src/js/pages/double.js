@@ -1,5 +1,5 @@
 (function () {
-    var scrollHistory, scrollTopList;
+    var scrollHistory;
     $('.tab-link').click(function () {
         var key = $(this).attr('data-key');
         $('.tab-link').removeClass('is-btn-active');
@@ -9,7 +9,7 @@
 
         if(key == 'history' && !scrollHistory) {
             setTimeout(function () {
-                scrollHistory = CvScrollBox.instance( '#rbox1', [8, 277, 0, 207, 67, 0], 7,  '#18140a', '#ff9600');
+                scrollHistory = CvScrollBox.instance( '#rbox1', [8, 277, 0, 207, 67, 0], 7, 55, '#18140a', '#ff9600');
             }, 100);
         }
     });
@@ -33,30 +33,46 @@
         }
     });
 
-    var $range = $('.range'), $rangeMarker = $('.range-marker', $range), $rangeLevel = $('.range-level', $range);
+    var $range = $('.range'), $rangeWrap = $('.range-wrap', $range), $rangeMarker = $('.range-marker', $range), $rangeLevel = $('.range-level', $range);
     $rangeMarker.on("mousedown", function() {
+        var left, proc;
         $(document).on('mousemove.range', function(e) {
-            var pK, left;
-            left = e.pageX - $range.offset().left;
-            if(left <= 4) left = 4;
-            else if (left >= 297) left = 297;
-            $rangeLevel.width(left+5)
-            $rangeMarker.css('transform', "translateX("+left+"px)");
+            left = e.pageX - $rangeWrap.offset().left;
+
+            if(left <= 0) left = 0;
+            else if (left >= $rangeWrap.width()) left = $rangeWrap.width();
+
+            proc = left / ($rangeWrap.width() / 100);
+
+            $rangeLevel.width(left + 5);
+            $rangeMarker.css('left', ""+(left)+"px");
+
+            rangeCallback(proc);
         }).on('mouseup.xcm-select-scroller', function() {
+            $rangeMarker.css('left', proc +"%");
+            $rangeLevel.width(proc +"%");
             $(document).off('.range');
         });
     });
+    $range.on("click", function(e) {
+        var left, proc;
+        left = e.pageX - $rangeWrap.offset().left;
 
-    $('.v-scroll-box').each(function () {
-        var $box = $(this), $wrap = $('.v-scroll-box-wrap', $box), $bar = $('.v-scroll-box-bar', $box), $marker = $('div', $bar),
-            scrollerHeight = $bar.height() / (($wrap.get(0).scrollHeight) / 100);
+        if(left <= 0) left = 0;
+        else if (left >= $rangeWrap.width()) left = $rangeWrap.width();
 
-        $marker.css('height', scrollerHeight+'%');
+        proc = left / ($rangeWrap.width() / 100);
 
-        $wrap.on('scroll', function () {
-            var sT = $wrap.scrollTop();
-            var pK = sT / (($wrap.get(0).scrollHeight - $wrap.height()) / 100);
-            $marker.css('transform', "translateY("+pK+"%)");
-        });
+        rangeCallback(proc);
+
+        $rangeMarker.css('left', proc +"%");
+        $rangeLevel.width(proc +"%");
     });
+
+    var $betVal = $('#bet_val');
+    var rangeCallback = function (proc) {
+        $betVal.val( parseInt(proc * 100) );
+    };
+
+    VScrollBox.instance('.v-scroll-box');
 })();

@@ -1,0 +1,33 @@
+.roulette3 {
+  display: block;
+  height: 155px;
+  position: relative;
+  overflow: visible;
+
+  .roulette3-wrap {
+    position: relative;
+    width: 1200px;
+    overflow: visible;
+    height: 155px;
+    margin: 0 auto;
+
+    &:after {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 500px;
+      .bg-transparent-gradient-to-right(#fff, @body-color, 0.001);
+      content: '';
+    }
+    &:before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 500px;
+      .bg-transparent-gradient-to-left(#fff, @body-color, 0.001);
+      content: '';
+    }
+  }
+}

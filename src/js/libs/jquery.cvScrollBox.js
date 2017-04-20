@@ -9,12 +9,13 @@
   D = document;
 
   W.CvScrollBox = (function() {
-    function CvScrollBox(scrollBoxSelector, coords1, width1, barColor1, dragColor1) {
+    function CvScrollBox(scrollBoxSelector, coords1, width1, k2, barColor1, dragColor1) {
       this.coords = coords1;
       this.width = width1;
+      this.k = k2;
       this.barColor = barColor1 != null ? barColor1 : "#000000";
       this.dragColor = dragColor1 != null ? dragColor1 : "#ffffff";
-      if (!scrollBoxSelector || !this.coords || !this.width) {
+      if (!scrollBoxSelector || !this.coords || !this.width || !this.k) {
         console.log('Missed params in constructor');
         return;
       }
@@ -31,7 +32,7 @@
       this.jtemParams = [];
     }
 
-    CvScrollBox.instance = function(scrollBoxSelector, coords, width, barColor, dragColor) {
+    CvScrollBox.instance = function(scrollBoxSelector, coords, width, k, barColor, dragColor) {
       var inst;
       if (barColor == null) {
         barColor = "#000000";
@@ -39,7 +40,7 @@
       if (dragColor == null) {
         dragColor = "#ffffff";
       }
-      inst = new this(scrollBoxSelector, coords, width, barColor, dragColor);
+      inst = new this(scrollBoxSelector, coords, width, k, barColor, dragColor);
       inst.init();
       return inst;
     };
@@ -67,7 +68,7 @@
       this.dx = -this.width;
       this.o1.x += this.m.x;
       this.o1.y += this.m.y;
-      this.update();
+      this.update2();
       this.scrollerHeight = this.jScrBox.height() / ((this.jScrBoxWrap.height() + this.jScrBoxWrap.get(0).scrollHeight) / 100);
       this.jScrBoxWrap.on("scroll", (function(_this) {
         return function() {
@@ -75,7 +76,7 @@
           sT = _this.jScrBoxWrap.scrollTop();
           pK = 100 - sT / ((_this.jScrBoxWrap.get(0).scrollHeight - _this.jScrBoxWrap.height()) / 100);
           _this.draw(_this.scrollerHeight, pK);
-          _this.update();
+          _this.update2();
         };
       })(this));
       return this.jScrBoxWrap.trigger('scroll');
@@ -139,17 +140,16 @@
     };
 
     CvScrollBox.prototype.update2 = function() {
-      var _t, _x, _y, i, j, len, ref, results, y;
+      var _x, _y, i, j, len, p, ref, x, y;
       ref = this.jtemParams;
-      results = [];
       for (i = j = 0, len = ref.length; j < len; i = ++j) {
-        y = ref[i];
-        _y = this.jtemParams[i] - this.jScrBoxWrap.scrollTop();
-        _x = Math.cos(_y - this.C.y1 - this.o1.y) * (this.o1.r - this.C.x3);
-        _t = 0;
-        results.push(this.jItemsWraps.eq(i).find('div').html(Math.acos(_y)));
+        p = ref[i];
+        y = this.jItems.eq(i).position().top;
+        _y = this.o1.r - this.o1.y - y + this.k;
+        _x = Math.pow(Math.pow(this.o1.r, 2) - Math.pow(_y, 2), 0.5);
+        x = (this.o1.r - _x) - (this.o1.r - this.o1.x);
+        this.jItemsWraps.eq(i).css('transform', "translateX(" + x + "px)");
       }
-      return results;
     };
 
     CvScrollBox.prototype.sectorBy3Dots = function(x1, y1, x2, y2, x3, y3) {

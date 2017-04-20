@@ -1,0 +1,38 @@
+.search {
+  position: relative;
+  height: 43px;
+  overflow: hidden;
+  font-size: 23px;
+  line-height: 25px;
+
+  &-term {
+    height: 100%;
+    width: 400px;
+    float: left;
+    background: #1b2c34;
+
+    & > input {
+      box-sizing: border-box;
+      height: 100%;
+      width: 340px;
+      padding: 0 0 4px 30px;
+      background: none;
+      border: none;
+      font-size: 23px;
+      line-height: 24px;
+      color: #ffffff;
+    }
+
+    & > .icon {
+      float: right;
+      margin: 7px 10px 0 0;
+    }
+  }
+
+  &-found {
+    height: 100%;
+    padding: 8px 30px 0 0;
+    background: #171e21;
+    text-align: right;
+  }
+}

@@ -1,345 +1,443 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="expires" content="Sun, 01 Jan 2017 00:00:00 GMT">
-  <title>SkinWin</title>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,700" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="expires" content="Sun, 01 Jan 2017 00:00:00 GMT">
+    <title>SkinWin - Crash</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v3">
 </head>
+
 <body>
-  <div class="l-header">
-    <div class="l-header-left"><a class="logo" href="/"><img src="images/logo.png" alt="logo"></a></div>
-    <div class="l-header-center">
-      <div class="btn"><span class="icon icon-s-white-question"></span><span class="btn-text">Faq</span></div>
-      <div class="btn"><span class="icon icon-s-white-referrals"></span><span class="btn-text">Referrals</span></div>
-      <div class="rbtn">Free POINTS</div>
-      <div class="btn"><span class="icon icon-s-white-support"></span><span class="btn-text">Support</span></div>
-      <div class="btn"><span class="icon icon-s-white-team"></span><span class="btn-text">Teamplay mode</span></div>
-      <div class="btn"><span class="icon icon-s-white-cart"></span><span class="btn-text">Market</span></div>
-    </div>
-    <div class="l-header-right">
-      <div class="btn"><span class="icon icon-s-green-coins"></span><span class="btn-text btn-big-text">154556</span></div>
-      <div class="user-short-info">
-        <div class="portrait">
-          <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="55" height="55" alt="userpic"></div>
-        </div><span>Hello,<br>                    Mr. <a href="#">Igor</a></span>
-      </div>
-      <div class="btn"><span class="icon icon-s-white-sector"></span><span class="btn-text">Inventory</span></div>
-      <div class="btn"><span class="icon icon-s-white-bell"></span></div>
-      <div class="btn"><span class="icon icon-s-white-gear"></span></div>
-      <div class="btn"><span class="icon icon-s-white-close"></span></div>
-    </div>
-  </div>
-  <div class="l-content">
-    <div class="l-game-menu">
-      <div class="bookmark">
-        <div class="bookmark-wrap">
-          <div class="bookmark-img"><span class="icon icon-s-white-csgo"></span></div>
-          <div class="bookmark-label">Jackpot</div>
-          <div class="bookmark-amount"><span class="icon icon-xs-white-coins"></span> 5484</div>
+    <div class="l-header">
+        <div class="l-header-left">
+            <a class="logo" href="index.html"><img src="images/logo.png" alt="logo"></a>
         </div>
-      </div>
-      <div class="bookmark">
-        <div class="bookmark-wrap">
-          <div class="bookmark-img"><span class="icon icon-s-white-roulette"></span></div>
-          <div class="bookmark-label">Double</div>
-          <div class="bookmark-amount"><span class="icon icon-xs-white-coins"></span> 5484</div>
-        </div>
-      </div>
-      <div class="bookmark">
-        <div class="bookmark-wrap">
-          <div class="bookmark-img"><span class="icon icon-s-white-dota"></span></div>
-          <div class="bookmark-label">Dota</div>
-          <div class="bookmark-amount"><span class="icon icon-xs-white-coins"></span> 5484</div>
-        </div>
-      </div>
-      <div class="bookmark">
-        <div class="bookmark-wrap">
-          <div class="bookmark-img"><span class="icon icon-s-white-coinflip"></span></div>
-          <div class="bookmark-label">Coinflip</div>
-          <div class="bookmark-amount"><span class="icon icon-xs-white-coins"></span> 45684</div>
-        </div>
-      </div>
-      <div class="bookmark crash-bookmark">
-        <div class="bookmark-wrap">
-          <div class="bookmark-img"><span class="icon icon-s-white-halfmoon"></span></div>
-          <div class="bookmark-label">Crash</div>
-          <div class="bookmark-amount"><span class="icon icon-xs-white-coins"></span> 45684</div>
-        </div>
-      </div>
-      <div class="join-now">
-        <div class="icon icon-m-white-gift"></div>
-        <div class="join-now-text"><a href="#">GIVEAWAY</a><br>AK-47 | Dragon</div>
-        <div class="rbtn rbtn-h30">Join now!</div>
-      </div>
-    </div>
-    <div class="l-game-crash">
-      <div class="l-game-crash-center">
-        <div class="bulb">
-          <div class="bulb-wrap">
-            <div class="bulb-wrap-bg">
-              <canvas id="canvas5" width="380" height="380"></canvas>
+        <div class="l-header-center">
+            <div class="btn">
+                <span class="icon icon-s-white-question"></span>
+                <span class="btn-text">Faq</span>
             </div>
-          </div>
-          <div class="bulb-number" id="dd1">4.65</div>
-          <div class="bulb-mark bulb-mark-1">2.2</div>
-          <div class="bulb-mark bulb-mark-2">2</div>
-          <div class="bulb-mark bulb-mark-3">1.8</div>
-          <div class="bulb-mark bulb-mark-4">1.6</div>
-          <div class="bulb-mark bulb-mark-5">1.4</div>
+            <div class="btn">
+                <span class="icon icon-s-white-referrals"></span>
+                <span class="btn-text">Referrals</span>
+            </div>
+            <div class="rbtn">Free POINTS</div>
+            <div class="btn">
+                <span class="icon icon-s-white-support"></span>
+                <span class="btn-text">Support</span>
+            </div>
+            <div class="btn">
+                <span class="icon icon-s-white-team"></span>
+                <span class="btn-text">Teamplay mode</span>
+            </div>
+            <div class="btn">
+                <span class="icon icon-s-white-cart"></span>
+                <span class="btn-text">Market</span>
+            </div>
         </div>
-      </div>
-      <div class="l-game-crash-left">
-        <div class="l-current-bets">
-          <div class="rscroll-box" id="rbox3">
-            <div class="rscroll-box-wrap">
-              <div class="rscroll-box-item">
-                <div class="rscroll-box-item-wrap">
-                  <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
-                    <div>
-                      <div class="portrait">
-                        <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="35" height="35" alt="userpic"></div>
-                      </div>
-                    </div>
-                    <div class="text-left">Sultanya</div>
-                    <div class="l-flex-row-col-g1 text-right"><span class="text-center d-ib"><span class="c-aqua">@:</span> 1.07 <span class="c-aqua">BET:</span> 5.0<br><span class="c-aqua">$</span> 113758.38</span></div>
-                  </div>
-                </div>
-              </div>
-              <div class="rscroll-box-item">
-                <div class="rscroll-box-item-wrap">
-                  <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
-                    <div>
-                      <div class="portrait portrait-bgag">
-                        <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="35" height="35" alt="userpic"></div>
-                      </div>
-                    </div>
-                    <div class="text-left">Kadir</div>
-                    <div class="l-flex-row-col-g1 text-right"><span class="text-center d-ib"><span class="c-aqua">@:</span> 1.0437 <span class="c-aqua">BET:</span> 5.0<br><span class="c-aqua">$</span> 1137fdf58.38</span></div>
-                  </div>
-                </div>
-              </div>
-              <div class="rscroll-box-item">
-                <div class="rscroll-box-item-wrap">
-                  <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
-                    <div>
-                      <div class="portrait">
-                        <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="35" height="35" alt="userpic"></div>
-                      </div>
-                    </div>
-                    <div class="text-left">Sultanya</div>
-                    <div class="l-flex-row-col-g1 text-right"><span class="text-center d-ib"><span class="c-aqua">@:</span> 1.07 <span class="c-aqua">BET:</span> 5.0<br><span class="c-aqua">$</span> 113758.38</span></div>
-                  </div>
-                </div>
-              </div>
-              <div class="rscroll-box-item">
-                <div class="rscroll-box-item-wrap">
-                  <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
-                    <div>
-                      <div class="portrait portrait-bgag">
-                        <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="35" height="35" alt="userpic"></div>
-                      </div>
-                    </div>
-                    <div class="text-left">Kadir</div>
-                    <div class="l-flex-row-col-g1 text-right"><span class="text-center d-ib"><span class="c-aqua">@:</span> 1.0437 <span class="c-aqua">BET:</span> 5.0<br><span class="c-aqua">$</span> 1137fdf58.38</span></div>
-                  </div>
-                </div>
-              </div>
-              <div class="rscroll-box-item">
-                <div class="rscroll-box-item-wrap">
-                  <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
-                    <div>
-                      <div class="portrait">
-                        <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="35" height="35" alt="userpic"></div>
-                      </div>
-                    </div>
-                    <div class="text-left">Sultanya</div>
-                    <div class="l-flex-row-col-g1 text-right"><span class="text-center d-ib"><span class="c-aqua">@:</span> 1.07 <span class="c-aqua">BET:</span> 5.0<br><span class="c-aqua">$</span> 113758.38</span></div>
-                  </div>
-                </div>
-              </div>
-              <div class="rscroll-box-item">
-                <div class="rscroll-box-item-wrap">
-                  <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
-                    <div>
-                      <div class="portrait portrait-bgag">
-                        <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="35" height="35" alt="userpic"></div>
-                      </div>
-                    </div>
-                    <div class="text-left">Kadir</div>
-                    <div class="l-flex-row-col-g1 text-right"><span class="text-center d-ib"><span class="c-aqua">@:</span> 1.0437 <span class="c-aqua">BET:</span> 5.0<br><span class="c-aqua">$</span> 1137fdf58.38</span></div>
-                  </div>
-                </div>
-              </div>
-              <div class="rscroll-box-item">
-                <div class="rscroll-box-item-wrap">
-                  <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
-                    <div>
-                      <div class="portrait">
-                        <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="35" height="35" alt="userpic"></div>
-                      </div>
-                    </div>
-                    <div class="text-left">Sultanya</div>
-                    <div class="l-flex-row-col-g1 text-right"><span class="text-center d-ib"><span class="c-aqua">@:</span> 1.07 <span class="c-aqua">BET:</span> 5.0<br><span class="c-aqua">$</span> 113758.38</span></div>
-                  </div>
-                </div>
-              </div>
-              <div class="rscroll-box-item">
-                <div class="rscroll-box-item-wrap">
-                  <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
-                    <div>
-                      <div class="portrait portrait-bgag">
-                        <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="35" height="35" alt="userpic"></div>
-                      </div>
-                    </div>
-                    <div class="text-left">Kadir</div>
-                    <div class="l-flex-row-col-g1 text-right"><span class="text-center d-ib"><span class="c-aqua">@:</span> 1.0437 <span class="c-aqua">BET:</span> 5.0<br><span class="c-aqua">$</span> 1137fdf58.38</span></div>
-                  </div>
-                </div>
-              </div>
-              <div class="rscroll-box-item">
-                <div class="rscroll-box-item-wrap">
-                  <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
-                    <div>
-                      <div class="portrait">
-                        <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="35" height="35" alt="userpic"></div>
-                      </div>
-                    </div>
-                    <div class="text-left">Sultanya</div>
-                    <div class="l-flex-row-col-g1 text-right"><span class="text-center d-ib"><span class="c-aqua">@:</span> 1.07 <span class="c-aqua">BET:</span> 5.0<br><span class="c-aqua">$</span> 113758.38</span></div>
-                  </div>
-                </div>
-              </div>
-              <div class="rscroll-box-item">
-                <div class="rscroll-box-item-wrap">
-                  <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
-                    <div>
-                      <div class="portrait portrait-bgag">
-                        <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="35" height="35" alt="userpic"></div>
-                      </div>
-                    </div>
-                    <div class="text-left">Kadir</div>
-                    <div class="l-flex-row-col-g1 text-right"><span class="text-center d-ib"><span class="c-aqua">@:</span> 1.0437 <span class="c-aqua">BET:</span> 5.0<br><span class="c-aqua">$</span> 1137fdf58.38</span></div>
-                  </div>
-                </div>
-              </div>
-              <div class="rscroll-box-item">
-                <div class="rscroll-box-item-wrap">
-                  <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
-                    <div>
-                      <div class="portrait">
-                        <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="35" height="35" alt="userpic"></div>
-                      </div>
-                    </div>
-                    <div class="text-left">Sultanya</div>
-                    <div class="l-flex-row-col-g1 text-right"><span class="text-center d-ib"><span class="c-aqua">@:</span> 1.07 <span class="c-aqua">BET:</span> 5.0<br><span class="c-aqua">$</span> 113758.38</span></div>
-                  </div>
-                </div>
-              </div>
-              <div class="rscroll-box-item">
-                <div class="rscroll-box-item-wrap">
-                  <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
-                    <div>
-                      <div class="portrait portrait-bgag">
-                        <div class="portrait-wrap"><img src="images/assets/Desert5.png" width="35" height="35" alt="userpic"></div>
-                      </div>
-                    </div>
-                    <div class="text-left">Kadir</div>
-                    <div class="l-flex-row-col-g1 text-right"><span class="text-center d-ib"><span class="c-aqua">@:</span> 1.0437 <span class="c-aqua">BET:</span> 5.0<br><span class="c-aqua">$</span> 1137fdf58.38</span></div>
-                  </div>
-                </div>
-              </div>
+        <div class="l-header-right">
+            <div class="btn">
+                <span class="icon icon-s-green-coins"></span>
+                <span class="btn-text btn-big-text">154556</span>
             </div>
-            <canvas class="scrl-canvas" id="canvas4" width="90" height="420"></canvas>
-          </div>
+            <div class="user-short-info">
+                <div class="portrait">
+                    <div class="portrait-wrap">
+                        <img src="images/assets/Desert5.png" width="55" height="55" alt="userpic">
+                    </div>
+                </div>
+                <span>
+                    Hello,<br>
+                    Mr. <a href="#">Igor</a>
+                </span>
+            </div>
+            <div class="btn">
+                <span class="icon icon-s-white-sector"></span>
+                <span class="btn-text">Inventory</span>
+            </div>
+            <div class="btn">
+                <span class="icon icon-s-white-bell"></span>
+            </div>
+            <div class="btn">
+                <span class="icon icon-s-white-gear"></span>
+            </div>
+            <div class="btn">
+                <span class="icon icon-s-white-close"></span>
+            </div>
         </div>
-      </div>
-      <div class="l-game-crash-right">
-        <div class="l-place-bet">
-          <div class="radio-btn">Manual</div>
-          <div class="radio-btn is-radio-btn-checked">Automatic</div>
-          <div class="l-place-bet-form">
-            <div class="fsz-12-15 l-offset-mb5 tt-upper">Bet:(Max 100,000 Coins)</div>
-            <div class="input-text input-text-100p-30">
-              <div class="input-text-btn">COINS</div>
-              <div class="input-text-field">
-                <input type="text">
-              </div>
+    </div>
+    <div class="l-content">
+        <div class="l-game-menu l-game-menu-adp">
+            <div class="bookmark">
+                <div class="bookmark-wrap">
+                    <div class="bookmark-img"><span class="icon icon-s-white-csgo"></span></div>
+                    <div class="bookmark-label">Jackpot</div>
+                    <div class="bookmark-amount"><span class="icon icon-xs-white-coins"></span> 5484</div>
+                </div>
             </div>
-            <div class="fsz-12-15 l-offset-mb5 tt-upper">Auto cashout at (0 = disabled):</div>
-            <div class="input-text input-text-100p-30">
-              <div class="input-text-btn">X</div>
-              <div class="input-text-field">
-                <input type="text">
-              </div>
+            <div class="bookmark">
+                <div class="bookmark-wrap">
+                    <div class="bookmark-img"><span class="icon icon-s-white-roulette"></span></div>
+                    <div class="bookmark-label">Double</div>
+                    <div class="bookmark-amount"><span class="icon icon-xs-white-coins"></span> 5484</div>
+                </div>
             </div>
-            <div class="text-center">
-              <div class="rbtn">Place your BET</div>
+            <div class="bookmark">
+                <div class="bookmark-wrap">
+                    <div class="bookmark-img"><span class="icon icon-s-white-dota"></span></div>
+                    <div class="bookmark-label">Dota</div>
+                    <div class="bookmark-amount"><span class="icon icon-xs-white-coins"></span> 5484</div>
+                </div>
             </div>
-          </div>
+            <div class="bookmark">
+                <div class="bookmark-wrap">
+                    <div class="bookmark-img"><span class="icon icon-s-white-coinflip"></span></div>
+                    <div class="bookmark-label">Coinflip</div>
+                    <div class="bookmark-amount"><span class="icon icon-xs-white-coins"></span> 45684</div>
+                </div>
+            </div>
+            <div class="bookmark crash-bookmark">
+                <div class="bookmark-wrap">
+                    <div class="bookmark-img"><span class="icon icon-s-white-halfmoon"></span></div>
+                    <div class="bookmark-label">Crash</div>
+                    <div class="bookmark-amount"><span class="icon icon-xs-white-coins"></span> 45684</div>
+                </div>
+            </div>
+            <div class="join-now">
+                <div class="icon icon-m-white-gift"></div>
+                <div class="join-now-text"><a href="#">GIVEAWAY</a><br>AK-47 | Dragon</div>
+                <div class="rbtn rbtn-h30">Join now!</div>
+            </div>
         </div>
-      </div>
+        <div class="l-game-crash">
+            <div class="l-game-crash-center">
+                <div class="bulb">
+                    <div class="bulb-wrap">
+                        <div class="bulb-wrap-bg">
+                            <canvas width="380" height="380" id="canvas5"></canvas>
+                        </div>
+                    </div>
+                    <div class="bulb-number" id="dd1">4.65</div>
+                    <div class="bulb-mark bulb-mark-1">2.2</div>
+                    <div class="bulb-mark bulb-mark-2">2</div>
+                    <div class="bulb-mark bulb-mark-3">1.8</div>
+                    <div class="bulb-mark bulb-mark-4">1.6</div>
+                    <div class="bulb-mark bulb-mark-5">1.4</div>
+                </div>
+            </div>
+            <div class="l-game-crash-left">
+                <div class="l-current-bets">
+                    <div class="rscroll-box" id="rbox3">
+                        <div class="rscroll-box-wrap">
+                            <div class="rscroll-box-item">
+                                <div class="rscroll-box-item-wrap">
+                                    <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
+                                        <div>
+                                            <div class="portrait">
+                                                <div class="portrait-wrap">
+                                                    <img src="images/assets/Desert5.png" width="35" height="35" alt="userpic">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-left">Sultanya</div>
+                                        <div class="l-flex-row-col-g1 text-right">
+                                            <span class="text-center d-ib">
+                                                <span class="c-aqua">@:</span> 1.07 <span class="c-aqua">BET:</span> 5.0<br>
+                                                <span class="c-aqua">$</span> 113758.38
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rscroll-box-item">
+                                <div class="rscroll-box-item-wrap">
+                                    <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
+                                        <div>
+                                            <div class="portrait portrait-bgag">
+                                                <div class="portrait-wrap">
+                                                    <img src="images/assets/Desert5.png" width="35" height="35" alt="userpic">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-left">Kadir</div>
+                                        <div class="l-flex-row-col-g1 text-right">
+                                            <span class="text-center d-ib">
+                                                <span class="c-aqua">@:</span> 1.0437 <span class="c-aqua">BET:</span> 5.0<br>
+                                                <span class="c-aqua">$</span> 1137fdf58.38
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rscroll-box-item">
+                                <div class="rscroll-box-item-wrap">
+                                    <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
+                                        <div>
+                                            <div class="portrait">
+                                                <div class="portrait-wrap">
+                                                    <img src="images/assets/Desert5.png" width="35" height="35" alt="userpic">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-left">Sultanya</div>
+                                        <div class="l-flex-row-col-g1 text-right">
+                                            <span class="text-center d-ib">
+                                                <span class="c-aqua">@:</span> 1.07 <span class="c-aqua">BET:</span> 5.0<br>
+                                                <span class="c-aqua">$</span> 113758.38
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rscroll-box-item">
+                                <div class="rscroll-box-item-wrap">
+                                    <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
+                                        <div>
+                                            <div class="portrait portrait-bgag">
+                                                <div class="portrait-wrap">
+                                                    <img src="images/assets/Desert5.png" width="35" height="35" alt="userpic">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-left">Kadir</div>
+                                        <div class="l-flex-row-col-g1 text-right">
+                                            <span class="text-center d-ib">
+                                                <span class="c-aqua">@:</span> 1.0437 <span class="c-aqua">BET:</span> 5.0<br>
+                                                <span class="c-aqua">$</span> 1137fdf58.38
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rscroll-box-item">
+                                <div class="rscroll-box-item-wrap">
+                                    <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
+                                        <div>
+                                            <div class="portrait">
+                                                <div class="portrait-wrap">
+                                                    <img src="images/assets/Desert5.png" width="35" height="35" alt="userpic">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-left">Sultanya</div>
+                                        <div class="l-flex-row-col-g1 text-right">
+                                            <span class="text-center d-ib">
+                                                <span class="c-aqua">@:</span> 1.07 <span class="c-aqua">BET:</span> 5.0<br>
+                                                <span class="c-aqua">$</span> 113758.38
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rscroll-box-item">
+                                <div class="rscroll-box-item-wrap">
+                                    <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
+                                        <div>
+                                            <div class="portrait portrait-bgag">
+                                                <div class="portrait-wrap">
+                                                    <img src="images/assets/Desert5.png" width="35" height="35" alt="userpic">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-left">Kadir</div>
+                                        <div class="l-flex-row-col-g1 text-right">
+                                            <span class="text-center d-ib">
+                                                <span class="c-aqua">@:</span> 1.0437 <span class="c-aqua">BET:</span> 5.0<br>
+                                                <span class="c-aqua">$</span> 1137fdf58.38
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rscroll-box-item">
+                                <div class="rscroll-box-item-wrap">
+                                    <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
+                                        <div>
+                                            <div class="portrait">
+                                                <div class="portrait-wrap">
+                                                    <img src="images/assets/Desert5.png" width="35" height="35" alt="userpic">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-left">Sultanya</div>
+                                        <div class="l-flex-row-col-g1 text-right">
+                                            <span class="text-center d-ib">
+                                                <span class="c-aqua">@:</span> 1.07 <span class="c-aqua">BET:</span> 5.0<br>
+                                                <span class="c-aqua">$</span> 113758.38
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rscroll-box-item">
+                                <div class="rscroll-box-item-wrap">
+                                    <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
+                                        <div>
+                                            <div class="portrait portrait-bgag">
+                                                <div class="portrait-wrap">
+                                                    <img src="images/assets/Desert5.png" width="35" height="35" alt="userpic">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-left">Kadir</div>
+                                        <div class="l-flex-row-col-g1 text-right">
+                                            <span class="text-center d-ib">
+                                                <span class="c-aqua">@:</span> 1.0437 <span class="c-aqua">BET:</span> 5.0<br>
+                                                <span class="c-aqua">$</span> 1137fdf58.38
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rscroll-box-item">
+                                <div class="rscroll-box-item-wrap">
+                                    <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
+                                        <div>
+                                            <div class="portrait">
+                                                <div class="portrait-wrap">
+                                                    <img src="images/assets/Desert5.png" width="35" height="35" alt="userpic">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-left">Sultanya</div>
+                                        <div class="l-flex-row-col-g1 text-right">
+                                            <span class="text-center d-ib">
+                                                <span class="c-aqua">@:</span> 1.07 <span class="c-aqua">BET:</span> 5.0<br>
+                                                <span class="c-aqua">$</span> 113758.38
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rscroll-box-item">
+                                <div class="rscroll-box-item-wrap">
+                                    <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
+                                        <div>
+                                            <div class="portrait portrait-bgag">
+                                                <div class="portrait-wrap">
+                                                    <img src="images/assets/Desert5.png" width="35" height="35" alt="userpic">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-left">Kadir</div>
+                                        <div class="l-flex-row-col-g1 text-right">
+                                            <span class="text-center d-ib">
+                                                <span class="c-aqua">@:</span> 1.0437 <span class="c-aqua">BET:</span> 5.0<br>
+                                                <span class="c-aqua">$</span> 1137fdf58.38
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rscroll-box-item">
+                                <div class="rscroll-box-item-wrap">
+                                    <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
+                                        <div>
+                                            <div class="portrait">
+                                                <div class="portrait-wrap">
+                                                    <img src="images/assets/Desert5.png" width="35" height="35" alt="userpic">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-left">Sultanya</div>
+                                        <div class="l-flex-row-col-g1 text-right">
+                                            <span class="text-center d-ib">
+                                                <span class="c-aqua">@:</span> 1.07 <span class="c-aqua">BET:</span> 5.0<br>
+                                                <span class="c-aqua">$</span> 113758.38
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rscroll-box-item">
+                                <div class="rscroll-box-item-wrap">
+                                    <div class="l-flex-row l-flex-row-m10 l-constraint-mw310 l-constraint-p5-0 fsz-12-15 fw-300 tt-upper">
+                                        <div>
+                                            <div class="portrait portrait-bgag">
+                                                <div class="portrait-wrap">
+                                                    <img src="images/assets/Desert5.png" width="35" height="35" alt="userpic">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-left">Kadir</div>
+                                        <div class="l-flex-row-col-g1 text-right">
+                                            <span class="text-center d-ib">
+                                                <span class="c-aqua">@:</span> 1.0437 <span class="c-aqua">BET:</span> 5.0<br>
+                                                <span class="c-aqua">$</span> 1137fdf58.38
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <canvas id="canvas4" class="scrl-canvas" width="90" height="420"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="l-game-crash-right">
+                <div class="l-place-bet">
+                    <div class="radio-btn">Manual</div>
+                    <div class="radio-btn is-radio-btn-checked">Automatic</div>
+                    <div class="l-place-bet-form">
+                        <div class="fsz-12-15 l-offset-mb5 tt-upper">Bet:(Max 100,000 Coins)</div>
+                        <div class="input-text input-text-100p-30">
+                            <div class="input-text-btn">COINS</div>
+                            <div class="input-text-field"><input type="text" /></div>
+                        </div>
+                        <div class="fsz-12-15 l-offset-mb5 tt-upper">Auto cashout at (0 = disabled):</div>
+                        <div class="input-text input-text-100p-30">
+                            <div class="input-text-btn">X</div>
+                            <div class="input-text-field"><input type="text" /></div>
+                        </div>
+                        <div class="text-center"><div class="rbtn">Place your BET</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="l-container l-constraint-mw1600 l-constraint-p5-0 l-offset-m0a">
-    <hr>
-    <div class="l-container-header">
-      <div class="fsz-44-50 td-upper text-center">Bets</div>
+    <div class="l-container l-constraint-mw1600 l-constraint-p5-0 l-offset-m0a">
+        <hr>
+        <div class="l-container-header">
+            <div class="fsz-44-50 td-upper text-center">Bets</div>
+        </div>
+        <table class="l-table">
+            <tr class="l-table-header">
+                <td>Bust</td>
+                <td>@</td>
+                <td>Bet</td>
+                <td>Profit</td>
+                <td>Hash</td>
+            </tr>
+            <tr><td class="c-red">1.61</td><td>-</td><td>-</td><td>-</td><td><span class="icon icon-s-green-hash"></span></td></tr>
+            <tr><td class="c-aqua">1.61</td><td>-</td><td>-</td><td>-</td><td><span class="icon icon-s-green-hash"></span></td></tr>
+            <tr><td class="c-green">1.61</td><td>-</td><td>-</td><td>-</td><td><span class="icon icon-s-green-hash"></span></td></tr>
+            <tr><td class="c-red">1.61</td><td>-</td><td>-</td><td>-</td><td><span class="icon icon-s-green-hash"></span></td></tr>
+            <tr><td class="c-red">1.61</td><td>-</td><td>-</td><td>-</td><td><span class="icon icon-s-green-hash"></span></td></tr>
+        </table>
     </div>
-    <table class="l-table">
-      <tr class="l-table-header">
-        <td>Bust</td>
-        <td>@</td>
-        <td>Bet</td>
-        <td>Profit</td>
-        <td>Hash</td>
-      </tr>
-      <tr>
-        <td class="c-red">1.61</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><span class="icon icon-s-green-hash"></span></td>
-      </tr>
-      <tr>
-        <td class="c-aqua">1.61</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><span class="icon icon-s-green-hash"></span></td>
-      </tr>
-      <tr>
-        <td class="c-green">1.61</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><span class="icon icon-s-green-hash"></span></td>
-      </tr>
-      <tr>
-        <td class="c-red">1.61</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><span class="icon icon-s-green-hash"></span></td>
-      </tr>
-      <tr>
-        <td class="c-red">1.61</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><span class="icon icon-s-green-hash"></span></td>
-      </tr>
-    </table>
-  </div><br>
-  <div class="l-footer">
-    <div class="l-footer-wrap">
-      <div class="l-footer-main">
-        <div class="left">skinwin.com is the honest jackpot for CS:GO and Dota 2.<br>                    The winner is chosen by independent random number generator Random.org</div>
-        <div class="right"><a href="#"><span class="icon icon-m-green-mail"></span></a><a href="#"><span class="icon icon-m-green-facebook"></span></a><a href="#"><span class="icon icon-m-green-twitter"></span></a></div>
-      </div>
-      <div class="l-footer-links"><a href="#">Privacy Policy</a> <a href="#">Terms and Conditions</a> | © skinwin.com 2017</div>
+    <br>
+    <div class="l-footer">
+        <div class="l-footer-wrap">
+            <div class="l-footer-main">
+                <div class="left">
+                    skinwin.com is the honest jackpot for CS:GO and Dota 2.<br>
+                    The winner is chosen by independent random number generator Random.org
+                </div>
+                <div class="right">
+                    <a href="#"><span class="icon icon-m-green-mail"></span></a>
+                    <a href="#"><span class="icon icon-m-green-facebook"></span></a>
+                    <a href="#"><span class="icon icon-m-green-twitter"></span></a>
+                </div>
+            </div>
+            <div class="l-footer-links">
+                <a href="#">Privacy Policy</a> | <a href="#">Terms and Conditions</a> | © skinwin.com 2017
+            </div>
+        </div>
     </div>
-  </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js" defer=""></script>
-  <script src="js/scripts2.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js" defer></script>
+    <script src="js/crash.min.js"></script>
 </body>
+</html>

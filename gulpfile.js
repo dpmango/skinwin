@@ -37,7 +37,7 @@ var browserSync   = require('browser-sync').create();
 
 // Default task
 gulp.task('default', function (callback) {
-  runSequence(['less', 'pug', 'browserSync'], 'watch',
+  runSequence(['less', 'browserSync'], 'watch',
     callback
   )
 })
@@ -47,7 +47,7 @@ gulp.task('watch', function(){
   // uncomment to use with less
   gulp.watch('./src/less/**/*.less', ['less']);
   // gulp.watch('./src/pcss/**/*.+(sss|css)', ['postcss']);
-  gulp.watch('./src/views/**/*.pug', ['pug']);
+  // gulp.watch('./src/views/**/*.pug', ['pug']);
   gulp.watch('./src/*.html', browserSync.reload);
   gulp.watch('./src/js/es2015/*.js', ['babel']);
   gulp.watch('./src/js/**/*.js', browserSync.reload);
@@ -57,7 +57,6 @@ gulp.task('watch', function(){
 gulp.task('build', function (callback) {
   runSequence(
     'clean:dist',
-    'pug',
     'less',
     ['useref', 'images'],
     'cssnano',
@@ -103,16 +102,16 @@ gulp.task('less', function () {
     }));
 });
 
-gulp.task('pug', function buildHTML() {
-  return gulp.src('./src/views/*.pug')
-      .pipe(pug({
-        pretty: true
-      }))
-      .pipe( gulp.dest('./src/') )
-      .pipe(browserSync.reload({
-        stream: true
-      }));
-});
+// gulp.task('pug', function buildHTML() {
+//   return gulp.src('./src/views/*.pug')
+//       .pipe(pug({
+//         pretty: true
+//       }))
+//       .pipe( gulp.dest('./src/') )
+//       .pipe(browserSync.reload({
+//         stream: true
+//       }));
+// });
 
 /////
 // OPTIMIZATION TASKS

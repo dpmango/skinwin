@@ -1,0 +1,50 @@
+.merch {
+  display: inline-block;
+  position: relative;
+  width: 153px;
+  height: 153px;
+  background: #171e21;
+  cursor: pointer;
+
+  &-title {
+    height: 43px;
+    padding: 8px 10px 0 10px;
+    border-bottom: 3px solid #11bfae;
+    text-align: center;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 500;
+  }
+
+  &-pict {
+    padding: 10px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+
+    & > img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  &-price {
+    text-align: center;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  &:hover {
+    .outer-shadow(7px, #11bfae);
+    &:after {
+      box-sizing: border-box;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 2px solid #11bfae;
+      content: '';
+    }
+  }
+}
