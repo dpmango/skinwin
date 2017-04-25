@@ -15,8 +15,11 @@
       this.scrollToEnd = scrollToEnd1 != null ? scrollToEnd1 : false;
       this.jHSBs = $("" + scrollBoxSelector);
       this.jWrap = $('.h-scroll-box-wrap', this.jHSBs);
+      this.jInner = $('.h-scroll-box-inner', this.jHSBs);
       this.jItems = $('.h-scroll-box-item', this.jWrap);
       this.jBar = $('.h-scroll-box-bar', this.jHSBs);
+      this.jNext = $('.h-scroll-box-next', this.jHSBs);
+      this.jPrev = $('.h-scroll-box-prev', this.jHSBs);
       this.jScroller = $('div', this.jBar);
       this.wrapWidth = this.scrollerWidth = 0;
       this.jtemParams = [];
@@ -37,7 +40,6 @@
 
     HScrollBox.prototype.init = function() {
       this.wrapWidth = parseInt(this.jWrap.css("paddingLeft")) + parseInt(this.jWrap.css("paddingRight"));
-      console.log(this.wrapWidth);
       this.jItems.each((function(_this) {
         return function(i) {
           _this.wrapWidth += _this.jItems.eq(i).outerWidth(true);
@@ -53,17 +55,37 @@
           return _this.update(_this.jWrap.position().left, _this.jScroller.position().left);
         };
       })(this));
+      if (this.jNext.length) {
+        this.jNext.click((function(_this) {
+          return function() {
+            var sx, wx;
+            wx = _this.jWrap.position().left + _this.jInner.width() * _this.step;
+            sx = _this.jScroller.position().left - _this.scrollerWidth * _this.step;
+            _this.update(wx, sx);
+          };
+        })(this));
+      }
+      if (this.jPrev.length) {
+        this.jPrev.click((function(_this) {
+          return function() {
+            var sx, wx;
+            wx = _this.jWrap.position().left - _this.jInner.width() * _this.step;
+            sx = _this.jScroller.position().left + _this.scrollerWidth * _this.step;
+            _this.update(wx, sx);
+          };
+        })(this));
+      }
       this.jHSBs.on('DOMMouseScroll mousewheel', (function(_this) {
         return function(e) {
           var sx, wx;
           if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
-            wx = _this.jWrap.position().left + _this.jHSBs.width() * _this.step;
+            wx = _this.jWrap.position().left + _this.jInner.width() * _this.step;
             sx = _this.jScroller.position().left - _this.scrollerWidth * _this.step;
             if (!_this.endScrollLeft && _this.scrollerWidth > 0) {
               e.preventDefault();
             }
           } else {
-            wx = _this.jWrap.position().left - _this.jHSBs.width() * _this.step;
+            wx = _this.jWrap.position().left - _this.jInner.width() * _this.step;
             sx = _this.jScroller.position().left + _this.scrollerWidth * _this.step;
             if (!_this.endScrollRight && _this.scrollerWidth > 0) {
               e.preventDefault();
@@ -98,7 +120,7 @@
         item = ref[i];
         if (i > last_id) {
           results.push(this.jItems.eq(i).addClass('is-last-item'));
-        } else if (item.left >= this.jHSBs.width() - wx - item.width - 10) {
+        } else if (item.left >= this.jInner.width() - wx - item.width - 10) {
           last_id = i;
           results.push(this.jItems.eq(i).addClass('is-last-item'));
         } else {
@@ -115,20 +137,20 @@
       if (sx == null) {
         sx = 0;
       }
-      if (this.jHSBs.outerWidth() - this.wrapWidth >= 0) {
+      if (this.jInner.outerWidth() - this.wrapWidth >= 0) {
         wx = sx = 0;
         this.jWrap.width('auto');
         this.jScroller.width(0);
       } else {
         this.jWrap.width(this.wrapWidth);
-        this.scrollerWidth = this.jBar.width() * this.jHSBs.width() / this.wrapWidth;
+        this.scrollerWidth = this.jBar.width() * this.jInner.width() / this.wrapWidth;
         this.jScroller.width(this.scrollerWidth);
         wx = (function() {
           switch (false) {
             case !(wx > 0):
               return 0;
-            case !(wx < this.jHSBs.width() - this.wrapWidth):
-              return this.jHSBs.width() - this.wrapWidth;
+            case !(wx < this.jInner.width() - this.wrapWidth):
+              return this.jInner.width() - this.wrapWidth;
             default:
               return wx;
           }

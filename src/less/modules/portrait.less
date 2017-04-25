@@ -1,4 +1,5 @@
 .portrait {
+  overflow: visible;
   position: relative;
   display: inline-block;
   border: 2px solid #11bfae;
@@ -28,12 +29,74 @@
     line-height: 11px;
     text-align: center;
   }
+
+  &:hover {
+    .portrait-popup {
+      display: block;
+    }
+  }
+
+  &-popup {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: -3px;
+    white-space: nowrap;
+
+    &-wrap {
+      position: relative;
+      padding: 5px 10px;
+      background: #092f3a;
+      z-index: 10;
+    }
+
+    &:after {
+      position: absolute;
+      top: -7px;
+      left: 18px;
+      width: 14px;
+      height: 14px;
+      background: #11bfae;
+      transform: rotateZ(45deg);
+      content: '';
+    }
+  }
+
+  &-popup-tl {
+    left: auto;
+    right: -3px;
+
+    &:after {
+      left: auto;
+      right: 18px;
+    }
+  }
+
+  &-popup-b {
+    top: -10px;
+
+    &:after {
+      top: auto;
+      bottom: -7px;
+    }
+  }
 }
 
 .portrait-p10 {
   .portrait-wrap {
     padding: 10px;
     .inner-shadow(10px, #11bfae);
+    & > img {
+      vertical-align: top;
+    }
+  }
+}
+
+.portrait-p25 {
+  .outer-shadow(25px, #11bfae);
+  .portrait-wrap {
+    padding: 25px;
+    .inner-shadow(25px, #11bfae);
     & > img {
       vertical-align: top;
     }

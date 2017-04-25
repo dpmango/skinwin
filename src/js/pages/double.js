@@ -74,5 +74,7 @@
         $betVal.val( parseInt(proc * 100) );
     };
 
-    VScrollBox.instance('.v-scroll-box');
+    $(document).ready(function () {
+        VScrollBox.instance('.v-scroll-box');
+    });
 })();

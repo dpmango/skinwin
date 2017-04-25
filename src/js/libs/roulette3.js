@@ -19,7 +19,7 @@
         centerY: this.canvas.height / 2,
         chip: {
           width: 156,
-          height: 82,
+          height: 106,
           amount: 9
         },
         speed: 20,
@@ -101,37 +101,22 @@
     CnvRoulette3.prototype.createPlayerObj = function(rawObj, i) {
       var sObj;
       this.addPattern(rawObj.picture);
-      this.addPattern(rawObj.big_picture);
       return sObj = {
         id: rawObj.id,
         num: i,
         color: rawObj.color,
         picture: rawObj.picture,
-        big_picture: rawObj.big_picture,
-        gray_picture: rawObj.gray_picture,
         x: (i - 1) * this.P.chip.width
       };
     };
 
-    CnvRoulette3.prototype.toGray = function() {
-      var brightness, data, i, imageData;
-      imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
-      data = imageData.data;
-      i = 0;
-      while (i < data.length) {
-        brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
-        data[i] = brightness;
-        data[i + 1] = brightness;
-        data[i + 2] = brightness;
-        i += 4;
-      }
-      this.ctx.putImageData(imageData, 0, 0);
-    };
-
     CnvRoulette3.prototype.drawPlayer = function(l, cObj) {
       if (this.patterns[cObj.picture]) {
-        return this.ctx.drawImage(this.patterns[cObj.picture], l + (this.P.chip.width - this.patterns[cObj.picture].naturalWidth) / 2, (this.canvas.height - this.patterns[cObj.picture].naturalHeight) / 2 + 20, this.patterns[cObj.picture].naturalWidth, this.patterns[cObj.picture].naturalHeight);
+        this.ctx.drawImage(this.patterns[cObj.picture], l + (this.P.chip.width - this.patterns[cObj.picture].naturalWidth) / 2, (this.canvas.height - this.patterns[cObj.picture].naturalHeight) / 2 + 20, this.patterns[cObj.picture].naturalWidth, this.patterns[cObj.picture].naturalHeight);
       }
+      this.ctx.strokeStyle = "rgba(255, 216, 0, 1)";
+      this.ctx.lineWidth = 2;
+      return this.ctx.strokeRect(l - 1, (this.canvas.height - this.P.chip.height) / 2 + 20, this.P.chip.width - 1, this.P.chip.height);
     };
 
     CnvRoulette3.prototype.drawPointer = function(alpha) {
@@ -160,9 +145,11 @@
     };
 
     CnvRoulette3.prototype.drawBg = function() {
-      if (this.patterns[this.P.background]) {
-        return this.ctx.drawImage(this.patterns[this.P.background], (this.canvas.width - this.patterns[this.P.background].naturalWidth) / 2, 42, this.patterns[this.P.background].naturalWidth, 109);
-      }
+      this.ctx.strokeStyle = "transparent";
+      this.ctx.fillStyle = "rgba(255, 216, 0, 0.1)";
+      this.ctx.rect(0, (this.canvas.height - this.P.chip.height) / 2 + 20, this.canvas.width, this.P.chip.height);
+      this.ctx.closePath();
+      return this.ctx.fill();
     };
 
     CnvRoulette3.prototype.draw = function(animate) {
@@ -172,7 +159,6 @@
       }
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.drawBg();
-      this.drawPointer(1);
       if (this.status === 'spin' || this.status === 'slowdown') {
         this._d += this.P.speed;
         if (this._d >= this.P.chip.width) {

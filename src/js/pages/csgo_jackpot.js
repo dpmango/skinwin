@@ -94,11 +94,12 @@
 
 
 
-    /* кастомные горизонтальные скроллы для блоков */
-    HScrollBox.instance('#sbx1', 1);
-    HScrollBox.instance('#sbx2', 0.5);
-    HScrollBox.instance('#sbx3', 1, true);
-
+    $(document).ready(function () {
+        /* кастомные горизонтальные скроллы для блоков */
+        HScrollBox.instance('#sbx1', 1);
+        HScrollBox.instance('#sbx2', 0.5);
+        HScrollBox.instance('#sbx3', 1, true);
+    });
 
     /* РУЛЕТКА */
 
@@ -113,25 +114,27 @@
 
     /* создание экземпляра "рулетки" статисики,
      * в кач-ве единственного параметра canvas, на который будет отрисовано изображение */
-    var cnvRoulette1 = new CnvRoulette(canv);
-    cnvRoulette1.init(objs2);
+    $(document).ready(function () {
+        var cnvRoulette1 = new CnvRoulette(canv);
+        cnvRoulette1.init(objs2);
 
-    /* пример использования.
-     * по клику крутим, по клику останавливаем */
-    var game = 0;
-    var $rW = $('.roulette-winner');
-    document.getElementsByClassName('roulette')[0].onclick = function () {
-        if(!game) {
-            cnvRoulette1.start(); /* расскручиваем рулетку */
-            game = 1;
-            $rW.addClass('is-hidden');
-        } else {
-            /* указываем победителя, рулетка постепенно остановится р3 - id победителя */
-            cnvRoulette1.stop('p1', function(){
-                $rW.removeClass('is-hidden');
-                game = 0;
-            });
-        }
-    };
-
+        /* пример использования.
+         * по клику крутим, по клику останавливаем */
+        var game = 0;
+        var $rW = $('.roulette-winner');
+        document.getElementsByClassName('roulette')[0].onclick = function () {
+            if (!game) {
+                cnvRoulette1.start();
+                /* расскручиваем рулетку */
+                game = 1;
+                $rW.addClass('is-hidden');
+            } else {
+                /* указываем победителя, рулетка постепенно остановится р3 - id победителя */
+                cnvRoulette1.stop('p1', function () {
+                    $rW.removeClass('is-hidden');
+                    game = 0;
+                });
+            }
+        };
+    });
 })();

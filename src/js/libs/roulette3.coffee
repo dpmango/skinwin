@@ -10,7 +10,7 @@ class W.CnvRoulette3
       background: 'images/roulette-bg2.png'
       centerX: @canvas.width / 2
       centerY: @canvas.height / 2
-      chip: {width: 156, height: 82, amount: 9}
+      chip: {width: 156, height: 106, amount: 9}
       speed: 20
       slowdown_step: 3
       minSpeed: 4
@@ -68,42 +68,16 @@ class W.CnvRoulette3
 
   createPlayerObj: (rawObj, i) ->
     @addPattern(rawObj.picture)
-    @addPattern(rawObj.big_picture)
     sObj =
       id: rawObj.id
       num: i
       color: rawObj.color
       picture: rawObj.picture
-      big_picture: rawObj.big_picture
-      gray_picture: rawObj.gray_picture
       x: (i - 1) * @P.chip.width
 
-  toGray: ->
-    imageData = @ctx.getImageData(0, 0, @canvas.width, @canvas.height);
-    data = imageData.data;
-
-    i = 0
-    while i < data.length
-      brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2]
-      data[i] = brightness
-      data[i + 1] = brightness
-      data[i + 2] = brightness
-      i+=4
-
-    @ctx.putImageData(imageData, 0, 0);
-    return
-
   drawPlayer: (l, cObj) ->
-
-
-#    @ctx.fillStyle = "rgba(255, 216, 0, 0.3)";
-#    @ctx.rect(
-#      l + (@P.chip.width) / 2,
-#      (@canvas.height) / 2,
-#      @P.chip.width,
-#      @P.chip.height
-#    )
-#    @ctx.fill()
+#    console.log "#{l - 1}, #{(@canvas.height - @P.chip.height) / 2 + 20}, #{@P.chip.width - 1}, #{@P.chip.height}"
+#    @ctx.stroke()
 
     if @patterns[cObj.picture]
       @ctx.drawImage(
@@ -113,6 +87,10 @@ class W.CnvRoulette3
         @patterns[cObj.picture].naturalWidth,
         @patterns[cObj.picture].naturalHeight
       )
+
+    @ctx.strokeStyle = "rgba(255, 216, 0, 1)"
+    @ctx.lineWidth = 2
+    @ctx.strokeRect(l - 1, (@canvas.height - @P.chip.height) / 2 + 20, @P.chip.width - 1, @P.chip.height)
 
   drawPointer: (alpha = 0.1) ->
     mt = 5
@@ -134,14 +112,16 @@ class W.CnvRoulette3
     @ctx.shadowOffsetY = 0
 
   drawBg: () ->
-    if @patterns[@P.background]
-      @ctx.drawImage(@patterns[@P.background], (@canvas.width - @patterns[@P.background].naturalWidth) / 2, 42, @patterns[@P.background].naturalWidth, 109)
+    @ctx.strokeStyle = "transparent"
+    @ctx.fillStyle = "rgba(255, 216, 0, 0.1)"
+    @ctx.rect 0, (@canvas.height - @P.chip.height) / 2 + 20, @canvas.width, @P.chip.height
+    @ctx.closePath()
+    @ctx.fill()
 
   draw: (animate = true) ->
-    @ctx.clearRect(0,0, @canvas.width, @canvas.height)
+    @ctx.clearRect 0, 0, @canvas.width, @canvas.height
 
     @drawBg()
-    @drawPointer(1)
 
     if @status == 'spin' or @status == 'slowdown'
       @_d += @P.speed
@@ -153,7 +133,6 @@ class W.CnvRoulette3
         for i in [0...@objects.length - 2]
           @objects[i].x = @objects[i+1].x
         @objects[@objects.length - 2].x = last_x
-
 
     if @status == 'slowdown'
       if @P.speed <= @P.minSpeed and @objects[@winner_id].x  + 1.5 * @P.chip.width + @_d >= @P.centerX and @objects[@winner_id].x + @P.chip.width / 2 + @_d <= @P.centerX

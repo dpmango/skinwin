@@ -1,13 +1,15 @@
 .l-lightbox {
   display: flex;
   position: absolute;
-  top: 100px;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  cursor: pointer;
   justify-content: center;
+  align-items: baseline;
   z-index: 5000;
+
+
 
   &:before {
     position: absolute;
@@ -19,6 +21,11 @@
     opacity: .95;
     content: '';
     z-index: 0;
+    cursor: pointer;
+  }
+
+  &-wm {
+    top: 100px;
   }
 
   &-wrap {

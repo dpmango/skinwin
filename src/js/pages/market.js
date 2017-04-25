@@ -5,7 +5,9 @@
         $wrap.height($(window).height() - 220 - 170)
     }).trigger('resize');
 
-    VScrollBox.instance('.v-scroll-box');
+    $(document).ready(function () {
+        VScrollBox.instance('.v-scroll-box');
+    });
 
     $('.select').each(function () {
         var $s = $(this), $sVal = $('.select-val', $s), $sItems =  $('.select-list div', $s);

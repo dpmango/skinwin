@@ -1,0 +1,17 @@
+#ExpiresActive On
+#ExpiresDefault A0
+#
+## 1 YEAR - doesn't change often
+#<FilesMatch "\.(flv|ico|pdf|avi|mov|ppt|doc|mp3|wmv|wav)$">
+#ExpiresDefault A31536000
+#</FilesMatch>
+#
+## 1 WEEK - possible to be changed, unlikely
+#<FilesMatch "\.(jpg|jpeg|png|gif|swf)$">
+#ExpiresDefault A604800
+#</FilesMatch>
+#
+## 3 HOUR - core content, changes quickly
+#<FilesMatch "\.(txt|xml|js|css)$">
+#ExpiresDefault A10800
+#</FilesMatch>

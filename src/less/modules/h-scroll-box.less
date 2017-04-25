@@ -73,3 +73,62 @@
     }
   }
 }
+
+.h-scroll-box-st4 {
+  overflow: hidden;
+
+  .h-scroll-box-bar {
+    display: none;
+  }
+
+  .h-scroll-box-next, .h-scroll-box-prev {
+    position: absolute;
+    top: 100px;
+    width: 50px;
+    height: 100px;
+    cursor: pointer;
+    &:after {
+      top: 16px;
+      position: absolute;
+      display: block;
+      width: 62px;
+      height: 62px;
+      border-bottom: 5px solid #464c52;
+      border-right: 5px solid #464c52;
+      content: '';
+    }
+  }
+
+  .h-scroll-box-next {
+    left: 0;
+    &:after {
+      left: 12px;
+      transform: rotateZ(135deg);
+    }
+  }
+
+  .h-scroll-box-prev {
+    right: 0;
+    &:after {
+      right: 12px;
+      transform: rotateZ(-45deg);
+    }
+  }
+
+  .h-scroll-box-inner {
+    width: auto;
+    margin: 0 70px;
+  }
+
+  .h-scroll-box-wrap {
+    box-sizing: content-box;
+    padding: 0;
+    justify-content: center;
+    font-size: 0;
+    background: none;
+
+    .h-scroll-box-item {
+      margin: 30px 35px;
+    }
+  }
+}

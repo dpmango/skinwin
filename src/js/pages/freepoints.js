@@ -21,7 +21,7 @@
         if(!game) {
             cnvRoulette1.start(); /* расскручиваем рулетку */
             $lb = $(
-                '<div class="l-lightbox" style="display: none;">' +
+                '<div class="l-lightbox l-lightbox-wm" style="display: none;">' +
                     '<div class="l-lightbox-wrap text-center">' +
                         '<img src="images/assets/cs-item3-big.png" alt="csgo-item" />' +
                         '<div class="c-aqua fsz-44-50 tt-upper">congratulations!</div>' +

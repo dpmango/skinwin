@@ -5,5 +5,7 @@
         $wrap.height($(window).height() - 220 - 250)
     }).trigger('resize');
 
-    VScrollBox.instance('.v-scroll-box');
+    $(document).ready(function () {
+        VScrollBox.instance('.v-scroll-box');
+    });
 })();

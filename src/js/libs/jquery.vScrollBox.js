@@ -21,17 +21,28 @@
       return inst;
     };
 
+    VScrollBox.prototype.update = function() {
+      return $(W).trigger('resize');
+    };
+
     VScrollBox.prototype.init = function() {
       this.jBox.each(function() {
         var jBar, jMarker, jWrap, scrollerHeight;
-        jWrap = $('.v-scroll-box-wrap', this);
-        jBar = $('.v-scroll-box-bar', this);
-        jMarker = $('div', jBar);
+        console.log(1);
+        jWrap = $(this).children('.v-scroll-box-wrap');
+        jBar = $(this).children('.v-scroll-box-bar');
+        jMarker = jBar.children('div');
         scrollerHeight = jBar.height() * jWrap.height() / jWrap.get(0).scrollHeight;
-        jMarker.css('height', scrollerHeight + "px");
+        jMarker.css({
+          height: scrollerHeight + "px",
+          display: scrollerHeight >= jBar.height() ? 'none' : 'block'
+        });
         $(W).resize(function() {
           scrollerHeight = jBar.height() * jWrap.height() / jWrap.get(0).scrollHeight;
-          return jMarker.css('height', scrollerHeight + "px");
+          return jMarker.css({
+            height: scrollerHeight + "px",
+            display: scrollerHeight >= jBar.height() ? 'none' : 'block'
+          });
         });
         return jWrap.on('scroll', function() {
           var pK, sT;
