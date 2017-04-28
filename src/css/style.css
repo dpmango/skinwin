@@ -795,6 +795,9 @@ div {
 .l-popup-block {
   padding: 12px 15px;
 }
+.l-popup-block-nc {
+  padding: 0;
+}
 .l-popup:after {
   position: absolute;
   top: -7px;
@@ -1578,6 +1581,31 @@ div {
 .is-btn-active .btn-text {
   color: #11bfae;
 }
+.btn-menu {
+  position: relative;
+  overflow: visible;
+}
+.btn-menu.is-btn-open > div {
+  display: inherit;
+}
+.btn-menu.is-btn-open > .user-info {
+  display: flex;
+}
+.btn-menu > div {
+  position: absolute;
+  display: none;
+}
+.btn-menu > .l-popup {
+  top: 63px;
+  right: -5px;
+  height: 92px;
+  cursor: default;
+}
+.btn-menu > .user-info {
+  top: 78px;
+  left: -58px;
+  cursor: default;
+}
 .rbtn {
   box-sizing: border-box;
   display: inline-block;
@@ -1979,6 +2007,19 @@ div {
   border-radius: 3px;
   overflow: visible;
   background: #061a2c;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 }
 .h-scroll-box-bar > div {
   width: 100px;
@@ -1988,6 +2029,7 @@ div {
   -webkit-box-shadow: 0px 0px 5px #092741;
   -moz-box-shadow: 0px 0px 5px #092741;
   box-shadow: 0px 0px 5px #092741;
+  cursor: pointer;
 }
 .h-scroll-box-animated .h-scroll-box-wrap {
   transition: transform 0.3s linear;
@@ -2929,6 +2971,19 @@ div {
   height: 100%;
   overflow: visible;
   background: #061a2c;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 }
 .v-scroll-box-bar > div {
   width: 4px;
@@ -2937,6 +2992,7 @@ div {
   -webkit-box-shadow: 0px 0px 2px #0c7973;
   -moz-box-shadow: 0px 0px 2px #0c7973;
   box-shadow: 0px 0px 2px #0c7973;
+  cursor: pointer;
 }
 .question {
   position: relative;
@@ -3367,7 +3423,7 @@ div {
 .user-info:after {
   position: absolute;
   top: -11px;
-  right: 60px;
+  left: 60px;
   width: 22px;
   height: 22px;
   background: #11bfae;
@@ -3490,6 +3546,69 @@ div {
   50% {
     transform: scale(1.4);
   }
+}
+.switch {
+  height: 45px;
+}
+.switch-list {
+  position: relative;
+  overflow: visible;
+}
+.switch-item {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  padding: 11px 0 0 17px ;
+}
+.switch-item.is-active {
+  display: block;
+}
+.switch-nav {
+  position: relative;
+  float: right;
+  width: 30px;
+  height: 100%;
+  margin: 18px 3px 0 0;
+}
+.switch-next,
+.switch-prev {
+  position: absolute;
+  top: 0px;
+  width: 5px;
+  height: 10px;
+  cursor: pointer;
+}
+.switch-next:after,
+.switch-prev:after {
+  top: 1px;
+  position: absolute;
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-bottom: 1px solid #0e8781;
+  border-right: 1px solid #0e8781;
+  content: '';
+}
+.switch-next.inactive:after,
+.switch-prev.inactive:after {
+  border-color: #96a6ab !important;
+}
+.switch-prev {
+  left: 0;
+}
+.switch-prev:after {
+  left: 3px;
+  transform: rotateZ(135deg);
+}
+.switch-next {
+  right: 0;
+}
+.switch-next:after {
+  right: 3px;
+  transform: rotateZ(-45deg);
 }
 .left {
   float: left;

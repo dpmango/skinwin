@@ -23,3 +23,35 @@
     color: #11bfae;
   }
 }
+
+.btn-menu {
+  position: relative;
+  overflow: visible;
+
+  &.is-btn-open {
+    & > div {
+      display: inherit;
+    }
+    & > .user-info {
+      display: flex;
+    }
+  }
+
+  & > div {
+    position: absolute;
+    display: none;
+  }
+
+  & > .l-popup {
+    top: 63px;
+    right: -5px;
+    height: 92px;
+    cursor: default;
+  }
+
+  & > .user-info {
+    top: 78px;
+    left: -58px;
+    cursor: default;
+  }
+}

@@ -94,6 +94,42 @@
           _this.update(wx, sx);
         };
       })(this));
+      this.jBar.click((function(_this) {
+        return function(e) {
+          var left, pK, wx;
+          left = e.pageX - _this.jBar.offset().left;
+          left = (function() {
+            switch (false) {
+              case !(left < this.scrollerWidth / 2):
+                return 0;
+              case !(left > this.jBar.outerWidth() - this.scrollerWidth / 2):
+                return this.jBar.outerWidth() - this.scrollerWidth;
+              default:
+                return left - this.scrollerWidth / 2;
+            }
+          }).call(_this);
+          pK = left / ((_this.jBar.outerWidth() - _this.scrollerWidth) / 100);
+          wx = (_this.wrapWidth - _this.jInner.width()) / 100 * pK;
+          _this.update(-wx, left);
+        };
+      })(this));
+      this.jScroller.on("mousedown.h-scroll", (function(_this) {
+        return function(e) {
+          var mx;
+          mx = e.pageX - _this.jScroller.offset().left;
+          _this.jHSBs.removeClass('h-scroll-box-animated');
+          $(D).on('mousemove.h-scroll', function(e) {
+            var left, pK, wx;
+            left = e.pageX - _this.jBar.offset().left - mx;
+            pK = left / ((_this.jBar.outerWidth() - _this.scrollerWidth) / 100);
+            wx = (_this.wrapWidth - _this.jInner.width()) / 100 * pK;
+            _this.update(-wx, left);
+          }).on('mouseup.h-scroll', function() {
+            $(D).off('.h-scroll');
+            _this.jHSBs.addClass('h-scroll-box-animated');
+          });
+        };
+      })(this));
       if (this.scrollToEnd) {
         this.update(-100000, 100000);
       }

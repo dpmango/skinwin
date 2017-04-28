@@ -81,3 +81,13 @@
   background: -moz-linear-gradient(left, @colorL, @colorR); /* For Firefox 3.6 to 15 */
   background: linear-gradient(to left, @colorL, @colorR); /* Standard syntax (must be last) */
 }
+
+.noselect() {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}

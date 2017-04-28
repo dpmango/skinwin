@@ -47,7 +47,6 @@ class W.HScrollBox
         @update(wx, sx)
         return
 
-
     @jHSBs.on 'DOMMouseScroll mousewheel', (e) =>
       if e.originalEvent.wheelDelta > 0 or e.originalEvent.detail < 0
         wx = @jWrap.position().left + @jInner.width() * @step
@@ -58,6 +57,34 @@ class W.HScrollBox
         sx = @jScroller.position().left + @scrollerWidth * @step
         e.preventDefault() if !@endScrollRight and @scrollerWidth > 0
       @update(wx, sx)
+      return
+
+    @jBar.click (e) =>
+      left = e.pageX - @jBar.offset().left
+      left = switch
+        when left < @scrollerWidth / 2 then 0
+        when left > @jBar.outerWidth() - @scrollerWidth / 2 then @jBar.outerWidth() - @scrollerWidth
+        else left - @scrollerWidth / 2
+
+      pK = left / ((@jBar.outerWidth() - @scrollerWidth) / 100)
+      wx = (@wrapWidth - @jInner.width()) / 100 * pK
+
+      @update(-wx, left)
+      return
+
+    @jScroller.on "mousedown.h-scroll", (e) =>
+      mx = e.pageX - @jScroller.offset().left
+      @jHSBs.removeClass 'h-scroll-box-animated'
+      $(D).on('mousemove.h-scroll', (e) =>
+        left = e.pageX - @jBar.offset().left - mx
+        pK = left / ((@jBar.outerWidth() - @scrollerWidth) / 100)
+        wx = (@wrapWidth - @jInner.width()) / 100 * pK
+        @update(-wx, left)
+        return
+      ).on 'mouseup.h-scroll', =>
+        $(D).off '.h-scroll'
+        @jHSBs.addClass 'h-scroll-box-animated'
+        return
       return
 
     if @scrollToEnd
@@ -74,10 +101,6 @@ class W.HScrollBox
       left: jItem.position().left
       width: jItem.outerWidth(true)
 
-#  scrollToEnd: ->
-#    wx = @jWrap.position().left - @jHSBs.width() * @step
-#    sx = @jScroller.position().left + @scrollerWidth * @step
-
   updateItems: (wx) ->
     last_id = 10000
     for item, i in @jtemParams
@@ -88,7 +111,6 @@ class W.HScrollBox
         @jItems.eq(i).addClass 'is-last-item'
       else
         @jItems.eq(i).removeClass 'is-last-item'
-
 
   update: (wx = 0, sx = 0) ->
     if @jInner.outerWidth() - @wrapWidth >= 0

@@ -27,8 +27,8 @@
 
     VScrollBox.prototype.init = function() {
       this.jBox.each(function() {
-        var jBar, jMarker, jWrap, scrollerHeight;
-        console.log(1);
+        var jBar, jBox, jMarker, jWrap, scrollerHeight;
+        jBox = $(this);
         jWrap = $(this).children('.v-scroll-box-wrap');
         jBar = $(this).children('.v-scroll-box-bar');
         jMarker = jBar.children('div');
@@ -44,11 +44,41 @@
             display: scrollerHeight >= jBar.height() ? 'none' : 'block'
           });
         });
-        return jWrap.on('scroll', function() {
+        jWrap.on('scroll', function() {
           var pK, sT;
           sT = jWrap.scrollTop();
           pK = sT / ((jWrap.get(0).scrollHeight - jWrap.height()) / 100);
           return jMarker.css('transform', "translateY(" + ((jBar.height() - scrollerHeight) / 100 * pK) + "px)");
+        });
+        jMarker.on("mousedown.v-scroll", (function(_this) {
+          return function(e) {
+            var my;
+            my = e.pageY - jMarker.offset().top;
+            $(D).on('mousemove.v-scroll', function(e) {
+              var pK, top;
+              top = e.pageY - jBar.offset().top - my;
+              pK = top / ((jBar.outerHeight() - scrollerHeight) / 100);
+              jWrap.scrollTop((jWrap.get(0).scrollHeight - jWrap.height()) / 100 * pK);
+            }).on('mouseup.v-scroll', function() {
+              $(D).off('.v-scroll');
+            });
+          };
+        })(this));
+        return jBar.click(function(e) {
+          var pK, top;
+          top = e.pageY - jBar.offset().top;
+          top = (function() {
+            switch (false) {
+              case !(top < scrollerHeight / 2):
+                return 0;
+              case !(top > jBar.outerHeight() - scrollerHeight / 2):
+                return jBar.outerHeight() - scrollerHeight / 2;
+              default:
+                return top - scrollerHeight / 2;
+            }
+          })();
+          pK = top / ((jBar.outerHeight() - scrollerHeight) / 100);
+          return jWrap.scrollTop((jWrap.get(0).scrollHeight - jWrap.height()) / 100 * pK);
         });
       });
     };

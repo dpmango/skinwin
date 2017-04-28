@@ -17,12 +17,13 @@
     height: 100%;
     overflow: visible;
     background: #061a2c;
-
+    .noselect();
     & > div {
       width: 4px;
       height: 0px;
       background: #0c7973;
       .outer-shadow(2px, #0c7973);
+      cursor: pointer;
     }
   }
 }
