@@ -3551,6 +3551,7 @@ div {
   height: 45px;
 }
 .switch-list {
+  height: 45px;
   position: relative;
   overflow: visible;
 }
@@ -3561,10 +3562,14 @@ div {
   right: 0;
   height: 100%;
   width: 100%;
-  padding: 11px 0 0 17px ;
+  padding: 0 0 0 17px ;
+  align-items: center;
+}
+.switch-item > .btn-text {
+  flex-grow: 1;
 }
 .switch-item.is-active {
-  display: block;
+  display: flex;
 }
 .switch-nav {
   position: relative;
@@ -3572,6 +3577,7 @@ div {
   width: 30px;
   height: 100%;
   margin: 18px 3px 0 0;
+  z-index: 10;
 }
 .switch-next,
 .switch-prev {

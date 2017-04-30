@@ -1,11 +1,4 @@
 (function () {
-    $('.question-res').click(function () {
-        var $p = $(this).parent(), $ans = $('.question-answer', $p), isOpen = $p.hasClass('is-question-open');
-
-        $ans.slideToggle();
-        $p.toggleClass('is-question-open');
-    });
-
 
     $('.btn-menu .icon').click(function () {
         $(this).parent().toggleClass('is-btn-open');
@@ -37,5 +30,4 @@
             $items.removeClass('is-active').eq(i).addClass('is-active');
         });
     });
-
 })();

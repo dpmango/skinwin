@@ -88,12 +88,12 @@
 //    cnvCircleStat.update( updObjs );
 //}, 2000);
 
-
-    /* кастомные горизонтальные скроллы для блоков */
-    HScrollBox.instance('#sbx1', 1);
-    HScrollBox.instance('#sbx2', 0.5);
-    HScrollBox.instance('#sbx3', 1, true);
-
+    $(document).ready(function () {
+        /* кастомные горизонтальные скроллы для блоков */
+        HScrollBox.instance('#sbx1', 1);
+        HScrollBox.instance('#sbx2', 0.5);
+        HScrollBox.instance('#sbx3', 1, true);
+    });
 
     /* РУЛЕТКА */
 
@@ -108,25 +108,59 @@
 
     /* создание экземпляра "рулетки" статисики,
      * в кач-ве единственного параметра canvas, на который будет отрисовано изображение */
-    var cnvRoulette1 = new CnvRoulette(canv);
-    cnvRoulette1.init(objs2);
+    $(document).ready(function () {
+        var cnvRoulette1 = new CnvRoulette(canv);
+        cnvRoulette1.init(objs2);
 
-    /* пример использования.
-     * по клику крутим, по клику останавливаем */
-    var game = 0;
-    var $rW = $('.roulette-winner');
-    document.getElementsByClassName('roulette')[0].onclick = function () {
-        if(!game) {
-            cnvRoulette1.start(); /* расскручиваем рулетку */
-            game = 1;
-            $rW.addClass('is-hidden');
-        } else {
-            /* указываем победителя, рулетка постепенно остановится р3 - id победителя */
-            cnvRoulette1.stop('p1', function(){
-                $rW.removeClass('is-hidden');
-                game = 0;
-            });
-        }
-    };
+        /* пример использования.
+         * по клику крутим, по клику останавливаем */
+        var game = 0;
+        var $rW = $('.roulette-winner');
+        document.getElementsByClassName('roulette')[0].onclick = function () {
+            if (!game) {
+                cnvRoulette1.start();
+                /* расскручиваем рулетку */
+                game = 1;
+                $rW.addClass('is-hidden');
+            } else {
+                /* указываем победителя, рулетка постепенно остановится р3 - id победителя */
+                cnvRoulette1.stop('p1', function () {
+                    $rW.removeClass('is-hidden');
+                    game = 0;
+                });
+            }
+        };
+    });
+
+    $('.btn-menu .icon').click(function () {
+        $(this).parent().toggleClass('is-btn-open');
+    });
+
+    // switcher
+    $('.switch').each(function () {
+        var $t = $(this), $items = $('.switch-item', $t), $nav =  $('.switch-next, .switch-prev', $t), len = $items.length, i = 0;
+
+        $nav.click(function () {
+            if($(this).hasClass('switch-next') && i + 1 < len) {
+                i++;
+            } else if ($(this).hasClass('switch-prev') && i > 0) {
+                i--;
+            }
+
+            if(i + 1 < len) {
+                $nav.filter('.switch-next').removeClass('inactive');
+            } else {
+                $nav.filter('.switch-next').addClass('inactive');
+            }
+
+            if(i == 0) {
+                $nav.filter('.switch-prev').addClass('inactive');
+            } else {
+                $nav.filter('.switch-prev').removeClass('inactive');
+            }
+
+            $items.removeClass('is-active').eq(i).addClass('is-active');
+        });
+    });
 
 })();
