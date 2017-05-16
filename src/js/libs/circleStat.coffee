@@ -52,9 +52,27 @@ class W.CnvCircleStat
 
     img = new Image;
     img.onload = =>
-      @patterns[url] = img
+      @patterns[url] = @createRoudImage img, 36, 36
       @draw(false)
     img.src = url;
+
+  createRoudImage: (img, w, h) ->
+    cacheCanv = document.createElement('canvas')
+    cacheCanv.width = w
+    cacheCanv.height = h
+    cacheCtx = cacheCanv.getContext('2d')
+    cacheCtx.save()
+
+    cacheCtx.beginPath()
+    cacheCtx.arc(w/2, h/2, w/2, 0, Math.PI*2, true)
+    cacheCtx.closePath()
+    cacheCtx.clip()
+
+    cacheCtx.drawImage(img, 0, 0, w, h)
+
+    cacheCtx.restore()
+
+    cacheCtx.canvas
 
   createSectorObj: (rawObj, startAngle) ->
     @addToPatterns(rawObj.picture)
@@ -96,7 +114,7 @@ class W.CnvCircleStat
 
     #image
     if @patterns[cObj.picture]
-      @ctx.drawImage(@patterns[cObj.picture], @P.centerX + kx * _r - 18, @P.centerY + ky * _r - 18, 36, 36)
+      @ctx.drawImage(@patterns[cObj.picture], @P.centerX + kx * _r - 18, @P.centerY + ky * _r - 18)
 
     #sign
     @ctx.font="bold 12px serif"

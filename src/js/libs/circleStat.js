@@ -76,11 +76,27 @@
       img = new Image;
       img.onload = (function(_this) {
         return function() {
-          _this.patterns[url] = img;
+          _this.patterns[url] = _this.createRoudImage(img, 36, 36);
           return _this.draw(false);
         };
       })(this);
       return img.src = url;
+    };
+
+    CnvCircleStat.prototype.createRoudImage = function(img, w, h) {
+      var cacheCanv, cacheCtx;
+      cacheCanv = document.createElement('canvas');
+      cacheCanv.width = w;
+      cacheCanv.height = h;
+      cacheCtx = cacheCanv.getContext('2d');
+      cacheCtx.save();
+      cacheCtx.beginPath();
+      cacheCtx.arc(w / 2, h / 2, w / 2, 0, Math.PI * 2, true);
+      cacheCtx.closePath();
+      cacheCtx.clip();
+      cacheCtx.drawImage(img, 0, 0, w, h);
+      cacheCtx.restore();
+      return cacheCtx.canvas;
     };
 
     CnvCircleStat.prototype.createSectorObj = function(rawObj, startAngle) {
@@ -130,7 +146,7 @@
       this.ctx.shadowBlur = 0;
       _r = this.P.radius + 40;
       if (this.patterns[cObj.picture]) {
-        this.ctx.drawImage(this.patterns[cObj.picture], this.P.centerX + kx * _r - 18, this.P.centerY + ky * _r - 18, 36, 36);
+        this.ctx.drawImage(this.patterns[cObj.picture], this.P.centerX + kx * _r - 18, this.P.centerY + ky * _r - 18);
       }
       this.ctx.font = "bold 12px serif";
       this.ctx.fillStyle = '#fff';

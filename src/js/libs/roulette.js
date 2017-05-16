@@ -85,34 +85,77 @@
       })(this), 1000);
     };
 
-    CnvRoulette.prototype.addPattern = function(url) {
+    CnvRoulette.prototype.addPattern = function(url, type) {
       var img;
+      if (type == null) {
+        type = '';
+      }
       if (this.patterns[url] !== void 0) {
         return;
       }
-      this.patterns[url] = false;
+      this.patterns[type + url] = false;
       img = new Image;
       img.onload = (function(_this) {
         return function() {
-          _this.patterns[url] = img;
+          if (type === 'round') {
+            _this.patterns[type + url] = _this.createRoudImage(img, 54, 54);
+          } else if (type === 'round-gray') {
+            _this.patterns[type + url] = _this.createRoudImage(img, 54, 54, 1);
+          } else if (type === 'round-big') {
+            _this.patterns[type + url] = _this.createRoudImage(img, 96, 96);
+          } else {
+            _this.patterns[url] = img;
+          }
           return _this.draw(false);
         };
       })(this);
       return img.src = url;
     };
 
+    CnvRoulette.prototype.createRoudImage = function(img, w, h, g) {
+      var brightness, cacheCanv, cacheCtx, data, i, imageData;
+      if (g == null) {
+        g = 0;
+      }
+      cacheCanv = document.createElement('canvas');
+      cacheCanv.width = w;
+      cacheCanv.height = h;
+      cacheCtx = cacheCanv.getContext('2d');
+      cacheCtx.save();
+      cacheCtx.beginPath();
+      cacheCtx.arc(w / 2, h / 2, w / 2, 0, Math.PI * 2, true);
+      cacheCtx.closePath();
+      cacheCtx.clip();
+      cacheCtx.drawImage(img, 0, 0, w, h);
+      if (g === 1) {
+        imageData = cacheCtx.getImageData(0, 0, w, h);
+        data = imageData.data;
+        i = 0;
+        while (i < data.length) {
+          brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
+          data[i] = brightness;
+          data[i + 1] = brightness;
+          data[i + 2] = brightness;
+          i += 4;
+        }
+        cacheCtx.putImageData(imageData, 0, 0);
+      }
+      cacheCtx.restore();
+      return cacheCtx.canvas;
+    };
+
     CnvRoulette.prototype.createPlayerObj = function(rawObj, i) {
       var sObj;
-      this.addPattern(rawObj.picture);
-      this.addPattern(rawObj.big_picture);
-      this.addPattern(rawObj.gray_picture);
+      this.addPattern(rawObj.picture, 'round');
+      this.addPattern(rawObj.picture, 'round-big');
+      this.addPattern(rawObj.picture, 'round-gray');
       return sObj = {
         id: rawObj.id,
         num: i,
         color: rawObj.color,
-        picture: rawObj.picture,
-        big_picture: rawObj.big_picture,
-        gray_picture: rawObj.gray_picture,
+        picture: 'round' + rawObj.picture,
+        big_picture: 'round-big' + rawObj.picture,
+        gray_picture: 'round-gray' + rawObj.picture,
         x: (i - 1) * this.P.chip.width
       };
     };
@@ -148,11 +191,11 @@
       this.ctx.shadowBlur = 0;
       if (gray) {
         if (this.patterns[cObj.gray_picture]) {
-          return this.ctx.drawImage(this.patterns[cObj.gray_picture], l + (this.P.chip.width - this.patterns[cObj.gray_picture].naturalWidth) / 2, (this.canvas.height - this.patterns[cObj.gray_picture].naturalHeight) / 2, this.patterns[cObj.gray_picture].naturalWidth, this.patterns[cObj.gray_picture].naturalHeight);
+          return this.ctx.drawImage(this.patterns[cObj.gray_picture], l + (this.P.chip.width - 54) / 2, (this.canvas.height - 54) / 2);
         }
       } else {
         if (this.patterns[cObj.picture]) {
-          return this.ctx.drawImage(this.patterns[cObj.picture], l + (this.P.chip.width - this.patterns[cObj.picture].naturalWidth) / 2, (this.canvas.height - this.patterns[cObj.picture].naturalHeight) / 2, this.patterns[cObj.picture].naturalWidth, this.patterns[cObj.picture].naturalHeight);
+          return this.ctx.drawImage(this.patterns[cObj.picture], l + (this.P.chip.width - 54) / 2, (this.canvas.height - 54) / 2);
         }
       }
     };
@@ -167,7 +210,7 @@
       this.ctx.stroke();
       this.ctx.shadowBlur = 0;
       if (this.patterns[this.objects[this.winner_id].big_picture]) {
-        return this.ctx.drawImage(this.patterns[this.objects[this.winner_id].big_picture], this.P.centerX - 48, this.P.centerY - 48, 96, 96);
+        return this.ctx.drawImage(this.patterns[this.objects[this.winner_id].big_picture], this.P.centerX - 48, this.P.centerY - 48);
       }
     };
 

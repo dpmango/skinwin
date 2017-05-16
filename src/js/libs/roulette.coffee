@@ -60,27 +60,66 @@ class W.CnvRoulette
         @P.speed = @P.minSpeed if @P.speed < @P.minSpeed
     , 1000
 
-  addPattern: (url) ->
+  addPattern: (url, type = '') ->
     return if @patterns[url] != undefined
-    @patterns[url] = false
+    @patterns[type + url] = false
 
     img = new Image;
     img.onload = =>
-      @patterns[url] = img
+      if type == 'round'
+        @patterns[type + url] = @createRoudImage img, 54, 54
+      else if type == 'round-gray'
+        @patterns[type + url] = @createRoudImage img, 54, 54, 1
+      else if type == 'round-big'
+        @patterns[type + url] = @createRoudImage img, 96, 96
+      else
+        @patterns[url] = img
       @draw(false)
     img.src = url;
 
+  createRoudImage: (img, w, h, g = 0) ->
+    cacheCanv = document.createElement('canvas')
+    cacheCanv.width = w
+    cacheCanv.height = h
+    cacheCtx = cacheCanv.getContext('2d')
+    cacheCtx.save()
+
+    cacheCtx.beginPath()
+    cacheCtx.arc(w/2, h/2, w/2, 0, Math.PI*2, true)
+    cacheCtx.closePath()
+    cacheCtx.clip()
+
+    cacheCtx.drawImage(img, 0, 0, w, h)
+
+    if g == 1
+      imageData = cacheCtx.getImageData(0, 0, w, h);
+      data = imageData.data;
+
+      i = 0
+      while i < data.length
+        brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2]
+        data[i] = brightness
+        data[i + 1] = brightness
+        data[i + 2] = brightness
+        i+=4
+
+      cacheCtx.putImageData(imageData, 0, 0);
+
+    cacheCtx.restore()
+
+    cacheCtx.canvas
+
   createPlayerObj: (rawObj, i) ->
-    @addPattern(rawObj.picture)
-    @addPattern(rawObj.big_picture)
-    @addPattern(rawObj.gray_picture)
+    @addPattern(rawObj.picture, 'round')
+    @addPattern(rawObj.picture, 'round-big')
+    @addPattern(rawObj.picture, 'round-gray')
     sObj =
       id: rawObj.id
       num: i
       color: rawObj.color
-      picture: rawObj.picture
-      big_picture: rawObj.big_picture
-      gray_picture: rawObj.gray_picture
+      picture: 'round' + rawObj.picture
+      big_picture: 'round-big' + rawObj.picture
+      gray_picture: 'round-gray' + rawObj.picture
       x: (i - 1) * @P.chip.width
 
   toGray: ->
@@ -112,20 +151,10 @@ class W.CnvRoulette
     @ctx.shadowBlur = 0
     if gray
       if @patterns[cObj.gray_picture]
-        @ctx.drawImage(
-          @patterns[cObj.gray_picture],
-          l + (@P.chip.width - @patterns[cObj.gray_picture].naturalWidth) / 2,
-          (@canvas.height - @patterns[cObj.gray_picture].naturalHeight) / 2,
-          @patterns[cObj.gray_picture].naturalWidth,
-          @patterns[cObj.gray_picture].naturalHeight)
+        @ctx.drawImage(@patterns[cObj.gray_picture], l + (@P.chip.width - 54) / 2, (@canvas.height - 54) / 2)
     else
       if @patterns[cObj.picture]
-        @ctx.drawImage(
-          @patterns[cObj.picture],
-          l + (@P.chip.width - @patterns[cObj.picture].naturalWidth) / 2,
-          (@canvas.height - @patterns[cObj.picture].naturalHeight) / 2,
-          @patterns[cObj.picture].naturalWidth,
-          @patterns[cObj.picture].naturalHeight)
+        @ctx.drawImage(@patterns[cObj.picture], l + (@P.chip.width - 54) / 2, (@canvas.height - 54) / 2)
 
   drawWinner: ->
     @ctx.beginPath()
@@ -138,7 +167,7 @@ class W.CnvRoulette
 
     @ctx.shadowBlur = 0
     if @patterns[@objects[@winner_id].big_picture]
-      @ctx.drawImage(@patterns[@objects[@winner_id].big_picture], @P.centerX - 48, @P.centerY - 48, 96, 96)
+      @ctx.drawImage(@patterns[@objects[@winner_id].big_picture], @P.centerX - 48, @P.centerY - 48)
 
   drawPointer: (alpha = 0.1) ->
     mt = 5
@@ -211,6 +240,8 @@ class W.CnvRoulette
       @toGray()
       @drawPointer(@_a += 0.05)
       @drawWinner()
+
+#    @ctx.drawImage(@patterns['images/assets/dota-item1.png'], 500, 0)
 
     if (@status == 'slowdown' or @status == 'spin' or @status == 'winner_showing') and animate
       callback = (=> @draw())

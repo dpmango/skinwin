@@ -51,19 +51,19 @@
     /* СТАТИСТИКА */
     /* список секторов с параметрами */
     var objs = {
-        1: {id: 'a1', percent: 35, color: '#afca05', picture: 'images/assets/Desert3.png'},
-        2: {id: 'a2', percent: 35, color: '#e5007d', picture: 'images/assets/Desert3.png'},
-        3: {id: 'a3', percent: 30, color: '#ffcc00', picture: 'images/assets/Desert3.png'},
-        4: {id: 'a4', percent: 0, color: '#008bd2', picture: 'images/assets/Desert3.png'}
+        1: {id: 'a1', percent: 35, color: '#afca05', picture: 'images/assets/dota-item1.png'},
+        2: {id: 'a2', percent: 35, color: '#e5007d', picture: 'images/assets/dota-item2.png'},
+        3: {id: 'a3', percent: 30, color: '#ffcc00', picture: 'images/assets/dota-item3.png'},
+        4: {id: 'a4', percent: 0, color: '#008bd2', picture: 'images/assets/dota-item1.png'}
     };
 
     /* обновление списка секторов с параметрами
      * id обязательно должны совпадать с первым списком */
     var updObjs = {
-        1: {id: 'a1', percent: 39.5, color: '#afca05', picture: 'images/assets/Desert3.png'},
-        2: {id: 'a2', percent: 10.5, color: '#e5007d', picture: 'images/assets/Desert3.png'},
-        3: {id: 'a3', percent: 47.5, color: '#ffcc00', picture: 'images/assets/Desert3.png'},
-        4: {id: 'a4', percent: 2.5, color: '#008bd2', picture: 'images/assets/Desert3.png'}
+        1: {id: 'a1', percent: 39.5, color: '#afca05', picture: 'images/assets/dota-item1.png'},
+        2: {id: 'a2', percent: 10.5, color: '#e5007d', picture: 'images/assets/dota-item2.png'},
+        3: {id: 'a3', percent: 47.5, color: '#ffcc00', picture: 'images/assets/dota-item3.png'},
+        4: {id: 'a4', percent: 2.5, color: '#008bd2', picture: 'images/assets/dota-item1.png'}
     };
 
     /* создание экземпляра "колеса" статисики,
@@ -99,9 +99,9 @@
 
     /* объекты "игроков" */
     var objs2 = [
-        {id: 'p1', color: '#afca05', picture: 'images/assets/Desert4.png', big_picture: 'images/assets/Desert5.png', gray_picture: 'images/assets/Desert4-gray.png'},
-        {id: 'p2', color: '#e5007d', picture: 'images/assets/Koala4.png', big_picture: 'images/assets/Koala4.png', gray_picture: 'images/assets/Koala4-gray.png'},
-        {id: 'p3', color: '#ffcc00', picture: 'images/assets/Penguins4.png', big_picture: 'images/assets/Penguins4.png', gray_picture: 'images/assets/Penguins4-gray.png'}
+        {id: 'p1', color: '#afca05', picture: 'images/assets/dota-item1.png'},
+        {id: 'p2', color: '#e5007d', picture: 'images/assets/dota-item2.png'},
+        {id: 'p3', color: '#ffcc00', picture: 'images/assets/dota-item3.png'}
     ];
 
     var canv = document.getElementById('canvas2');
